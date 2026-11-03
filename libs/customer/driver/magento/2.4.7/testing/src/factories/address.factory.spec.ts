@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoCustomerAddress } from '@daffodil/customer/driver/magento';
+import { MagentoCustomerAddress } from '@daffodil/customer/driver/magento/2.4.7';
 
 import { MagentoCustomerAddressFactory } from './address.factory';
 

@@ -1,7 +1,7 @@
 import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerInvalidAPIResponseError } from '@daffodil/customer/driver';
-import { MagentoDeleteCustomerAddressResponse } from '@daffodil/customer/driver/magento';
+import { MagentoDeleteCustomerAddressResponse } from '@daffodil/customer/driver/magento/2.4.7';
 
 import { validateDeleteCustomerAddressResponse as validator } from './delete-customer-address';
 

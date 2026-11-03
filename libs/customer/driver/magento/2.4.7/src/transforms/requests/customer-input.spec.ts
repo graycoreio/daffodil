@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCustomer } from '@daffodil/customer';
-import { MagentoCustomerInput } from '@daffodil/customer/driver/magento';
+import { MagentoCustomerInput } from '@daffodil/customer/driver/magento/2.4.7';
 import { DaffCustomerFactory } from '@daffodil/customer/testing';
 
 import { magentoCustomerInputTransform } from './customer-input';

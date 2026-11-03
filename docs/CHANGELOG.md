@@ -1268,7 +1268,7 @@
 
 ### ⚠ BREAKING CHANGES
 
-* **driver,customer-order:** `@daffodil/customer/driver/magento` has been renamed to `@daffodil/customer/driver/magento/2-4-5`
+* **driver,customer-order:** `@daffodil/customer/driver/magento/2.4.7` has been renamed to `@daffodil/customer/driver/magento/2-4-5`
 
 ### Features
 

@@ -5,7 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import {
   MagentoCustomer,
   MagentoCustomerAddress,
-} from '@daffodil/customer/driver/magento';
+} from '@daffodil/customer/driver/magento/2.4.7';
 
 import { MagentoCustomerAddressFactory } from './address.factory';
 

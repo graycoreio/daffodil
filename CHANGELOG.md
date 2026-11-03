@@ -885,7 +885,7 @@ this is to allow additional fragments to be interpolated into injected fragments
 * **core:** add `daffClearErrors` ([#2284](https://github.com/graycoreio/daffodil/issues/2284)) ([2c1a95a](https://github.com/graycoreio/daffodil/commit/2c1a95ac0b0515e726a74c65581f5d7b9ee5fd6d))
 * **core:** add operation state ([#2256](https://github.com/graycoreio/daffodil/issues/2256)) ([cc25f3b](https://github.com/graycoreio/daffodil/commit/cc25f3bc6fd930a1e693b41c9933c1d32c01c209))
 * **customer:** add `@daffodil/customer/driver/in-memory` ([#2248](https://github.com/graycoreio/daffodil/issues/2248)) ([1ad50aa](https://github.com/graycoreio/daffodil/commit/1ad50aaa3a61c548ff54a2044ed49115034e120e))
-* **customer:** add `@daffodil/customer/driver/magento` ([#2248](https://github.com/graycoreio/daffodil/issues/2248)) ([a22d11b](https://github.com/graycoreio/daffodil/commit/a22d11b9628ed54e26cb7a6c6297543707c660e0))
+* **customer:** add `@daffodil/customer/driver/magento/2.4.7` ([#2248](https://github.com/graycoreio/daffodil/issues/2248)) ([a22d11b](https://github.com/graycoreio/daffodil/commit/a22d11b9628ed54e26cb7a6c6297543707c660e0))
 * **customer:** add `@daffodil/customer/driver/testing` ([#2248](https://github.com/graycoreio/daffodil/issues/2248)) ([73597c4](https://github.com/graycoreio/daffodil/commit/73597c47c8aab3badc3a1694f908a4b37bf63f51))
 * **customer:** add `@daffodil/customer/driver` ([#2248](https://github.com/graycoreio/daffodil/issues/2248)) ([00da76b](https://github.com/graycoreio/daffodil/commit/00da76bf8b87889c3d3b377f3d2816e4919dd555))
 * **customer:** add `@daffodil/customer/routing` ([#2248](https://github.com/graycoreio/daffodil/issues/2248)) ([c5460d6](https://github.com/graycoreio/daffodil/commit/c5460d63fb395da9a029671923e59bb36132df3e))

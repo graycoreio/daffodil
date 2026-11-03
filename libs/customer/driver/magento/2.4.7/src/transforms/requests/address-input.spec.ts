@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCustomerAddress } from '@daffodil/customer';
-import { MagentoCustomerAddressInput } from '@daffodil/customer/driver/magento';
+import { MagentoCustomerAddressInput } from '@daffodil/customer/driver/magento/2.4.7';
 import { DaffCustomerAddressFactory } from '@daffodil/customer/testing';
 
 import { magentoCustomerAddressInputTransform } from './address-input';

@@ -5,7 +5,7 @@ import {
   DaffModelFactory,
   enforceUnique,
 } from '@daffodil/core/testing';
-import { MagentoCustomerAddress } from '@daffodil/customer/driver/magento';
+import { MagentoCustomerAddress } from '@daffodil/customer/driver/magento/2.4.7';
 
 export class MockMagentoCustomerAddress implements MagentoCustomerAddress {
   __typename = 'CustomerAddress';

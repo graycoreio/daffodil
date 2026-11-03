@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoCustomer } from '@daffodil/customer/driver/magento';
+import { MagentoCustomer } from '@daffodil/customer/driver/magento/2.4.7';
 
 import { MagentoCustomerFactory } from './customer.factory';
 

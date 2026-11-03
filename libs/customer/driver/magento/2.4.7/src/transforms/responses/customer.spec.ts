@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCustomer } from '@daffodil/customer';
-import { MagentoCustomer } from '@daffodil/customer/driver/magento';
-import { MagentoCustomerFactory } from '@daffodil/customer/driver/magento/testing';
+import { MagentoCustomer } from '@daffodil/customer/driver/magento/2.4.7';
+import { MagentoCustomerFactory } from '@daffodil/customer/driver/magento/2.4.7/testing';
 
 import { magentoCustomerTransform } from './customer';
 

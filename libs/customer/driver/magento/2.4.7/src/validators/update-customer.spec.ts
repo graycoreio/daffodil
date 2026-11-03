@@ -2,13 +2,13 @@ import { TestBed } from '@angular/core/testing';
 import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerInvalidAPIResponseError } from '@daffodil/customer/driver';
-import { MagentoGetCustomerResponse } from '@daffodil/customer/driver/magento';
-import { MagentoCustomerFactory } from '@daffodil/customer/driver/magento/testing';
+import { MagentoUpdateCustomerResponse } from '@daffodil/customer/driver/magento/2.4.7';
+import { MagentoCustomerFactory } from '@daffodil/customer/driver/magento/2.4.7/testing';
 
-import { validateGetCustomerResponse as validator } from './get-customer';
+import { validateUpdateCustomerResponse as validator } from './update-customer';
 
-describe('@daffodil/customer/driver/magento | validateGetCustomerResponse', () => {
-  let response: Apollo.QueryResult<MagentoGetCustomerResponse>;
+describe('@daffodil/customer/driver/magento | validateUpdateCustomerResponse', () => {
+  let response: Apollo.QueryResult<MagentoUpdateCustomerResponse>;
   let customerFactory: MagentoCustomerFactory;
 
   beforeEach(() => {
@@ -16,7 +16,9 @@ describe('@daffodil/customer/driver/magento | validateGetCustomerResponse', () =
 
     response = {
       data: {
-        customer: customerFactory.create(),
+        updateCustomerV2: {
+          customer: customerFactory.create(),
+        },
       },
     };
   });
@@ -31,7 +33,7 @@ describe('@daffodil/customer/driver/magento | validateGetCustomerResponse', () =
 
   describe('and when the response does not have customer', () => {
     beforeEach(() => {
-      response.data.customer = null;
+      response.data.updateCustomerV2.customer = null;
     });
 
     it('should throw a DaffCustomerInvalidAPIResponseError', () => {

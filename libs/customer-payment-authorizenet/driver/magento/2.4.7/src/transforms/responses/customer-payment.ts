@@ -1,4 +1,4 @@
-import { magentoCustomerAddressTransform } from '@daffodil/customer/driver/magento';
+import { magentoCustomerAddressTransform } from '@daffodil/customer/driver/magento/2.4.7';
 import { DaffCustomerPaymentAuthorizeNet } from '@daffodil/customer-payment-authorizenet';
 
 import { magentoCustomerPaymentAnetCCTypeResponseTransform } from './card-type';

@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerInvalidAPIResponseError } from '@daffodil/customer/driver';
-import { MagentoUpdateCustomerAddressResponse } from '@daffodil/customer/driver/magento';
-import { MagentoCustomerAddressFactory } from '@daffodil/customer/driver/magento/testing';
+import { MagentoUpdateCustomerAddressResponse } from '@daffodil/customer/driver/magento/2.4.7';
+import { MagentoCustomerAddressFactory } from '@daffodil/customer/driver/magento/2.4.7/testing';
 
 import { validateUpdateCustomerAddressResponse as validator } from './update-customer-address';
 

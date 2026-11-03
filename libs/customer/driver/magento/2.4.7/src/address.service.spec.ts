@@ -21,8 +21,8 @@ import {
   MagentoDeleteCustomerAddressResponse,
   MagentoUpdateCustomerAddressResponse,
   getCustomerAddresses,
-} from '@daffodil/customer/driver/magento';
-import { MagentoCustomerAddressFactory } from '@daffodil/customer/driver/magento/testing';
+} from '@daffodil/customer/driver/magento/2.4.7';
+import { MagentoCustomerAddressFactory } from '@daffodil/customer/driver/magento/2.4.7/testing';
 import { DaffCustomerAddressFactory } from '@daffodil/customer/testing';
 import {
   DaffDriverMagentoError,

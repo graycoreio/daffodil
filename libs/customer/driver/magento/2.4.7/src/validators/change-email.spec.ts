@@ -2,13 +2,13 @@ import { TestBed } from '@angular/core/testing';
 import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerInvalidAPIResponseError } from '@daffodil/customer/driver';
-import { MagentoChangePasswordResponse } from '@daffodil/customer/driver/magento';
-import { MagentoCustomerFactory } from '@daffodil/customer/driver/magento/testing';
+import { MagentoChangeEmailResponse } from '@daffodil/customer/driver/magento/2.4.7';
+import { MagentoCustomerFactory } from '@daffodil/customer/driver/magento/2.4.7/testing';
 
-import { validateChangePasswordResponse as validator } from './change-password';
+import { validateChangeEmailResponse as validator } from './change-email';
 
-describe('@daffodil/customer/driver/magento | validateChangePasswordResponse', () => {
-  let response: Apollo.QueryResult<MagentoChangePasswordResponse>;
+describe('@daffodil/customer/driver/magento | validateChangeEmailResponse', () => {
+  let response: Apollo.QueryResult<MagentoChangeEmailResponse>;
   let customerFactory: MagentoCustomerFactory;
 
   beforeEach(() => {
@@ -16,8 +16,8 @@ describe('@daffodil/customer/driver/magento | validateChangePasswordResponse', (
 
     response = {
       data: {
-        changeCustomerPassword: {
-          email: 'email',
+        updateCustomerEmail: {
+          customer: customerFactory.create(),
         },
       },
     };
@@ -33,7 +33,7 @@ describe('@daffodil/customer/driver/magento | validateChangePasswordResponse', (
 
   describe('and when the response does not have customer', () => {
     beforeEach(() => {
-      response.data.changeCustomerPassword.email = null;
+      response.data.updateCustomerEmail.customer = null;
     });
 
     it('should throw a DaffCustomerInvalidAPIResponseError', () => {

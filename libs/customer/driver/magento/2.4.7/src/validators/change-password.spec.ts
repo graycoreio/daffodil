@@ -2,13 +2,13 @@ import { TestBed } from '@angular/core/testing';
 import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerInvalidAPIResponseError } from '@daffodil/customer/driver';
-import { MagentoGetCustomerResponse } from '@daffodil/customer/driver/magento';
-import { MagentoCustomerFactory } from '@daffodil/customer/driver/magento/testing';
+import { MagentoChangePasswordResponse } from '@daffodil/customer/driver/magento/2.4.7';
+import { MagentoCustomerFactory } from '@daffodil/customer/driver/magento/2.4.7/testing';
 
-import { validateGetCustomerAddressesResponse as validator } from './get-customer-addresses';
+import { validateChangePasswordResponse as validator } from './change-password';
 
-describe('@daffodil/customer/driver/magento | validateGetCustomerAddressesResponse', () => {
-  let response: Apollo.QueryResult<MagentoGetCustomerResponse>;
+describe('@daffodil/customer/driver/magento | validateChangePasswordResponse', () => {
+  let response: Apollo.QueryResult<MagentoChangePasswordResponse>;
   let customerFactory: MagentoCustomerFactory;
 
   beforeEach(() => {
@@ -16,12 +16,14 @@ describe('@daffodil/customer/driver/magento | validateGetCustomerAddressesRespon
 
     response = {
       data: {
-        customer: customerFactory.create(),
+        changeCustomerPassword: {
+          email: 'email',
+        },
       },
     };
   });
 
-  describe('and when the response has a customer with addresses', () => {
+  describe('and when the response has a customer', () => {
     it('should return the response and not throw an error', () => {
       const result = validator(response);
 
@@ -29,9 +31,9 @@ describe('@daffodil/customer/driver/magento | validateGetCustomerAddressesRespon
     });
   });
 
-  describe('and when the response does not have customer addresses', () => {
+  describe('and when the response does not have customer', () => {
     beforeEach(() => {
-      response.data.customer.addresses = null;
+      response.data.changeCustomerPassword.email = null;
     });
 
     it('should throw a DaffCustomerInvalidAPIResponseError', () => {

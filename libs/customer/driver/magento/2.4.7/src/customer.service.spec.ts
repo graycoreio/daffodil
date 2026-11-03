@@ -21,8 +21,8 @@ import {
   changePassword,
   MagentoChangePasswordResponse,
   MagentoUpdateCustomerResponse,
-} from '@daffodil/customer/driver/magento';
-import { MagentoCustomerFactory } from '@daffodil/customer/driver/magento/testing';
+} from '@daffodil/customer/driver/magento/2.4.7';
+import { MagentoCustomerFactory } from '@daffodil/customer/driver/magento/2.4.7/testing';
 import { DaffCustomerFactory } from '@daffodil/customer/testing';
 import {
   DaffDriverMagentoError,
