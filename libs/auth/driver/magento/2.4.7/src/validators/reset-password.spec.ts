@@ -1,17 +1,17 @@
 import { Apollo } from 'apollo-angular';
 
 import { DaffAuthInvalidAPIResponseError } from '@daffodil/auth/driver';
-import { MagentoSendResetEmailResponse } from '@daffodil/auth/driver/magento';
+import { MagentoResetPasswordResponse } from '@daffodil/auth/driver/magento/2.4.7';
 
-import { validateSendResetEmailResponse as validator } from './send-reset-email';
+import { validateResetPasswordResponse as validator } from './reset-password';
 
-describe('@daffodil/auth/driver/magento | validateSendResetEmailResponse', () => {
-  let response: Apollo.QueryResult<MagentoSendResetEmailResponse>;
+describe('@daffodil/auth/driver/magento | validateResetPasswordResponse', () => {
+  let response: Apollo.QueryResult<MagentoResetPasswordResponse>;
 
   beforeEach(() => {
     response = {
       data: {
-        requestPasswordResetEmail: true,
+        resetPassword: true,
       },
     };
   });
@@ -26,7 +26,7 @@ describe('@daffodil/auth/driver/magento | validateSendResetEmailResponse', () =>
 
   describe('when the response has a falsey result', () => {
     beforeEach(() => {
-      response.data.requestPasswordResetEmail = false;
+      response.data.resetPassword = false;
     });
 
     it('should throw a DaffAuthInvalidAPIResponseError', () => {

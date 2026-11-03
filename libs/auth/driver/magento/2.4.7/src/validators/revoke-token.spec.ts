@@ -1,24 +1,24 @@
 import { Apollo } from 'apollo-angular';
 
 import { DaffAuthInvalidAPIResponseError } from '@daffodil/auth/driver';
-import { MagentoCheckTokenResponse } from '@daffodil/auth/driver/magento';
+import { MagentoRevokeCustomerTokenResponse } from '@daffodil/auth/driver/magento/2.4.7';
 
-import { validateCheckTokenResponse as validator } from './check-token';
+import { validateRevokeTokenResponse as validator } from './revoke-token';
 
-describe('@daffodil/auth/driver/magento | validateCheckTokenResponse', () => {
-  let response: Apollo.QueryResult<MagentoCheckTokenResponse>;
+describe('@daffodil/auth/driver/magento | RevokeToken', () => {
+  let response: Apollo.QueryResult<MagentoRevokeCustomerTokenResponse>;
 
   beforeEach(() => {
     response = {
       data: {
-        customer: {
-          email: 'email',
+        revokeCustomerToken: {
+          result: true,
         },
       },
     };
   });
 
-  describe('when the response has a customer email defined', () => {
+  describe('when the response has a truthy result', () => {
     it('should return the response and not throw an error', () => {
       const result = validator(response);
 
@@ -26,9 +26,9 @@ describe('@daffodil/auth/driver/magento | validateCheckTokenResponse', () => {
     });
   });
 
-  describe('when the response does not have a customer email defined', () => {
+  describe('when the response has a falsey result', () => {
     beforeEach(() => {
-      response.data.customer.email = null;
+      response.data.revokeCustomerToken.result = false;
     });
 
     it('should throw a DaffAuthInvalidAPIResponseError', () => {

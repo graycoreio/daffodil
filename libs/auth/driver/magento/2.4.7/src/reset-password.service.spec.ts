@@ -26,7 +26,7 @@ import {
   sendPasswordResetEmailMutation,
   DaffMagentoLoginService,
   MagentoGenerateTokenResponse,
-} from '@daffodil/auth/driver/magento';
+} from '@daffodil/auth/driver/magento/2.4.7';
 import {
   DaffAuthResetPasswordInfoFactory,
   DaffAuthTokenFactory,
