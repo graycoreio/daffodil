@@ -7,6 +7,7 @@ export * from './injection-tokens/public_api';
 export * from './models/public_api';
 
 export { DaffCartStateModule } from './cart-state.module';
+export { provideDaffCartState } from './provider';
 
 export { DaffCartFacade } from './facades/cart/cart.facade';
 export { DaffCartFacadeInterface } from './facades/cart/cart-facade.interface';
