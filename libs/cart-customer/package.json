@@ -36,10 +36,23 @@
     "@ngrx/effects": "0.0.0-PLACEHOLDER",
     "@ngrx/entity": "0.0.0-PLACEHOLDER",
     "@ngrx/store": "0.0.0-PLACEHOLDER",
-    "rxjs": "0.0.0-PLACEHOLDER"
+    "rxjs": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER"
   },
   "devDependencies": {
     "@daffodil/auth": "0.0.0-PLACEHOLDER",
     "@daffodil/cart": "0.0.0-PLACEHOLDER"
+  },
+  "exports": {
+    "./driver/magento/auto": {
+      "cart-customer-magento-2.4.7": {
+        "types": "./driver/magento/2.4.7/index.d.ts",
+        "default": "./fesm2022/daffodil-cart-customer-driver-magento-2.4.7.mjs"
+      },
+      "default": {
+        "types": "./driver/magento/2.4.7/index.d.ts",
+        "default": "./fesm2022/daffodil-cart-customer-driver-magento-2.4.7.mjs"
+      }
+    }
   }
 }
