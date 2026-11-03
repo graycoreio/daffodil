@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { MagentoCustomerStoreCredit } from '@daffodil/customer-store-credit/driver/magento';
+import { MagentoCustomerStoreCredit } from '@daffodil/customer-store-credit/driver/magento/2.4.7';
 import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
 
 export class MockMagentoCustomerStoreCredit implements MagentoCustomerStoreCredit {
