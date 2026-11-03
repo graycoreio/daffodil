@@ -9,7 +9,7 @@ import { MagentoCustomerAddressFactory } from '@daffodil/customer/driver/magento
 import {
   MagentoTokenBaseCard,
   MagentoTokenBaseCardTypeCode,
-} from '@daffodil/customer-payment-authorizenet/driver/magento';
+} from '@daffodil/customer-payment-authorizenet/driver/magento/2.4.7';
 
 export class MockMagentoTokenBaseCard implements MagentoTokenBaseCard {
   __typename = <const>'TokenBaseCard';

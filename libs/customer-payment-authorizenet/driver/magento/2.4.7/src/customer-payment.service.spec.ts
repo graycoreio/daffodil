@@ -34,8 +34,8 @@ import {
   magentoCustomerPaymentCreateInputTransform,
   MagentoGetCustomerPaymentResponse,
   getCustomerPayment,
-} from '@daffodil/customer-payment-authorizenet/driver/magento';
-import { MagentoTokenBaseCardFactory } from '@daffodil/customer-payment-authorizenet/driver/magento/testing';
+} from '@daffodil/customer-payment-authorizenet/driver/magento/2.4.7';
+import { MagentoTokenBaseCardFactory } from '@daffodil/customer-payment-authorizenet/driver/magento/2.4.7/testing';
 import {
   DaffCustomerPaymentAuthorizeNetFactory,
   DaffCustomerPaymentAuthorizeNetRequestFactory,

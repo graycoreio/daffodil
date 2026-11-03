@@ -2,13 +2,13 @@ import { TestBed } from '@angular/core/testing';
 import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerPaymentInvalidAPIResponseError } from '@daffodil/customer-payment/driver';
-import { MagentoUpdateCustomerPaymentResponse } from '@daffodil/customer-payment-authorizenet/driver/magento';
-import { MagentoTokenBaseCardFactory } from '@daffodil/customer-payment-authorizenet/driver/magento/testing';
+import { MagentoCreateCustomerPaymentResponse } from '@daffodil/customer-payment-authorizenet/driver/magento/2.4.7';
+import { MagentoTokenBaseCardFactory } from '@daffodil/customer-payment-authorizenet/driver/magento/2.4.7/testing';
 
-import { validateUpdateCustomerPaymentResponse as validator } from './update-customer-payment';
+import { validateCreateCustomerPaymentResponse as validator } from './create-customer-payment';
 
-describe('@daffodil/customer-payment-authorizenet/driver/magento | validateUpdateCustomerPaymentResponse', () => {
-  let response: Apollo.QueryResult<MagentoUpdateCustomerPaymentResponse>;
+describe('@daffodil/customer-payment-authorizenet/driver/magento | validateCreateCustomerPaymentResponse', () => {
+  let response: Apollo.QueryResult<MagentoCreateCustomerPaymentResponse>;
   let customerPaymentFactory: MagentoTokenBaseCardFactory;
 
   beforeEach(() => {
@@ -16,7 +16,7 @@ describe('@daffodil/customer-payment-authorizenet/driver/magento | validateUpdat
 
     response = {
       data: {
-        updateTokenBaseCard: customerPaymentFactory.create(),
+        createTokenBaseCard: customerPaymentFactory.create(),
       },
     };
   });
@@ -31,7 +31,7 @@ describe('@daffodil/customer-payment-authorizenet/driver/magento | validateUpdat
 
   describe('and when the response is not a payment', () => {
     beforeEach(() => {
-      response.data.updateTokenBaseCard = null;
+      response.data.createTokenBaseCard = null;
     });
 
     it('should throw a DaffCustomerPaymentInvalidAPIResponseError', () => {
