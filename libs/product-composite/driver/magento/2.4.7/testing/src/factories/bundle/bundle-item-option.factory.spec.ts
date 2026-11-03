@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoBundledProductItemOption } from '@daffodil/product-composite/driver/magento';
+import { MagentoBundledProductItemOption } from '@daffodil/product-composite/driver/magento/2.4.7';
 
 import { MagentoBundledProductItemOptionFactory } from './bundle-item-option.factory';
 

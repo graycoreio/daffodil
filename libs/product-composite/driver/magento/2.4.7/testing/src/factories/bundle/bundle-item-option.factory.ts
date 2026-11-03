@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker/locale/en_US';
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { MagentoSimpleProduct } from '@daffodil/product/driver/magento';
 import { MagentoSimpleProductFactory } from '@daffodil/product/driver/magento/testing';
-import { MagentoBundledProductItemOption } from '@daffodil/product-composite/driver/magento';
+import { MagentoBundledProductItemOption } from '@daffodil/product-composite/driver/magento/2.4.7';
 
 
 export class MockMagentoBundledProductItemOption implements MagentoBundledProductItemOption {

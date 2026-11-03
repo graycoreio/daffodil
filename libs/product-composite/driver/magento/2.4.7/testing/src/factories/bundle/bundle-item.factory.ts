@@ -5,7 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import {
   MagentoBundledProductItem,
   MagentoBundledProductItemOption,
-} from '@daffodil/product-composite/driver/magento';
+} from '@daffodil/product-composite/driver/magento/2.4.7';
 
 import { MagentoBundledProductItemOptionFactory } from './bundle-item-option.factory';
 

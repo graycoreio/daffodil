@@ -7,7 +7,7 @@ import { MockMagentoCoreProduct } from '@daffodil/product/driver/magento/testing
 import {
   MagentoBundledProduct,
   MagentoBundledProductItem,
-} from '@daffodil/product-composite/driver/magento';
+} from '@daffodil/product-composite/driver/magento/2.4.7';
 
 import { MagentoBundledProductItemFactory } from './bundle-item.factory';
 
