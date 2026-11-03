@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 import { MagentoCategory } from '@daffodil/category/driver/magento/2.4.7';
 import { DaffCategoryDriverMagentoCategoryFactory } from '@daffodil/category/driver/magento/2.4.7/testing';
 import { DAFF_SEARCH_CATEGORY_RESULT_KIND } from '@daffodil/search-category';
-import { MagentoSearchForCategoriesResponse } from '@daffodil/search-category/driver/magento';
+import { MagentoSearchForCategoriesResponse } from '@daffodil/search-category/driver/magento/2.4.7';
 
 import { DaffSearchCategoryMagentoDriver } from './category-search.service';
 import { categorySearch } from './queries/category-search';
