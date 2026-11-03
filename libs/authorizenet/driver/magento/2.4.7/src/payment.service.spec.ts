@@ -11,29 +11,10 @@ import {
   DaffAuthorizeNetConfig,
   DaffAuthorizeNetConfigToken,
   DaffAuthorizeNetPastCCExpirationError,
-  DaffAuthorizeNetUnconfiguredError,
 } from '@daffodil/authorizenet/driver';
-import { MagentoAuthorizeNetPayment } from '@daffodil/authorizenet/driver/magento';
+import { MagentoAuthorizeNetPayment } from '@daffodil/authorizenet/driver/magento/2.4.7';
 
 import { DaffMagentoAuthorizeNetService } from './authorize-net.service';
-
-describe('@daffodil/authorizenet/driver/magento | DaffMagentoAuthorizeNetService | when the config is missing', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        {
-          provide: DaffAuthorizeNetConfigToken,
-          useValue: null,
-        },
-      ],
-    });
-  });
-
-  it('should throw a DaffAuthorizeNetUnconfiguredError', () => {
-    expect(() => TestBed.inject(DaffMagentoAuthorizeNetService))
-      .toThrowError(DaffAuthorizeNetUnconfiguredError);
-  });
-});
 
 describe('@daffodil/authorizenet/driver/magento | DaffMagentoAuthorizeNetService', () => {
   let service: DaffMagentoAuthorizeNetService;

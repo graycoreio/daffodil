@@ -14,7 +14,7 @@ import {
 } from 'rxjs/operators';
 
 import { DaffAuthorizeNetPaymentId } from '@daffodil/authorizenet/driver';
-import { DaffMagentoAuthorizeNetService } from '@daffodil/authorizenet/driver/magento';
+import { DaffMagentoAuthorizeNetService } from '@daffodil/authorizenet/driver/magento/2.4.7';
 import { DaffIdentifiable } from '@daffodil/core';
 import { DaffQueuedApollo } from '@daffodil/core/graphql';
 import { DaffCustomerPaymentDriverInterface } from '@daffodil/customer-payment/driver';

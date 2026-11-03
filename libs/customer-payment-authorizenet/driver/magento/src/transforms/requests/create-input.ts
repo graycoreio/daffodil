@@ -1,4 +1,4 @@
-import { MagentoAuthorizeNetPayment } from '@daffodil/authorizenet/driver/magento';
+import { MagentoAuthorizeNetPayment } from '@daffodil/authorizenet/driver/magento/2.4.7';
 import { magentoCustomerAddressInputTransform } from '@daffodil/customer/driver/magento';
 import { DaffCustomerPaymentAuthorizeNetRequest } from '@daffodil/customer-payment-authorizenet';
 

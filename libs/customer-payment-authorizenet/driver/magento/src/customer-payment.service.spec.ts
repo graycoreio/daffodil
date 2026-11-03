@@ -14,7 +14,7 @@ import { DaffAuthorizeNetPaymentId } from '@daffodil/authorizenet/driver';
 import {
   DaffMagentoAuthorizeNetService,
   MagentoAuthorizeNetPayment,
-} from '@daffodil/authorizenet/driver/magento';
+} from '@daffodil/authorizenet/driver/magento/2.4.7';
 import { DaffCustomerPayment } from '@daffodil/customer-payment';
 import {
   DaffCustomerPaymentAuthorizeNet,

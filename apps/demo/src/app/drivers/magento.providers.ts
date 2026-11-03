@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { DaffAuthMagentoDriverModule } from '@daffodil/auth/driver/magento';
-import { DaffMagentoAuthorizeNetDriverModule } from '@daffodil/authorizenet/driver/magento';
+import { DaffMagentoAuthorizeNetDriverModule } from '@daffodil/authorizenet/driver/magento/2.4.7';
 import { DaffCartMagentoDriverModule } from '@daffodil/cart/driver/magento';
 import { DaffCategoryMagentoDriverModule } from '@daffodil/category/driver/magento';
 import {

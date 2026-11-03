@@ -25,7 +25,7 @@ import {
   DaffAuthorizeNetPaymentId,
   DaffAuthorizeNetAcceptjsMissingError,
 } from '@daffodil/authorizenet/driver';
-import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '@daffodil/authorizenet/driver/magento';
+import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '@daffodil/authorizenet/driver/magento/2.4.7';
 import { DaffTestingAuthorizeNetDriverModule } from '@daffodil/authorizenet/driver/testing';
 import {
   daffAuthorizeNetReducers,
