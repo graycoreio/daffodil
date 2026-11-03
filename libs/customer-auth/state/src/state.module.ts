@@ -8,6 +8,9 @@ import {
 
 import { daffCustomerAuthReducerMap } from './reducers/public_api';
 
+/**
+ * @deprecated in favor of {@link provideDaffCustomerAuthState}
+ */
 @NgModule({
   imports: [
     DaffCustomerStateModule,
