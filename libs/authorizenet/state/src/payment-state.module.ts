@@ -12,6 +12,9 @@ import {
 
 import { DaffAuthorizeNetActionTypes } from './actions/authorizenet.actions';
 
+/**
+ * @deprecated in favor of {@link provideDaffAuthorizeNetPaymentState}
+ */
 @NgModule({
   imports: [
     DaffPaymentStateModule,

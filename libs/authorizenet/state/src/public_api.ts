@@ -9,3 +9,7 @@ export { DaffAuthorizeNetFacadeInterface } from './facades/authorize-net-facade.
 
 export { DaffAuthorizeNetStateModule } from './authorize-net-state.module';
 export { DaffAuthorizeNetPaymentStateModule } from './payment-state.module';
+export {
+  provideDaffAuthorizeNetState,
+  provideDaffAuthorizeNetPaymentState,
+} from './provider';
