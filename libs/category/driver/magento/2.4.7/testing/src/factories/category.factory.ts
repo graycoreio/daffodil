@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { MagentoCategory } from '@daffodil/category/driver/magento';
+import { MagentoCategory } from '@daffodil/category/driver/magento/2.4.7';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 class MockMagentoCategory implements MagentoCategory {

@@ -31,11 +31,11 @@
       "@daffodil/category/driver/in-memory": [
         "../../libs/category/driver/in-memory/src"
       ],
-      "@daffodil/category/driver/magento": [
-        "../../libs/category/driver/magento/src"
+      "@daffodil/category/driver/magento/2.4.7": [
+        "../../libs/category/driver/magento/2.4.7/src"
       ],
-      "@daffodil/category/driver/magento/testing": [
-        "../../libs/category/driver/magento/testing/src"
+      "@daffodil/category/driver/magento/2.4.7/testing": [
+        "../../libs/category/driver/magento/2.4.7/testing/src"
       ],
       "@daffodil/category/testing": [
         "../../libs/category/testing/src"

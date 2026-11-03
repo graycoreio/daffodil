@@ -7,7 +7,7 @@ import {
 import {
   MagentoCompleteCategoryResponse,
   MagentoCategory,
-} from '@daffodil/category/driver/magento';
+} from '@daffodil/category/driver/magento/2.4.7';
 import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
