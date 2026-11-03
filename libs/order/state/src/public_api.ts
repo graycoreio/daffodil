@@ -5,3 +5,4 @@ export * from './facades/public_api';
 export * from './injection-tokens/public_api';
 
 export { DaffOrderStateModule } from './order-state.module';
+export { provideDaffOrderState } from './provider';
