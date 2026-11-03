@@ -11,6 +11,9 @@ import { DaffSearchProductStateModule } from '@daffodil/search-product/state';
 import { daffSearchProductConfigurableEnsureChildrenMetaReducer } from './reducers/ensure-children.meta-reducer';
 import { daffSearchProductConfigurableReducers } from './reducers/public_api';
 
+/**
+ * @deprecated in favor of {@link provideDaffSearchProductConfigurableState}
+ */
 @NgModule({
   imports: [
     DaffSearchProductStateModule,
