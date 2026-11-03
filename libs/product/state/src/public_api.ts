@@ -6,3 +6,4 @@ export * from './selectors/public_api';
 export * from './injection-tokens/public_api';
 
 export { DaffProductStateModule } from './product-state.module';
+export { provideDaffProductState } from './provider';
