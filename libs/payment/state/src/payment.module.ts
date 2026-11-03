@@ -20,6 +20,8 @@ import {
 
 /**
  * Creates the payment feature store.
+ *
+ * @deprecated in favor of {@link provideDaffPaymentState}
  */
 @NgModule({
   imports: [
