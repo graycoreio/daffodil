@@ -19,6 +19,8 @@ import {
 
 /**
  * Creates the search feature store.
+ *
+ * @deprecated in favor of {@link provideDaffSearchState}
  */
 @NgModule({
   imports: [
