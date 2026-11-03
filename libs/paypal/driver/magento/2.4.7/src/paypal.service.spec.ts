@@ -16,7 +16,7 @@ import {
   MagentoPaypalExpressToken,
   magentoGenerateTokenMutation,
   MAGENTO_PAYPAL_EXPRESS_DRIVER_CONFIG_DEFAULT,
-} from '@daffodil/paypal/driver/magento';
+} from '@daffodil/paypal/driver/magento/2.4.7';
 import {
   DaffPaypalExpressTokenRequestFactory,
   DaffPaypalExpressTokenResponseFactory,

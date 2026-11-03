@@ -31,8 +31,8 @@
       "@daffodil/paypal/driver/in-memory": [
         "../../libs/paypal/driver/in-memory/src"
       ],
-      "@daffodil/paypal/driver/magento": [
-        "../../libs/paypal/driver/magento/src"
+      "@daffodil/paypal/driver/magento/2.4.7": [
+        "../../libs/paypal/driver/magento/2.4.7/src"
       ],
       "@daffodil/paypal/testing": [
         "../../libs/paypal/testing/src"

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffPaypalExpressPaymentRequest } from '@daffodil/paypal';
-import { MAGENTO_PAYPAL_EXPRESS_PAYMENT_METHOD } from '@daffodil/paypal/driver/magento';
+import { MAGENTO_PAYPAL_EXPRESS_PAYMENT_METHOD } from '@daffodil/paypal/driver/magento/2.4.7';
 import { DaffPaypalExpressPaymentRequestFactory } from '@daffodil/paypal/testing';
 
 import { DaffMagentoPaypalPaymentService } from './paypal-payment.service';
