@@ -34,11 +34,11 @@
       "@daffodil/cart-store-credit/driver/testing": [
         "../../libs/cart-store-credit/driver/testing/src"
       ],
-      "@daffodil/cart-store-credit/driver/magento": [
-        "../../libs/cart-store-credit/driver/magento/src"
+      "@daffodil/cart-store-credit/driver/magento/2.4.7": [
+        "../../libs/cart-store-credit/driver/magento/2.4.7/src"
       ],
-      "@daffodil/cart-store-credit/driver/magento/testing": [
-        "../../libs/cart-store-credit/driver/magento/testing/src"
+      "@daffodil/cart-store-credit/driver/magento/2.4.7/testing": [
+        "../../libs/cart-store-credit/driver/magento/2.4.7/testing/src"
       ],
       "@daffodil/cart-store-credit/routing": [
         "../../libs/cart-store-credit/routing/src"

@@ -21,8 +21,8 @@ import {
   magentoRemoveStoreCredit,
   magentoCartWithStoreCreditTransform,
   magentoCartStoreCreditFragment,
-} from '@daffodil/cart-store-credit/driver/magento';
-import { MagentoCartWithStoreCreditFactory } from '@daffodil/cart-store-credit/driver/magento/testing';
+} from '@daffodil/cart-store-credit/driver/magento/2.4.7';
+import { MagentoCartWithStoreCreditFactory } from '@daffodil/cart-store-credit/driver/magento/2.4.7/testing';
 import {
   DaffDriverMagentoError,
   MAGENTO_POSSIBLE_TYPES,
