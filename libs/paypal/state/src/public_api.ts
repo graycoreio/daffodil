@@ -6,6 +6,10 @@ export { DaffPaypalFacade } from './facades/paypal.facade';
 export { DaffPaypalFacadeInterface } from './interfaces/paypal-facade.interface';
 export { DaffPaypalStateModule } from './paypal-state.module';
 export { DaffPaypalPaymentStateModule } from './payment-state.module';
+export {
+  provideDaffPaypalState,
+  provideDaffPaypalPaymentState,
+} from './provider';
 
 export * from './reducers/public_api';
 export * from './injection-tokens/public_api';
