@@ -22,6 +22,9 @@ import {
 } from './resolvers/public_api';
 import { DaffCategoryRoutingUrlRequestBuilder } from './services/public_api';
 
+/**
+ * @deprecated in favor of {@link provideDaffCategoryRouting}
+ */
 @NgModule({
   imports: [
     DaffProductRoutingModule,
