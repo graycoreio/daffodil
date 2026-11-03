@@ -1,5 +1,5 @@
 import { DaffIdentifiable } from '@daffodil/core';
-import { magentoCustomerAddressInputTransform } from '@daffodil/customer/driver/magento';
+import { magentoCustomerAddressInputTransform } from '@daffodil/customer/driver/magento/2.4.7';
 import { DaffCustomerPaymentAuthorizeNet } from '@daffodil/customer-payment-authorizenet';
 
 import { magentoCustomerPaymentAnetCCTypeRequestTransform } from './cc-type';

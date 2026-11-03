@@ -1,4 +1,4 @@
-import { MagentoCustomerAddressInput } from '@daffodil/customer/driver/magento';
+import { MagentoCustomerAddressInput } from '@daffodil/customer/driver/magento/2.4.7';
 
 import { MagentoTokenBaseCardPaymentInput } from './payment-input.type';
 

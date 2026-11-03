@@ -5,7 +5,7 @@ import {
   DaffModelFactory,
   enforceUnique,
 } from '@daffodil/core/testing';
-import { MagentoCustomerAddressFactory } from '@daffodil/customer/driver/magento/testing';
+import { MagentoCustomerAddressFactory } from '@daffodil/customer/driver/magento/2.4.7/testing';
 import {
   MagentoTokenBaseCard,
   MagentoTokenBaseCardTypeCode,

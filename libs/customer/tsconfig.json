@@ -34,11 +34,11 @@
       "@daffodil/customer/driver/testing": [
         "../../libs/customer/driver/testing/src"
       ],
-      "@daffodil/customer/driver/magento": [
-        "../../libs/customer/driver/magento/src"
+      "@daffodil/customer/driver/magento/2.4.7": [
+        "../../libs/customer/driver/magento/2.4.7/src"
       ],
-      "@daffodil/customer/driver/magento/testing": [
-        "../../libs/customer/driver/magento/testing/src"
+      "@daffodil/customer/driver/magento/2.4.7/testing": [
+        "../../libs/customer/driver/magento/2.4.7/testing/src"
       ],
       "@daffodil/customer/routing": [
         "../../libs/customer/routing/src"
