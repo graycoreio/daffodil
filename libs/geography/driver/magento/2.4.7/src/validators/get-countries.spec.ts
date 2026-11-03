@@ -1,7 +1,7 @@
 import { Apollo } from 'apollo-angular';
 
 import { DaffGeographyInvalidAPIResponseError } from '@daffodil/geography/driver';
-import { MagentoGetCountriesResponse } from '@daffodil/geography/driver/magento';
+import { MagentoGetCountriesResponse } from '@daffodil/geography/driver/magento/2.4.7';
 
 import { validateGetCountriesResponse as validator } from './get-countries';
 

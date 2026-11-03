@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffSubdivision } from '@daffodil/geography';
-import { MagentoRegion } from '@daffodil/geography/driver/magento';
+import { MagentoRegion } from '@daffodil/geography/driver/magento/2.4.7';
 import { DaffSubdivisionFactory } from '@daffodil/geography/testing';
 
 import { DaffMagentoSubdivisionTransformer } from './subdivision.service';

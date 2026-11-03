@@ -31,8 +31,8 @@
       "@daffodil/geography/driver/in-memory": [
         "../../libs/geography/driver/in-memory/src"
       ],
-      "@daffodil/geography/driver/magento": [
-        "../../libs/geography/driver/magento/src"
+      "@daffodil/geography/driver/magento/2.4.7": [
+        "../../libs/geography/driver/magento/2.4.7/src"
       ],
       "@daffodil/geography/testing": [
         "../../libs/geography/testing/src"
