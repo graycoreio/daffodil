@@ -3,8 +3,8 @@ import { Apollo } from 'apollo-angular';
 
 import { DaffProductNotFoundError } from '@daffodil/product/driver';
 import { DaffReviewsInvalidAPIResponseError } from '@daffodil/reviews/driver';
-import { MagentoGetProductReviewsResponse } from '@daffodil/reviews/driver/magento';
-import { MagentoProductReviewsFactory } from '@daffodil/reviews/driver/magento/testing';
+import { MagentoGetProductReviewsResponse } from '@daffodil/reviews/driver/magento/2.4.7';
+import { MagentoProductReviewsFactory } from '@daffodil/reviews/driver/magento/2.4.7/testing';
 
 import { validateGetProductReviewsResponse as validator } from './get-reviews';
 

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoProductReview } from '@daffodil/reviews/driver/magento';
+import { MagentoProductReview } from '@daffodil/reviews/driver/magento/2.4.7';
 
 import { MagentoProductReviewFactory } from './product-review.factory';
 

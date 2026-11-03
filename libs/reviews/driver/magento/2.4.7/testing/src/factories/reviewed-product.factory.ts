@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { MockMagentoCoreProduct } from '@daffodil/product/driver/magento/testing';
-import { MagentoReviewedProduct } from '@daffodil/reviews/driver/magento';
+import { MagentoReviewedProduct } from '@daffodil/reviews/driver/magento/2.4.7';
 
 export class MockMagentoReviewedProduct extends MockMagentoCoreProduct implements MagentoReviewedProduct {
   review_count = faker.number.int({ min: 0, max: 100 });
