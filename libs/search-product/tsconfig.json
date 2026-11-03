@@ -25,8 +25,8 @@
       "@daffodil/search-product/driver/in-memory": [
         "../../libs/search-product/driver/in-memory/src"
       ],
-      "@daffodil/search-product/driver/magento": [
-        "../../libs/search-product/driver/magento/src"
+      "@daffodil/search-product/driver/magento/2.4.7": [
+        "../../libs/search-product/driver/magento/2.4.7/src"
       ],
       "@daffodil/search-product/testing": [
         "../../libs/search-product/testing/src"

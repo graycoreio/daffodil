@@ -184,7 +184,7 @@ function getPackageForImport(importName: string): string {
     DaffAuthMagentoDriverModule: '@daffodil/auth/driver/magento',
     DaffAuthInMemoryDriverModule: '@daffodil/auth/driver/in-memory',
     DaffSearchStateModule: '@daffodil/search/state',
-    DaffSearchProductMagentoDriverModule: '@daffodil/search-product/driver/magento',
+    DaffSearchProductMagentoDriverModule: '@daffodil/search-product/driver/magento/2.4.7',
     DaffSearchProductInMemoryDriverModule: '@daffodil/search-product/driver/in-memory',
     DaffCheckoutStateModule: '@daffodil/checkout/state',
   };

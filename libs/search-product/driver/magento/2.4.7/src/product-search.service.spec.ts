@@ -36,7 +36,7 @@ import { DAFF_SEARCH_PRODUCT_RESULT_KIND } from '@daffodil/search-product';
 import {
   MagentoSearchForProductsResponse,
   daffSearchProductIncrementalQuery,
-} from '@daffodil/search-product/driver/magento';
+} from '@daffodil/search-product/driver/magento/2.4.7';
 
 import { DaffSearchProductMagentoDriver } from './product-search.service';
 import { productSearch } from './queries/product-search';
