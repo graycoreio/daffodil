@@ -16,7 +16,7 @@ import {
   DaffAuthInvalidAPIResponseError,
   DaffUnauthorizedError,
 } from '@daffodil/auth/driver';
-import { checkTokenQuery } from '@daffodil/auth/driver/magento';
+import { checkTokenQuery } from '@daffodil/auth/driver/magento/2.4.7';
 import {
   DaffAccountRegistrationFactory,
   DaffAuthTokenFactory,

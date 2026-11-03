@@ -1,7 +1,7 @@
 import { Apollo } from 'apollo-angular';
 
 import { DaffAuthInvalidAPIResponseError } from '@daffodil/auth/driver';
-import { MagentoGenerateTokenResponse } from '@daffodil/auth/driver/magento';
+import { MagentoGenerateTokenResponse } from '@daffodil/auth/driver/magento/2.4.7';
 
 import { validateGenerateTokenResponse as validator } from './generate-token';
 

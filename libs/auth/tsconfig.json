@@ -31,8 +31,8 @@
       "@daffodil/auth/driver/in-memory": [
         "../../libs/auth/driver/in-memory/src"
       ],
-      "@daffodil/auth/driver/magento": [
-        "../../libs/auth/driver/magento/src"
+      "@daffodil/auth/driver/magento/2.4.7": [
+        "../../libs/auth/driver/magento/2.4.7/src"
       ],
       "@daffodil/auth/testing": [
         "../../libs/auth/testing/src"

@@ -1,22 +1,24 @@
 import { Apollo } from 'apollo-angular';
 
 import { DaffAuthInvalidAPIResponseError } from '@daffodil/auth/driver';
-import { MagentoResetPasswordResponse } from '@daffodil/auth/driver/magento';
+import { MagentoCheckTokenResponse } from '@daffodil/auth/driver/magento/2.4.7';
 
-import { validateResetPasswordResponse as validator } from './reset-password';
+import { validateCheckTokenResponse as validator } from './check-token';
 
-describe('@daffodil/auth/driver/magento | validateResetPasswordResponse', () => {
-  let response: Apollo.QueryResult<MagentoResetPasswordResponse>;
+describe('@daffodil/auth/driver/magento | validateCheckTokenResponse', () => {
+  let response: Apollo.QueryResult<MagentoCheckTokenResponse>;
 
   beforeEach(() => {
     response = {
       data: {
-        resetPassword: true,
+        customer: {
+          email: 'email',
+        },
       },
     };
   });
 
-  describe('when the response has a truthy result', () => {
+  describe('when the response has a customer email defined', () => {
     it('should return the response and not throw an error', () => {
       const result = validator(response);
 
@@ -24,9 +26,9 @@ describe('@daffodil/auth/driver/magento | validateResetPasswordResponse', () => 
     });
   });
 
-  describe('when the response has a falsey result', () => {
+  describe('when the response does not have a customer email defined', () => {
     beforeEach(() => {
-      response.data.resetPassword = false;
+      response.data.customer.email = null;
     });
 
     it('should throw a DaffAuthInvalidAPIResponseError', () => {

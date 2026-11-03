@@ -3,7 +3,7 @@ import {
   makeEnvironmentProviders,
 } from '@angular/core';
 
-import { DaffAuthMagentoDriverModule } from '@daffodil/auth/driver/magento';
+import { DaffAuthMagentoDriverModule } from '@daffodil/auth/driver/magento/2.4.7';
 import { DaffMagentoAuthorizeNetDriverModule } from '@daffodil/authorizenet/driver/magento/2.4.7';
 import { DaffCartMagentoDriverModule } from '@daffodil/cart/driver/magento';
 import { DaffCategoryMagentoDriverModule } from '@daffodil/category/driver/magento/2.4.7';
