@@ -17,6 +17,6 @@ export const serverRoutes: Array<ServerRoute> = [
   ...notFoundServerRoutes('404'),
   {
     path: '**',
-    renderMode: RenderMode.Server,
+    renderMode: RenderMode.Client,
   },
 ];

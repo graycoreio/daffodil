@@ -6,7 +6,6 @@ import {
 export const notFoundServerRoutes = (parent: string): Array<ServerRoute> => [
   {
     path: parent,
-    renderMode: RenderMode.Server,
-    status: 404,
+    renderMode: RenderMode.Prerender,
   },
 ];

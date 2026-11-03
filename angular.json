@@ -223,7 +223,7 @@
             "ssr": {
               "entry": "apps/daffio/server/server.ts"
             },
-            "outputMode": "server",
+            "outputMode": "static",
             "polyfills": [
               "zone.js"
             ],
