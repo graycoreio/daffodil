@@ -6,7 +6,7 @@ import { provideDaffProductMagentoExtraProductPreviewTransforms } from '@daffodi
 import { MagentoCoreProductFactory } from '@daffodil/product/driver/magento/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffRelatedProduct } from '@daffodil/related-products';
-import { MagentoProductWithRelatedFactory } from '@daffodil/related-products/driver/magento/testing';
+import { MagentoProductWithRelatedFactory } from '@daffodil/related-products/driver/magento/2.4.7/testing';
 
 import { DaffMagentoRelatedProductsTransformers } from './product-response.service';
 import { MagentoProductWithRelated } from '../models/product-with-related.interface';

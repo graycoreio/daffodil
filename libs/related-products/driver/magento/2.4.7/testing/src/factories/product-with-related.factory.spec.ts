@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoProductWithRelated } from '@daffodil/related-products/driver/magento';
+import { MagentoProductWithRelated } from '@daffodil/related-products/driver/magento/2.4.7';
 
 import { MagentoProductWithRelatedFactory } from './product-with-related.factory';
 

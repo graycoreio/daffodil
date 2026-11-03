@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { MockMagentoCoreProduct } from '@daffodil/product/driver/magento/testing';
-import { MagentoProductWithRelated } from '@daffodil/related-products/driver/magento';
+import { MagentoProductWithRelated } from '@daffodil/related-products/driver/magento/2.4.7';
 
 export class MockMagentoProductWithRelated extends MockMagentoCoreProduct implements MagentoProductWithRelated {
   related_products = [];
