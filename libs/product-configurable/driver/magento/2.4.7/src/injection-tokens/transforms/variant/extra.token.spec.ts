@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoConfigurableProductVariantExtraTransform } from '@daffodil/product-configurable/driver/magento';
+import { MagentoConfigurableProductVariantExtraTransform } from '@daffodil/product-configurable/driver/magento/2.4.7';
 
 import {
   provideDaffProductConfigurableMagentoExtraVariantTransforms,

@@ -7,7 +7,7 @@ import {
   MagentoProductStockStatusEnum,
 } from '@daffodil/product/driver/magento';
 import { MockMagentoCoreProduct } from '@daffodil/product/driver/magento/testing';
-import { MagentoConfigurableProduct } from '@daffodil/product-configurable/driver/magento';
+import { MagentoConfigurableProduct } from '@daffodil/product-configurable/driver/magento/2.4.7';
 
 export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct implements MagentoConfigurableProduct {
 
