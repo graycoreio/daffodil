@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { MockMagentoCoreProduct } from '@daffodil/product/driver/magento/testing';
-import { MagentoProductWithUpsell } from '@daffodil/upsell-products/driver/magento';
+import { MagentoProductWithUpsell } from '@daffodil/upsell-products/driver/magento/2.4.7';
 
 export class MockMagentoProductWithUpsell extends MockMagentoCoreProduct implements MagentoProductWithUpsell {
   upsell_products = [];

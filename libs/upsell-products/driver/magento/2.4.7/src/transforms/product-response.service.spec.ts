@@ -6,7 +6,7 @@ import { provideDaffProductMagentoExtraProductPreviewTransforms } from '@daffodi
 import { MagentoCoreProductFactory } from '@daffodil/product/driver/magento/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffUpsellProduct } from '@daffodil/upsell-products';
-import { MagentoProductWithUpsellFactory } from '@daffodil/upsell-products/driver/magento/testing';
+import { MagentoProductWithUpsellFactory } from '@daffodil/upsell-products/driver/magento/2.4.7/testing';
 
 import { DaffMagentoUpsellProductsTransformers } from './product-response.service';
 import { MagentoProductWithUpsell } from '../models/product-with-upsell.interface';
