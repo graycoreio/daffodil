@@ -10,6 +10,8 @@ import { daffCategoryProductReducers } from './reducers/product-reducers';
 
 /**
  * A module that provides injectable reducers into product state.
+ *
+ * @deprecated in favor of {@link provideDaffCategoryProductState}
  */
 @NgModule({
   imports: [

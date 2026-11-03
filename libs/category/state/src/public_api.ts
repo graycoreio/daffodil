@@ -1,5 +1,9 @@
 export { DaffCategoryStateModule } from './category-state.module';
 export { DaffCategoryProductStateModule } from './product-state.module';
+export {
+  provideDaffCategoryState,
+  provideDaffCategoryProductState,
+} from './provider';
 
 export * from './selectors/category.selector';
 export * from './reducers/public_api';
