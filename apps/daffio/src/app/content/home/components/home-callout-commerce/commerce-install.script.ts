@@ -1,4 +1,4 @@
-import packageJson from '../../../../../../../../package.json';
+import { version } from '../../../../../../../../package.json';
 import {
   DaffioTerminalLine,
   DaffioTerminalSegment,
@@ -6,7 +6,7 @@ import {
 } from '../terminal-animation/terminal-step.type';
 
 // The repo's root package.json is bumped on every release, so it always holds the latest Daffodil version.
-const VERSION = packageJson.version;
+const VERSION = version;
 
 const COMMAND = 'npx ng add @daffodil/commerce';
 const DRIVERS = ['Magento', 'Shopify', 'In-Memory (for testing)', 'Demo (Swapping between drivers)'];
