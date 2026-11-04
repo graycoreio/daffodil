@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 import { DaffOrder } from '@daffodil/order';
 
 import { DaffCheckoutPlacedOrderFacadeInterface } from './facade.interface';
+import { getCheckoutPlacedOrderSelectors } from './selector';
 import { DaffCheckoutStateRootSlice } from '../reducers/public_api';
-import { getDaffCheckoutSelectors } from '../selectors/public_api';
 
 /**
  * @inheritdoc
@@ -26,7 +26,7 @@ export class DaffCheckoutPlacedOrderFacade<T extends DaffOrder = DaffOrder> impl
     const {
       selectPlacedOrder,
       selectHasPlacedOrder,
-    } = getDaffCheckoutSelectors<T>();
+    } = getCheckoutPlacedOrderSelectors<T>();
 
     this.placedOrder$ = this.store.pipe(select(selectPlacedOrder));
     this.hasPlacedOrder$ = this.store.pipe(select(selectHasPlacedOrder));
