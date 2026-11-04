@@ -14,19 +14,19 @@
         "../../dist/*"
       ],
       "@daffodil/checkout": [
-        "../../libs/checkout/src"
+        "./src"
       ],
       "@daffodil/checkout/state": [
-        "../../libs/checkout/state/src"
+        "./state/src"
       ],
       "@daffodil/checkout/state/testing": [
-        "../../libs/checkout/state/testing/src"
+        "./state/testing/src"
       ],
       "@daffodil/checkout/testing": [
-        "../../libs/checkout/testing/src"
+        "./testing/src"
       ],
       "@daffodil/checkout/routing": [
-        "../../libs/checkout/routing/src"
+        "./routing/src"
       ],
     }
   }

@@ -22,7 +22,7 @@
         "../../dist/*"
       ],
       "@daffodil/router": [
-        "../../libs/router/src"
+        "./src"
       ]
     }
   },

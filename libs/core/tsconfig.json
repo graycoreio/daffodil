@@ -14,22 +14,22 @@
         "../../dist/*"
       ],
       "@daffodil/core": [
-        "../../libs/core/src"
+        "./src"
       ],
       "@daffodil/core/testing": [
-        "../../libs/core/testing/src"
+        "./testing/src"
       ],
       "@daffodil/core/graphql": [
-        "../../libs/core/graphql/src"
+        "./graphql/src"
       ],
       "@daffodil/core/state": [
-        "../../libs/core/state/src"
+        "./state/src"
       ],
       "@daffodil/core/state/testing": [
-        "../../libs/core/state/testing/src"
+        "./state/testing/src"
       ],
       "@daffodil/core/routing": [
-        "../../libs/core/routing/src"
+        "./routing/src"
       ],
     }
   }

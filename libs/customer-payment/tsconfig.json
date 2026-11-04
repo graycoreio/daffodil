@@ -14,28 +14,28 @@
         "../../dist/*"
       ],
       "@daffodil/customer-payment": [
-        "../../libs/customer-payment/src"
+        "./src"
       ],
       "@daffodil/customer-payment/testing": [
-        "../../libs/customer-payment/testing/src"
+        "./testing/src"
       ],
       "@daffodil/customer-payment/state": [
-        "../../libs/customer-payment/state/src"
+        "./state/src"
       ],
       "@daffodil/customer-payment/state/testing": [
-        "../../libs/customer-payment/state/testing/src"
+        "./state/testing/src"
       ],
       "@daffodil/customer-payment/driver": [
-        "../../libs/customer-payment/driver/src"
+        "./driver/src"
       ],
       "@daffodil/customer-payment/driver/in-memory": [
-        "../../libs/customer-payment/driver/in-memory/src"
+        "./driver/in-memory/src"
       ],
       "@daffodil/customer-payment/driver/testing": [
-        "../../libs/customer-payment/driver/testing/src"
+        "./driver/testing/src"
       ],
       "@daffodil/customer-payment/routing": [
-        "../../libs/customer-payment/routing/src"
+        "./routing/src"
       ],
     }
   }

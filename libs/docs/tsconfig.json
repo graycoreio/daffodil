@@ -22,10 +22,10 @@
         "../../dist/*"
       ],
       "@daffodil/docs": [
-        "../../libs/docs/src"
+        "./src"
       ],
       "@daffodil/docs/testing": [
-        "../../libs/docs/testing/src"
+        "./testing/src"
       ]
     }
   },

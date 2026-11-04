@@ -14,31 +14,31 @@
         "../../dist/*"
       ],
       "@daffodil/product-composite": [
-        "../../libs/product-composite/src"
+        "./src"
       ],
       "@daffodil/product-composite/testing": [
-        "../../libs/product-composite/testing/src"
+        "./testing/src"
       ],
       "@daffodil/product-composite/routing": [
-        "../../libs/product-composite/routing/src"
+        "./routing/src"
       ],
       "@daffodil/product-composite/state": [
-        "../../libs/product-composite/state/src"
+        "./state/src"
       ],
       "@daffodil/product-composite/state/testing": [
-        "../../libs/product-composite/state/testing/src"
+        "./state/testing/src"
       ],
       "@daffodil/product-composite/driver/magento/2.4.7": [
-        "../../libs/product-composite/driver/magento/2.4.7/src"
+        "./driver/magento/2.4.7/src"
       ],
       "@daffodil/product-composite/driver/magento/2.4.7/testing": [
-        "../../libs/product-composite/driver/magento/2.4.7/testing/src"
+        "./driver/magento/2.4.7/testing/src"
       ],
       "@daffodil/product-composite/driver/in-memory": [
-        "../../libs/product-composite/driver/in-memory/src"
+        "./driver/in-memory/src"
       ],
       "@daffodil/product-composite/driver/testing": [
-        "../../libs/product-composite/driver/testing/src"
+        "./driver/testing/src"
       ],
     }
   }

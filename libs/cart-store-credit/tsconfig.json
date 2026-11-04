@@ -14,34 +14,34 @@
         "../../dist/*"
       ],
       "@daffodil/cart-store-credit": [
-        "../../libs/cart-store-credit/src"
+        "./src"
       ],
       "@daffodil/cart-store-credit/testing": [
-        "../../libs/cart-store-credit/testing/src"
+        "./testing/src"
       ],
       "@daffodil/cart-store-credit/state": [
-        "../../libs/cart-store-credit/state/src"
+        "./state/src"
       ],
       "@daffodil/cart-store-credit/state/testing": [
-        "../../libs/cart-store-credit/state/testing/src"
+        "./state/testing/src"
       ],
       "@daffodil/cart-store-credit/driver": [
-        "../../libs/cart-store-credit/driver/src"
+        "./driver/src"
       ],
       "@daffodil/cart-store-credit/driver/in-memory": [
-        "../../libs/cart-store-credit/driver/in-memory/src"
+        "./driver/in-memory/src"
       ],
       "@daffodil/cart-store-credit/driver/testing": [
-        "../../libs/cart-store-credit/driver/testing/src"
+        "./driver/testing/src"
       ],
       "@daffodil/cart-store-credit/driver/magento/2.4.7": [
-        "../../libs/cart-store-credit/driver/magento/2.4.7/src"
+        "./driver/magento/2.4.7/src"
       ],
       "@daffodil/cart-store-credit/driver/magento/2.4.7/testing": [
-        "../../libs/cart-store-credit/driver/magento/2.4.7/testing/src"
+        "./driver/magento/2.4.7/testing/src"
       ],
       "@daffodil/cart-store-credit/routing": [
-        "../../libs/cart-store-credit/routing/src"
+        "./routing/src"
       ],
     }
   }

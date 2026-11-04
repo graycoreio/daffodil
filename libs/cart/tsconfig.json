@@ -14,34 +14,34 @@
         "../../dist/*"
       ],
       "@daffodil/cart": [
-        "../../libs/cart/src"
+        "./src"
       ],
       "@daffodil/cart/state": [
-        "../../libs/cart/state/src"
+        "./state/src"
       ],
       "@daffodil/cart/state/testing": [
-        "../../libs/cart/state/testing/src"
+        "./state/testing/src"
       ],
       "@daffodil/cart/driver": [
-        "../../libs/cart/driver/src"
+        "./driver/src"
       ],
       "@daffodil/cart/driver/testing": [
-        "../../libs/cart/driver/testing/src"
+        "./driver/testing/src"
       ],
       "@daffodil/cart/driver/in-memory": [
-        "../../libs/cart/driver/in-memory/src"
+        "./driver/in-memory/src"
       ],
       "@daffodil/cart/driver/magento": [
-        "../../libs/cart/driver/magento/src"
+        "./driver/magento/src"
       ],
       "@daffodil/cart/driver/magento/testing": [
-        "../../libs/cart/driver/magento/testing/src"
+        "./driver/magento/testing/src"
       ],
       "@daffodil/cart/testing": [
-        "../../libs/cart/testing/src"
+        "./testing/src"
       ],
       "@daffodil/cart/routing": [
-        "../../libs/cart/routing/src"
+        "./routing/src"
       ],
     }
   }

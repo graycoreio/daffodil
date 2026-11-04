@@ -14,22 +14,22 @@
         "../../dist/*"
       ],
       "@daffodil/customer-payment-authorizenet": [
-        "../../libs/customer-payment-authorizenet/src"
+        "./src"
       ],
       "@daffodil/customer-payment-authorizenet/testing": [
-        "../../libs/customer-payment-authorizenet/testing/src"
+        "./testing/src"
       ],
       "@daffodil/customer-payment-authorizenet/state": [
-        "../../libs/customer-payment-authorizenet/state/src"
+        "./state/src"
       ],
       "@daffodil/customer-payment-authorizenet/driver": [
-        "../../libs/customer-payment-authorizenet/driver/src"
+        "./driver/src"
       ],
       "@daffodil/customer-payment-authorizenet/driver/magento/2.4.7": [
-        "../../libs/customer-payment-authorizenet/driver/magento/2.4.7/src"
+        "./driver/magento/2.4.7/src"
       ],
       "@daffodil/customer-payment-authorizenet/driver/magento/2.4.7/testing": [
-        "../../libs/customer-payment-authorizenet/driver/magento/2.4.7/testing/src"
+        "./driver/magento/2.4.7/testing/src"
       ],
     }
   }

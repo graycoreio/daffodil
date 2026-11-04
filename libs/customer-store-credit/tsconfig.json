@@ -14,34 +14,34 @@
         "../../dist/*"
       ],
       "@daffodil/customer-store-credit": [
-        "../../libs/customer-store-credit/src"
+        "./src"
       ],
       "@daffodil/customer-store-credit/testing": [
-        "../../libs/customer-store-credit/testing/src"
+        "./testing/src"
       ],
       "@daffodil/customer-store-credit/state": [
-        "../../libs/customer-store-credit/state/src"
+        "./state/src"
       ],
       "@daffodil/customer-store-credit/state/testing": [
-        "../../libs/customer-store-credit/state/testing/src"
+        "./state/testing/src"
       ],
       "@daffodil/customer-store-credit/driver": [
-        "../../libs/customer-store-credit/driver/src"
+        "./driver/src"
       ],
       "@daffodil/customer-store-credit/driver/in-memory": [
-        "../../libs/customer-store-credit/driver/in-memory/src"
+        "./driver/in-memory/src"
       ],
       "@daffodil/customer-store-credit/driver/testing": [
-        "../../libs/customer-store-credit/driver/testing/src"
+        "./driver/testing/src"
       ],
       "@daffodil/customer-store-credit/driver/magento/2.4.7": [
-        "../../libs/customer-store-credit/driver/magento/2.4.7/src"
+        "./driver/magento/2.4.7/src"
       ],
       "@daffodil/customer-store-credit/driver/magento/2.4.7/testing": [
-        "../../libs/customer-store-credit/driver/magento/2.4.7/testing/src"
+        "./driver/magento/2.4.7/testing/src"
       ],
       "@daffodil/customer-store-credit/routing": [
-        "../../libs/customer-store-credit/routing/src"
+        "./routing/src"
       ],
     }
   }

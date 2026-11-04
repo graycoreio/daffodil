@@ -14,25 +14,25 @@
         "../../dist/*"
       ],
       "@daffodil/payment": [
-        "../../libs/payment/src"
+        "./src"
       ],
       "@daffodil/payment/testing": [
-        "../../libs/payment/testing/src"
+        "./testing/src"
       ],
       "@daffodil/payment/state": [
-        "../../libs/payment/state/src"
+        "./state/src"
       ],
       "@daffodil/payment/state/testing": [
-        "../../libs/payment/state/testing/src"
+        "./state/testing/src"
       ],
       "@daffodil/payment/driver": [
-        "../../libs/payment/driver/src"
+        "./driver/src"
       ],
       "@daffodil/payment/driver/in-memory": [
-        "../../libs/payment/driver/in-memory/src"
+        "./driver/in-memory/src"
       ],
       "@daffodil/payment/driver/testing": [
-        "../../libs/payment/driver/testing/src"
+        "./driver/testing/src"
       ],
     }
   }

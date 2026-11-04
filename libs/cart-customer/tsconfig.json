@@ -14,13 +14,13 @@
         "../../dist/*"
       ],
       "@daffodil/cart-customer": [
-        "../../libs/cart-customer/src"
+        "./src"
       ],
       "@daffodil/cart-customer/state": [
-        "../../libs/cart-customer/state/src"
+        "./state/src"
       ],
       "@daffodil/cart-customer/driver/magento/2.4.7": [
-        "../../libs/cart-customer/driver/magento/2.4.7/src"
+        "./driver/magento/2.4.7/src"
       ],
     }
   }

@@ -14,10 +14,10 @@
         "../../dist/*"
       ],
       "@daffodil/customer-auth": [
-        "../../libs/customer-auth/src"
+        "./src"
       ],
       "@daffodil/customer-auth/state": [
-        "../../libs/customer-auth/state/src"
+        "./state/src"
       ],
     }
   }

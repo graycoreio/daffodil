@@ -14,22 +14,22 @@
         "../../dist/*"
       ],
       "@daffodil/driver": [
-        "../../libs/driver/src"
+        "./src"
       ],
       "@daffodil/driver/hubspot": [
-        "../../libs/driver/hubspot/src"
+        "./hubspot/src"
       ],
       "@daffodil/driver/hubspot/testing": [
-        "../../libs/driver/hubspot/testing/src"
+        "./hubspot/testing/src"
       ],
       "@daffodil/driver/magento": [
-        "../../libs/driver/magento/src"
+        "./magento/src"
       ],
       "@daffodil/driver/magento/testing": [
-        "../../libs/driver/magento/testing/src"
+        "./magento/testing/src"
       ],
       "@daffodil/driver/in-memory": [
-        "../../libs/driver/in-memory/src"
+        "./in-memory/src"
       ],
     },
     "resolveJsonModule": true
