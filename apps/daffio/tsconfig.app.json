@@ -5,7 +5,7 @@
 		"skipLibCheck": true,
 		"composite": true
 	},
-	"exclude": ["test.ts", "**/*.spec.ts"],
+	"exclude": ["**/*.spec.ts"],
 	"include": ["**/*.ts"],
 	"angularCompilerOptions": {
 		"strictTemplates": false

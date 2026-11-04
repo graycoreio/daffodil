@@ -23,5 +23,5 @@
 		"enableResourceInlining": true,
 		"allowSyntheticDefaultImports": true
 	},
-	"exclude": ["./test.ts", "**/*.spec.ts"]
+	"exclude": ["**/*.spec.ts"]
 }
