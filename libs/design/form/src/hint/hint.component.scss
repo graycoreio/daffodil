@@ -1,8 +1,6 @@
-@use '../../../scss/typography' as t;
-
 :host {
 	display: flex;
 	gap: 0.25rem;
-	font-size: t.$font-size-sm;
+	font-size: var(--daff-font-size-sm);
 	line-height: 1rem;
 }

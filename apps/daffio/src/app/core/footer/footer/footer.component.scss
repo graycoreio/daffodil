@@ -2,7 +2,7 @@
 
 :host {
 	display: block;
-	font-size: daff.$font-size-sm;
+	font-size: var(--daff-font-size-sm);
 	padding: 24px;
 
 	@include daff.breakpoint(big-tablet) {
