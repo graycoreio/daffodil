@@ -18,7 +18,7 @@ import {
 
 @Component({
   template: `
-    <daff-media-gallery [name]="nameValue()" [skeleton]="skeleton()" [id]="idValue()">
+    <daff-media-gallery [skeleton]="skeleton()" [id]="idValue()">
       <ng-template daffThumbnail label="First">
         <div>First</div>
       </ng-template>
@@ -33,7 +33,6 @@ import {
   ],
 })
 class WrapperComponent {
-  nameValue = signal<string>(undefined);
   skeleton = signal(false);
   idValue = signal<string>(undefined);
 }
@@ -43,7 +42,6 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent | Usage', (
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let component: DaffMediaGalleryComponent;
-  const stubName = 'some name';
   let thumbnailButtons: NodeListOf<HTMLButtonElement>;
 
   beforeEach(waitForAsync(() => {
@@ -57,7 +55,6 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent | Usage', (
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    wrapper.nameValue.set(stubName);
     fixture.detectChanges();
 
     de = fixture.debugElement.query(By.css('daff-media-gallery'));
