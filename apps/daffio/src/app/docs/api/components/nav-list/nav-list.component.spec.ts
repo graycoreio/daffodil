@@ -7,7 +7,6 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffTreeModule } from '@daffodil/design/tree';
 import { DaffDocsApiNavList } from '@daffodil/docs-utils';
 
 import { DaffioApiNavListComponent } from './nav-list.component';
@@ -22,7 +21,6 @@ describe('DaffioApiNavListComponent', () => {
         DaffioApiNavListComponent,
         RouterTestingModule,
         NoopAnimationsModule,
-        DaffTreeModule,
       ],
     })
       .compileComponents();
