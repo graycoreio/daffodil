@@ -15,7 +15,7 @@ import { DaffioSidebarService } from '../../sidebar/services/sidebar.service';
 import { DaffioNavLink } from '../link/type';
 
 @Component({
-  template: '<daffio-nav-header-container></daffio-nav-header-container>',
+  template: '<daffio-nav-links-sidebar-body></daffio-nav-links-sidebar-body>',
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffioNavSidebarBodyComponent,
