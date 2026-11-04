@@ -5,7 +5,7 @@ import {
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
 
-import { provideDaffCartState } from '@daffodil/cart/types/daffodil-cart-state';
+import { provideDaffCartState } from '@daffodil/cart/state';
 import { provideDaffOrderState } from '@daffodil/order/state';
 
 import { DaffCheckoutOrderEffects } from './order/effects/order.effects';
