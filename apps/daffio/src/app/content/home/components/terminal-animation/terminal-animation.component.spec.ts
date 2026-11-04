@@ -75,6 +75,8 @@ describe('DaffioTerminalAnimationComponent', () => {
 
   it('should play the script in order and loop', fakeAsync(() => {
     fixture.detectChanges();
+    // the animation starts in afterNextRender, so render once more to pick it up
+    fixture.detectChanges();
     expect(renderedLines()).toEqual([]);
 
     tick(100);
