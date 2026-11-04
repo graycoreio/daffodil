@@ -14,7 +14,6 @@ import { DaffNavListComponent } from '@daffodil/design/list';
 
 @Component({
   template: `
-    <daff-list></daff-list>
     <daff-nav-list></daff-nav-list>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
