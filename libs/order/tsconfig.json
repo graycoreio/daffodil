@@ -14,34 +14,34 @@
         "../../dist/*"
       ],
       "@daffodil/order": [
-        "../../libs/order/src"
+        "./src"
       ],
       "@daffodil/order/testing": [
-        "../../libs/order/testing/src"
+        "./testing/src"
       ],
       "@daffodil/order/state": [
-        "../../libs/order/state/src"
+        "./state/src"
       ],
       "@daffodil/order/state/testing": [
-        "../../libs/order/state/testing/src"
+        "./state/testing/src"
       ],
       "@daffodil/order/driver": [
-        "../../libs/order/driver/src"
+        "./driver/src"
       ],
       "@daffodil/order/driver/in-memory": [
-        "../../libs/order/driver/in-memory/src"
+        "./driver/in-memory/src"
       ],
       "@daffodil/order/driver/testing": [
-        "../../libs/order/driver/testing/src"
+        "./driver/testing/src"
       ],
       "@daffodil/order/driver/magento/2.4.0": [
-        "../../libs/order/driver/magento/2.4.0/src"
+        "./driver/magento/2.4.0/src"
       ],
       "@daffodil/order/driver/magento/2.4.1": [
-        "../../libs/order/driver/magento/2.4.1/src"
+        "./driver/magento/2.4.1/src"
       ],
       "@daffodil/order/driver/magento/2.4.1/testing": [
-        "../../libs/order/driver/magento/2.4.1/testing/src"
+        "./driver/magento/2.4.1/testing/src"
       ],
     }
   }

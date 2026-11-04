@@ -8,16 +8,16 @@
         "../../dist/*"
       ],
       "@daffodil/storefront": [
-        "../../libs/storefront/src"
+        "./src"
       ],
       "@daffodil/storefront/carousel": [
-        "../../libs/storefront/carousel/src"
+        "./carousel/src"
       ],
       "@daffodil/storefront/quantity-field": [
-        "../../libs/storefront/quantity-field/src"
+        "./quantity-field/src"
       ],
       "@daffodil/storefront/theme-toggle": [
-        "../../libs/storefront/theme-toggle/src"
+        "./theme-toggle/src"
       ]
     }
   },

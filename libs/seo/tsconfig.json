@@ -14,13 +14,13 @@
         "../../dist/*"
       ],
       "@daffodil/seo": [
-        "../../libs/seo/src"
+        "./src"
       ],
       "@daffodil/seo/state": [
-        "../../libs/seo/state/src"
+        "./state/src"
       ],
       "@daffodil/seo/router": [
-        "../../libs/seo/router/src"
+        "./router/src"
       ],
     }
   }

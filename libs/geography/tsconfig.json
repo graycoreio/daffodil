@@ -14,28 +14,28 @@
         "../../dist/*"
       ],
       "@daffodil/geography": [
-        "../../libs/geography/src"
+        "./src"
       ],
       "@daffodil/geography/state": [
-        "../../libs/geography/state/src"
+        "./state/src"
       ],
       "@daffodil/geography/state/testing": [
-        "../../libs/geography/state/testing/src"
+        "./state/testing/src"
       ],
       "@daffodil/geography/driver": [
-        "../../libs/geography/driver/src"
+        "./driver/src"
       ],
       "@daffodil/geography/driver/testing": [
-        "../../libs/geography/driver/testing/src"
+        "./driver/testing/src"
       ],
       "@daffodil/geography/driver/in-memory": [
-        "../../libs/geography/driver/in-memory/src"
+        "./driver/in-memory/src"
       ],
       "@daffodil/geography/driver/magento/2.4.7": [
-        "../../libs/geography/driver/magento/2.4.7/src"
+        "./driver/magento/2.4.7/src"
       ],
       "@daffodil/geography/testing": [
-        "../../libs/geography/testing/src"
+        "./testing/src"
       ],
     }
   }

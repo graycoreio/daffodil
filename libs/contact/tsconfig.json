@@ -14,25 +14,25 @@
         "../../dist/*"
       ],
       "@daffodil/contact": [
-        "../../libs/contact/src"
+        "./src"
       ],
       "@daffodil/contact/driver": [
-        "../../libs/contact/driver/src"
+        "./driver/src"
       ],
       "@daffodil/contact/driver/in-memory": [
-        "../../libs/contact/driver/in-memory/src"
+        "./driver/in-memory/src"
       ],
       "@daffodil/contact/driver/hubspot": [
-        "../../libs/contact/driver/hubspot/src"
+        "./driver/hubspot/src"
       ],
       "@daffodil/contact/driver/testing": [
-        "../../libs/contact/driver/testing/src"
+        "./driver/testing/src"
       ],
       "@daffodil/contact/state": [
-        "../../libs/contact/state/src"
+        "./state/src"
       ],
       "@daffodil/contact/state/testing": [
-        "../../libs/contact/state/testing/src"
+        "./state/testing/src"
       ]
     }
   }

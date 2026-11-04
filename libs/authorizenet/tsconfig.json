@@ -14,28 +14,28 @@
         "../../dist/*"
       ],
       "@daffodil/authorizenet": [
-        "../../libs/authorizenet/src"
+        "./src"
       ],
       "@daffodil/authorizenet/testing": [
-        "../../libs/authorizenet/testing/src"
+        "./testing/src"
       ],
       "@daffodil/authorizenet/state": [
-        "../../libs/authorizenet/state/src"
+        "./state/src"
       ],
       "@daffodil/authorizenet/state/testing": [
-        "../../libs/authorizenet/state/testing/src"
+        "./state/testing/src"
       ],
       "@daffodil/authorizenet/driver": [
-        "../../libs/authorizenet/driver/src"
+        "./driver/src"
       ],
       "@daffodil/authorizenet/driver/testing": [
-        "../../libs/authorizenet/driver/testing/src"
+        "./driver/testing/src"
       ],
       "@daffodil/authorizenet/driver/in-memory": [
-        "../../libs/authorizenet/driver/in-memory/src"
+        "./driver/in-memory/src"
       ],
       "@daffodil/authorizenet/driver/magento/2.4.7": [
-        "../../libs/authorizenet/driver/magento/2.4.7/src"
+        "./driver/magento/2.4.7/src"
       ],
     }
   }

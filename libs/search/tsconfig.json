@@ -14,31 +14,31 @@
         "../../dist/*"
       ],
       "@daffodil/search": [
-        "../../libs/search/src"
+        "./src"
       ],
       "@daffodil/search/testing": [
-        "../../libs/search/testing/src"
+        "./testing/src"
       ],
       "@daffodil/search/routing": [
-        "../../libs/search/routing/src"
+        "./routing/src"
       ],
       "@daffodil/search/state": [
-        "../../libs/search/state/src"
+        "./state/src"
       ],
       "@daffodil/search/state/testing": [
-        "../../libs/search/state/testing/src"
+        "./state/testing/src"
       ],
       "@daffodil/search/driver": [
-        "../../libs/search/driver/src"
+        "./driver/src"
       ],
       "@daffodil/search/driver/in-memory": [
-        "../../libs/search/driver/in-memory/src"
+        "./driver/in-memory/src"
       ],
       "@daffodil/search/driver/testing": [
-        "../../libs/search/driver/testing/src"
+        "./driver/testing/src"
       ],
       "@daffodil/search/driver/federated": [
-        "../../libs/search/driver/federated/src"
+        "./driver/federated/src"
       ],
     }
   }

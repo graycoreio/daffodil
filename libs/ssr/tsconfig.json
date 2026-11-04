@@ -22,10 +22,10 @@
         "../../dist/*"
       ],
       "@daffodil/ssr": [
-        "../../libs/ssr/src"
+        "./src"
       ],
       "@daffodil/ssr/express": [
-        "../../libs/ssr/express/src"
+        "./express/src"
       ]
     }
   },

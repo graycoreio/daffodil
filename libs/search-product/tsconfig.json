@@ -14,31 +14,31 @@
         "../../dist/*"
       ],
       "@daffodil/search-product": [
-        "../../libs/search-product/src"
+        "./src"
       ],
       "@daffodil/search-product/driver": [
-        "../../libs/search-product/driver/src"
+        "./driver/src"
       ],
       "@daffodil/search-product/driver/testing": [
-        "../../libs/search-product/driver/testing/src"
+        "./driver/testing/src"
       ],
       "@daffodil/search-product/driver/in-memory": [
-        "../../libs/search-product/driver/in-memory/src"
+        "./driver/in-memory/src"
       ],
       "@daffodil/search-product/driver/magento/2.4.7": [
-        "../../libs/search-product/driver/magento/2.4.7/src"
+        "./driver/magento/2.4.7/src"
       ],
       "@daffodil/search-product/testing": [
-        "../../libs/search-product/testing/src"
+        "./testing/src"
       ],
       "@daffodil/search-product/routing": [
-        "../../libs/search-product/routing/src"
+        "./routing/src"
       ],
       "@daffodil/search-product/state": [
-        "../../libs/search-product/state/src"
+        "./state/src"
       ],
       "@daffodil/search-product/state/testing": [
-        "../../libs/search-product/state/testing/src"
+        "./state/testing/src"
       ],
     }
   }

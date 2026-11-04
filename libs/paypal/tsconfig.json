@@ -14,31 +14,31 @@
         "../../dist/*"
       ],
       "@daffodil/paypal": [
-        "../../libs/paypal/src"
+        "./src"
       ],
       "@daffodil/paypal/state": [
-        "../../libs/paypal/state/src"
+        "./state/src"
       ],
       "@daffodil/paypal/state/testing": [
-        "../../libs/paypal/state/testing/src"
+        "./state/testing/src"
       ],
       "@daffodil/paypal/driver": [
-        "../../libs/paypal/driver/src"
+        "./driver/src"
       ],
       "@daffodil/paypal/driver/testing": [
-        "../../libs/paypal/driver/testing/src"
+        "./driver/testing/src"
       ],
       "@daffodil/paypal/driver/in-memory": [
-        "../../libs/paypal/driver/in-memory/src"
+        "./driver/in-memory/src"
       ],
       "@daffodil/paypal/driver/magento/2.4.7": [
-        "../../libs/paypal/driver/magento/2.4.7/src"
+        "./driver/magento/2.4.7/src"
       ],
       "@daffodil/paypal/testing": [
-        "../../libs/paypal/testing/src"
+        "./testing/src"
       ],
       "@daffodil/paypal/routing": [
-        "../../libs/paypal/routing/src"
+        "./routing/src"
       ],
     }
   }

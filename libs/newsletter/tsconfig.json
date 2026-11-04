@@ -14,25 +14,25 @@
         "../../dist/*"
       ],
       "@daffodil/newsletter": [
-        "../../libs/newsletter/src"
+        "./src"
       ],
       "@daffodil/newsletter/state": [
-        "../../libs/newsletter/state/src"
+        "./state/src"
       ],
       "@daffodil/newsletter/state/testing": [
-        "../../libs/newsletter/state/testing/src"
+        "./state/testing/src"
       ],
       "@daffodil/newsletter/driver": [
-        "../../libs/newsletter/driver/src"
+        "./driver/src"
       ],
       "@daffodil/newsletter/driver/testing": [
-        "../../libs/newsletter/driver/testing/src"
+        "./driver/testing/src"
       ],
       "@daffodil/newsletter/driver/in-memory": [
-        "../../libs/newsletter/driver/in-memory/src"
+        "./driver/in-memory/src"
       ],
       "@daffodil/newsletter/driver/hubspot": [
-        "../../libs/newsletter/driver/hubspot/src"
+        "./driver/hubspot/src"
       ],
     }
   }

@@ -14,31 +14,31 @@
         "../../dist/*"
       ],
       "@daffodil/reviews": [
-        "../../libs/reviews/src"
+        "./src"
       ],
       "@daffodil/reviews/state": [
-        "../../libs/reviews/state/src"
+        "./state/src"
       ],
       "@daffodil/reviews/state/testing": [
-        "../../libs/reviews/state/testing/src"
+        "./state/testing/src"
       ],
       "@daffodil/reviews/driver": [
-        "../../libs/reviews/driver/src"
+        "./driver/src"
       ],
       "@daffodil/reviews/driver/testing": [
-        "../../libs/reviews/driver/testing/src"
+        "./driver/testing/src"
       ],
       "@daffodil/reviews/driver/in-memory": [
-        "../../libs/reviews/driver/in-memory/src"
+        "./driver/in-memory/src"
       ],
       "@daffodil/reviews/driver/magento/2.4.7": [
-        "../../libs/reviews/driver/magento/2.4.7/src"
+        "./driver/magento/2.4.7/src"
       ],
       "@daffodil/reviews/driver/magento/2.4.7/testing": [
-        "../../libs/reviews/driver/magento/2.4.7/testing/src"
+        "./driver/magento/2.4.7/testing/src"
       ],
       "@daffodil/reviews/testing": [
-        "../../libs/reviews/testing/src"
+        "./testing/src"
       ],
     }
   }

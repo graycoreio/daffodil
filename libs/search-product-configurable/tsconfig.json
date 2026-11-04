@@ -14,10 +14,10 @@
         "../../dist/*"
       ],
       "@daffodil/search-product-configurable": [
-        "../../libs/search-product-configurable/src"
+        "./src"
       ],
       "@daffodil/search-product-configurable/state": [
-        "../../libs/search-product-configurable/state/src"
+        "./state/src"
       ],
     }
   }
