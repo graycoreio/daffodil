@@ -1,0 +1,25 @@
+<div class="daffio-terminal-animation__toolbar" aria-hidden="true">
+  <span class="daffio-terminal-animation__dot"></span>
+  <span class="daffio-terminal-animation__dot"></span>
+  <span class="daffio-terminal-animation__dot"></span>
+</div>
+<div class="daffio-terminal-animation__body" aria-hidden="true">
+  @for (line of lines(); track line) {
+    <div class="daffio-terminal-animation__line">
+      @if (line.spinner) {
+        <span class="daffio-terminal-animation__spinner"></span>
+      }
+      <span class="daffio-terminal-animation__text"
+        [class.daffio-terminal-animation__text--typed]="line.typed"
+        [style.--daffio-terminal-chars]="charCount(line)">
+        @for (segment of line.segments; track $index) {
+          <span [class]="segment.tone ? 'daffio-terminal-animation__' + segment.tone : null">{{ segment.text }}</span>
+        }
+      </span>
+      @if (line.cursor) {
+        <span class="daffio-terminal-animation__cursor">_</span>
+      }
+    </div>
+  }
+</div>
+<pre class="daffio-terminal-animation__visually-hidden">{{ transcript() }}</pre>
