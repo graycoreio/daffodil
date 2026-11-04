@@ -12,6 +12,7 @@ import { DaffApiPackageDoc } from '@daffodil/docs-utils';
 
 import { DaffioDocViewerComponent } from '../../../components/doc-viewer/doc-viewer.component';
 import { DaffioDocsDynamicContent } from '../../../dynamic-content/dynamic-content.type';
+import { DaffioDocsTocHeaderDirective } from '../../../toc/header.directive';
 import { DaffioApiPackageFilterPipe } from '../../pipes/packge-filter.pipe';
 import { DaffioApiListSectionComponent } from '../api-list-section/api-list-section.component';
 
@@ -29,6 +30,7 @@ import { DaffioApiListSectionComponent } from '../api-list-section/api-list-sect
     DAFF_ARTICLE_COMPONENTS,
     DaffioApiPackageFilterPipe,
     DaffioDocViewerComponent,
+    DaffioDocsTocHeaderDirective,
   ],
 })
 export class DaffioApiPackageComponent implements DaffioDocsDynamicContent<DaffApiPackageDoc> {
