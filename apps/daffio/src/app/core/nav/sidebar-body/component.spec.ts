@@ -8,11 +8,12 @@ import {
   waitForAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
+import { of } from 'rxjs';
+
+import { DaffRouterDataService } from '@daffodil/router';
 
 import { DaffioNavSidebarBodyComponent } from './component';
-import { DaffioSidebarService } from '../../sidebar/services/sidebar.service';
-import { DaffioNavLink } from '../link/type';
 
 @Component({
   template: '<daffio-nav-links-sidebar-body></daffio-nav-links-sidebar-body>',
@@ -24,48 +25,53 @@ import { DaffioNavLink } from '../link/type';
 class WrapperComponent {}
 
 describe('DaffioNavSidebarBodyComponent', () => {
-  let component: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let sidebarServiceSpy: jasmine.SpyObj<DaffioSidebarService>;
-  let links: Array<DaffioNavLink>;
 
   beforeEach(waitForAsync(() => {
-    sidebarServiceSpy = jasmine.createSpyObj('DaffioSidebarService', ['open']);
-
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         WrapperComponent,
       ],
       providers: [
+        provideRouter([]),
         {
-          provide: DaffioSidebarService,
-          useValue: sidebarServiceSpy,
+          provide: DaffRouterDataService,
+          useValue: {
+            data$: of({
+              daffioNavLinks: [
+                { title: 'Docs', url: '/docs' },
+                { title: 'GitHub', url: 'https://github.com/graycoreio/daffodil', external: true },
+              ],
+            }),
+          },
         },
       ],
     })
       .compileComponents();
-
-    links = [
-      { title: 'title1', url: 'url1' },
-      { title: 'title2', url: 'url2' },
-    ];
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should render a tree item for each nav link', () => {
+    const items = fixture.debugElement.queryAll(By.css('a[daffTreeItem]'));
+
+    expect(items.map((item) => item.nativeElement.textContent.trim())).toEqual(['Docs', 'GitHub']);
   });
 
-  it('should render the links', () => {
-    fixture.debugElement.queryAll(By.css('a[daffioHeaderItem]')).forEach((de, i) => {
-      expect(de.attributes['href'].slice(1)).toEqual(links[i].url);
-      expect(de.nativeElement.innerText).toEqual(links[i].title);
-    });
+  it('should route internal links within the app', () => {
+    const docs = fixture.debugElement.queryAll(By.css('a[daffTreeItem]'))[0];
+
+    expect(docs.attributes['href']).toEqual('/docs');
+    expect(docs.attributes['target']).toBeUndefined();
+  });
+
+  it('should open external links in a new tab', () => {
+    const github = fixture.debugElement.queryAll(By.css('a[daffTreeItem]'))[1];
+
+    expect(github.attributes['href']).toEqual('https://github.com/graycoreio/daffodil');
+    expect(github.attributes['target']).toEqual('_blank');
   });
 });
