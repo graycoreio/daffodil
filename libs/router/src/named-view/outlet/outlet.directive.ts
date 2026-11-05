@@ -26,9 +26,7 @@ import { DaffRouterNamedViewService } from '../service/named-view.service';
  * according to the {@link DaffRouteWithNamedViews} type.
  */
 @Directive({
-
   selector: '[daffRouterNamedViewOutlet]',
-  standalone: false,
 })
 export class DaffRouterNamedViewOutletDirective implements OnInit, OnChanges, OnDestroy {
   private _destroyed = new Subject<boolean>();

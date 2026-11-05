@@ -1,15 +1,12 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 
 import { DaffRouterNamedViewOutletDirective } from './outlet.directive';
 
+/**
+ * @deprecated in favor of importing the standalone {@link DaffRouterNamedViewOutletDirective}
+ */
 @NgModule({
   imports: [
-    CommonModule,
-    RouterModule,
-  ],
-  declarations: [
     DaffRouterNamedViewOutletDirective,
   ],
   exports: [

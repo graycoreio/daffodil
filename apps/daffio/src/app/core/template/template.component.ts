@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { DaffRouterNamedViewOutletModule } from '@daffodil/router';
+import { DaffRouterNamedViewOutletDirective } from '@daffodil/router';
 
 import { DaffioRouterNamedViewsEnum } from '../router/named-views/models/named-views.enum';
 import { DaffioSidebarViewportContainer } from '../sidebar/containers/sidebar-viewport/sidebar-viewport.component';
@@ -15,7 +15,7 @@ import { DaffioSidebarViewportContainer } from '../sidebar/containers/sidebar-vi
   imports: [
     RouterModule,
     DaffioSidebarViewportContainer,
-    DaffRouterNamedViewOutletModule,
+    DaffRouterNamedViewOutletDirective,
   ],
 })
 export class TemplateComponent {

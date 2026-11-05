@@ -68,6 +68,8 @@ describe('@daffodil/router | DaffRouterNamedViewOutletDirective', () => {
         WrapperComponent,
         AComponent,
         BComponent,
+      ],
+      imports: [
         DaffRouterNamedViewOutletDirective,
       ],
       providers: [
