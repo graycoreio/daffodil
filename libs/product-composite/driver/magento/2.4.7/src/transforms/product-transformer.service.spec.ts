@@ -4,7 +4,7 @@ import { DaffProductTypeEnum } from '@daffodil/product';
 import {
   MagentoProductStockStatusEnum,
   DaffMagentoSimpleProductTransformers,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 import { DaffCompositeProduct } from '@daffodil/product-composite';
 import {
   MagentoBundledProduct,

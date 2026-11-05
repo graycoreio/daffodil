@@ -48,14 +48,14 @@ import {
   MagentoProductGetFilterTypes,
   MagentoProductGetFilterTypesResponse,
   MagentoProductSortFields,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 import {
   MagentoProductFilterTypeFieldFactory,
   MagentoProductAggregationPriceFactory,
   MagentoProductAggregationSelectFactory,
   MagentoProductSortFieldsFactory,
   MagentoSimpleProductFactory,
-} from '@daffodil/product/driver/magento/testing';
+} from '@daffodil/product/driver/magento/2.4.7/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffMagentoCategoryService } from './category.service';

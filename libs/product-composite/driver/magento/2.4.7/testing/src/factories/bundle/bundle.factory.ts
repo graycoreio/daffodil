@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { MagentoProductTypeEnum } from '@daffodil/product/driver/magento';
-import { MockMagentoCoreProduct } from '@daffodil/product/driver/magento/testing';
+import { MagentoProductTypeEnum } from '@daffodil/product/driver/magento/2.4.7';
+import { MockMagentoCoreProduct } from '@daffodil/product/driver/magento/2.4.7/testing';
 import {
   MagentoBundledProduct,
   MagentoBundledProductItem,

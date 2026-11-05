@@ -2,7 +2,7 @@ import {
   MagentoMoney,
   MagentoDiscount,
 } from '@daffodil/driver/magento';
-import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento';
+import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento/2.4.7';
 
 export enum MagentoCartItemTypeEnum {
   Simple = 'SimpleCartItem',

@@ -5,7 +5,7 @@ import {
   daffBuildFragmentNameSpread,
   daffBuildFragmentDefinition,
 } from '@daffodil/core/graphql';
-import { magentoProductFragment } from '@daffodil/product/driver/magento';
+import { magentoProductFragment } from '@daffodil/product/driver/magento/2.4.7';
 
 export const DAFF_SEARCH_PRODUCT_MAGENTO_INCREMENTAL_QUERY_NAME = 'MagentoIncrementalSearchForProducts';
 

@@ -15,7 +15,7 @@ import { provideDaffExternalRouterMagentoDriver } from '@daffodil/external-route
 import { DaffGeographyMagentoDriverModule } from '@daffodil/geography/driver/magento/2.4.7';
 import { provideDaffNavigationMagentoDriver } from '@daffodil/navigation/driver/magento/2.4.7';
 import { DaffNewsletterTestingDriverModule } from '@daffodil/newsletter/driver/testing';
-import { DaffProductMagentoDriverModule } from '@daffodil/product/driver/magento';
+import { DaffProductMagentoDriverModule } from '@daffodil/product/driver/magento/2.4.7';
 
 import { possibleTypes } from './magento/fragmentTypes.json';
 import { environment } from '../../environments/environment';

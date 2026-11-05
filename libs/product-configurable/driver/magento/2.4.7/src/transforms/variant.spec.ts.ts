@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffMagentoSimpleProductTransformers } from '@daffodil/product/driver/magento';
+import { DaffMagentoSimpleProductTransformers } from '@daffodil/product/driver/magento/2.4.7';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 import {

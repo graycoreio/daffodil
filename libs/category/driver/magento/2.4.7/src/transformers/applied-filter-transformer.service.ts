@@ -6,7 +6,7 @@ import {
   MagentoProductFilterActionEnum,
   MagentoProductFilters,
   MagentoProductAppliedFiltersTransformService,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 
 
 @Injectable({

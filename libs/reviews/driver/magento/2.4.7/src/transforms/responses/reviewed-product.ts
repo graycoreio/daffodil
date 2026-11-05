@@ -1,4 +1,4 @@
-import { DaffMagentoProductExtraTransform } from '@daffodil/product/driver/magento';
+import { DaffMagentoProductExtraTransform } from '@daffodil/product/driver/magento/2.4.7';
 import { DaffReviewedProduct } from '@daffodil/reviews';
 
 import { MagentoReviewedProduct } from '../../models/public_api';

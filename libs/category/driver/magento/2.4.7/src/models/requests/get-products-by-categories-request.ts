@@ -1,7 +1,7 @@
 import {
   MagentoProductFilters,
   MagentoSortFieldAction,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 
 export interface MagentoGetCategoryAndProductsRequest {
   productFilter: MagentoProductFilters;

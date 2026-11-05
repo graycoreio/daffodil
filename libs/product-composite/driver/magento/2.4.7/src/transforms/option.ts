@@ -3,7 +3,7 @@ import {
   DaffProductDiscount,
   DaffProductTypeEnum,
 } from '@daffodil/product';
-import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento';
+import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento/2.4.7';
 import { DaffCompositeProductItemOption } from '@daffodil/product-composite';
 
 import {

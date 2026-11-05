@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { DaffCategoryPageMetadata } from '@daffodil/category';
-import { magentoProductCollectionMetadataTransform } from '@daffodil/product/driver/magento';
+import { magentoProductCollectionMetadataTransform } from '@daffodil/product/driver/magento/2.4.7';
 
 import { MagentoCompleteCategoryResponse } from '../models/public_api';
 

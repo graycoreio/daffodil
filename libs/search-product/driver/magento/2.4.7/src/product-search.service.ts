@@ -29,7 +29,7 @@ import {
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
   DAFF_PRODUCT_MAGENTO_PRODUCT_TRANSFORM,
   DaffMagentoProductTransform,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 import {
   DaffSearchResultCollection,
   daffSearchTransformResultsToCollection,

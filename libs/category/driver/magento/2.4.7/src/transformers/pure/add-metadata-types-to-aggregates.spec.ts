@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { MagentoGetCategoryAndProductsResponse } from '@daffodil/category/driver/magento/2.4.7';
-import { MagentoProductGetFilterTypesResponse } from '@daffodil/product/driver/magento';
+import { MagentoProductGetFilterTypesResponse } from '@daffodil/product/driver/magento/2.4.7';
 
 import { addMetadataTypesToProductsResponse } from './add-metadata-types-to-aggregates';
 

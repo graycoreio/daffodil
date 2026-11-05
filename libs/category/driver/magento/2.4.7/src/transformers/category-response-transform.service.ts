@@ -7,7 +7,7 @@ import { DaffGetCategoryResponse } from '@daffodil/category';
 import {
   DAFF_PRODUCT_MAGENTO_PRODUCT_TRANSFORM,
   DaffMagentoProductTransform,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 
 import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
 import { DaffMagentoCategoryTransformerService } from './category-transformer.service';

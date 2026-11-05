@@ -45,7 +45,7 @@ Drivers are provided to your application using Angular providers:
 ```ts
 import { ApplicationConfig } from '@angular/core';
 import { provideMagentoDriver } from '@daffodil/driver/magento';
-import { provideDaffProductMagentoDriver } from '@daffodil/product/driver/magento';
+import { provideDaffProductMagentoDriver } from '@daffodil/product/driver/magento/2.4.7';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -79,7 +79,7 @@ Each package separately defines what drivers it currently has available.
 - [**Shopify**](https://www.shopify.com/): GraphQL Storefront API drivers for Shopify backends
 
 Drivers maintained by the Daffodil team are included as subpackages of feature domains. For example, `@daffodil/product` contains:
-- `@daffodil/product/driver/magento`
+- `@daffodil/product/driver/magento/2.4.7`
 - `@daffodil/product/driver/in-memory`
 - `@daffodil/product/driver/shopify`
 
@@ -96,7 +96,7 @@ npm install @daffodil/product --save
 ```ts
 import { ApplicationConfig } from '@angular/core';
 import { provideMagentoDriver } from '@daffodil/driver/magento';
-import { provideDaffProductMagentoDriver } from '@daffodil/product/driver/magento';
+import { provideDaffProductMagentoDriver } from '@daffodil/product/driver/magento/2.4.7';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -277,7 +277,7 @@ Use environment variables to configure different drivers for different environme
 ```ts
 import { ApplicationConfig, EnvironmentProviders } from '@angular/core';
 import { environment } from '../environments/environment';
-import { provideDaffProductMagentoDriver } from '@daffodil/product/driver/magento';
+import { provideDaffProductMagentoDriver } from '@daffodil/product/driver/magento/2.4.7';
 import { provideDaffProductInMemoryDriver } from '@daffodil/product/driver/in-memory';
 
 const driverProviders: EnvironmentProviders[] = environment.production ? provideDaffProductMagentoDriver() : provideDaffProductInMemoryDriver();

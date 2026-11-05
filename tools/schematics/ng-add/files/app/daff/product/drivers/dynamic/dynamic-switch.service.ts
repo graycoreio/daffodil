@@ -27,7 +27,7 @@ import {
   DaffProductDriverResponse,
 } from '@daffodil/product/driver';
 import { DaffInMemoryProductService } from '@daffodil/product/driver/in-memory';
-import { DaffMagentoProductService } from '@daffodil/product/driver/magento';
+import { DaffMagentoProductService } from '@daffodil/product/driver/magento/2.4.7';
 import { DaffShopifyProductService } from '@daffodil/product/driver/shopify';
 
 import { FakeProductDriverService } from '../fake/fake-product-driver.service';

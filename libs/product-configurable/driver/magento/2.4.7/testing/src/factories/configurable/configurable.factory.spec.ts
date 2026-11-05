@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import {
   MagentoProduct,
   MagentoProductTypeEnum,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 
 import { MagentoConfigurableProductFactory } from './configurable.factory';
 

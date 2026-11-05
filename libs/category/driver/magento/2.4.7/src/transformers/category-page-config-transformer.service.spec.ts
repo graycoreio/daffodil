@@ -18,12 +18,12 @@ import {
   MagentoAggregation,
   MagentoProduct,
   MagentoProductSortFields,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 import {
   MagentoProductAggregationSelectFactory,
   MagentoProductAggregationPriceFactory,
   MagentoProductFactory,
-} from '@daffodil/product/driver/magento/testing';
+} from '@daffodil/product/driver/magento/2.4.7/testing';
 
 import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
 

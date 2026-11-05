@@ -1,5 +1,5 @@
 import { DaffCategory } from '@daffodil/category';
-import { MagentoProduct } from '@daffodil/product/driver/magento';
+import { MagentoProduct } from '@daffodil/product/driver/magento/2.4.7';
 
 import { MagentoCategory } from '../models/public_api';
 
