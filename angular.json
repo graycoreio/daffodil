@@ -352,7 +352,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "apps/daffio/src/test.ts",
             "codeCoverage": true,
             "polyfills": [
               "zone.js",
@@ -448,7 +447,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/analytics/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -491,7 +489,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/authorizenet/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -534,7 +531,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/product/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -577,7 +573,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/related-products/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -620,7 +615,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/upsell-products/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -663,7 +657,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/product-configurable/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -706,7 +699,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/product-composite/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -749,7 +741,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/cart/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -792,7 +783,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/cart-customer/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -835,7 +825,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/category/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -878,7 +867,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/checkout/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -964,7 +952,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/driver/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1014,7 +1001,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/design/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1106,7 +1092,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/branding/src/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1150,7 +1135,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/navigation/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1193,7 +1177,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/newsletter/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1236,7 +1219,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/contact/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1279,7 +1261,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/auth/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1322,7 +1303,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/geography/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1365,7 +1345,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/paypal/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1407,7 +1386,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/order/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1450,7 +1428,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/external-router/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1492,7 +1469,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/search/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1534,7 +1510,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/search-product/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1576,7 +1551,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/search-product-composite/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1618,7 +1592,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/search-product-configurable/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1660,7 +1633,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/search-category/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1702,7 +1674,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/seo/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1744,7 +1715,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/content/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1786,7 +1756,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/reviews/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1828,7 +1797,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/payment/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1870,7 +1838,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/forms/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1912,7 +1879,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/customer/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1954,7 +1920,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/customer-auth/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -1996,7 +1961,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/customer-order/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -2037,7 +2001,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/customer-store-credit/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -2078,7 +2041,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/cart-store-credit/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -2119,7 +2081,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/customer-payment/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -2160,7 +2121,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/customer-payment-authorizenet/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -2201,7 +2161,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/router/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -2242,7 +2201,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/ssr/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -2283,7 +2241,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/docs/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -2379,7 +2336,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "libs/dev-tools/src/test.ts",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
