@@ -31,8 +31,8 @@
       "@daffodil/navigation/driver/in-memory": [
         "./driver/in-memory/src"
       ],
-      "@daffodil/navigation/driver/magento": [
-        "./driver/magento/src"
+      "@daffodil/navigation/driver/magento/2.4.7": [
+        "./driver/magento/2.4.7/src"
       ],
       "@daffodil/navigation/testing": [
         "./testing/src"

@@ -13,7 +13,7 @@ import {
 } from '@daffodil/driver/magento';
 import { provideDaffExternalRouterMagentoDriver } from '@daffodil/external-router/driver/magento/2.4.3';
 import { DaffGeographyMagentoDriverModule } from '@daffodil/geography/driver/magento/2.4.7';
-import { provideDaffNavigationMagentoDriver } from '@daffodil/navigation/driver/magento';
+import { provideDaffNavigationMagentoDriver } from '@daffodil/navigation/driver/magento/2.4.7';
 import { DaffNewsletterTestingDriverModule } from '@daffodil/newsletter/driver/testing';
 import { DaffProductMagentoDriverModule } from '@daffodil/product/driver/magento';
 

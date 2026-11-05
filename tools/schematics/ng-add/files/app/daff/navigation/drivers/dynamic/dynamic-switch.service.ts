@@ -25,7 +25,7 @@ import {
   DaffNavigationServiceInterface,
 } from '@daffodil/navigation/driver';
 import { DaffInMemoryNavigationService } from '@daffodil/navigation/driver/in-memory';
-import { DaffMagentoNavigationService } from '@daffodil/navigation/driver/magento';
+import { DaffMagentoNavigationService } from '@daffodil/navigation/driver/magento/2.4.7';
 import { DaffShopifyNavigationService } from '@daffodil/navigation/driver/shopify';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
