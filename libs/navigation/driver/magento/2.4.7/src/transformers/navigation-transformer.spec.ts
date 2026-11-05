@@ -4,7 +4,7 @@ import { DaffNavigationTree } from '@daffodil/navigation';
 import {
   CategoryNode,
   magentoProvideNavigationTreeTransforms,
-} from '@daffodil/navigation/driver/magento';
+} from '@daffodil/navigation/driver/magento/2.4.7';
 
 import { DaffMagentoNavigationTransformerService } from './navigation-transformer';
 

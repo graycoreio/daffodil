@@ -19,7 +19,7 @@ import {
   DaffMagentoNavigationTransformerService,
   daffMagentoGetCategoryTree,
   provideMagentoNavigationDriverConfig,
-} from '@daffodil/navigation/driver/magento';
+} from '@daffodil/navigation/driver/magento/2.4.7';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
 import { GetCategoryTreeResponse } from './models/public_api';
