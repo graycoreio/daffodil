@@ -175,7 +175,7 @@ function getPackageForImport(importName: string): string {
     DaffNavbarModule: '@daffodil/design/navbar',
     DaffSidebarModule: '@daffodil/design/sidebar',
     DaffCartStateModule: '@daffodil/cart/state',
-    DaffCartMagentoDriverModule: '@daffodil/cart/driver/magento',
+    DaffCartMagentoDriverModule: '@daffodil/cart/driver/magento/2.4.7',
     DaffCartInMemoryDriverModule: '@daffodil/cart/driver/in-memory',
     DaffProductStateModule: '@daffodil/product/state',
     DaffProductMagentoDriverModule: '@daffodil/product/driver/magento',

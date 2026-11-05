@@ -31,11 +31,11 @@
       "@daffodil/cart/driver/in-memory": [
         "./driver/in-memory/src"
       ],
-      "@daffodil/cart/driver/magento": [
-        "./driver/magento/src"
+      "@daffodil/cart/driver/magento/2.4.7": [
+        "./driver/magento/2.4.7/src"
       ],
-      "@daffodil/cart/driver/magento/testing": [
-        "./driver/magento/testing/src"
+      "@daffodil/cart/driver/magento/2.4.7/testing": [
+        "./driver/magento/2.4.7/testing/src"
       ],
       "@daffodil/cart/testing": [
         "./testing/src"

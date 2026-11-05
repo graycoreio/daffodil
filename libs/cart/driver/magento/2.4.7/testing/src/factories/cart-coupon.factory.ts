@@ -1,0 +1,19 @@
+import { Injectable } from '@angular/core';
+import { faker } from '@faker-js/faker/locale/en_US';
+
+import { MagentoCartCoupon } from '@daffodil/cart/driver/magento/2.4.7';
+import { DaffModelFactory } from '@daffodil/core/testing';
+
+export class MockMagentoCartCoupon implements MagentoCartCoupon {
+  code = faker.string.alphanumeric(20);
+};
+
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MagentoCartCouponFactory extends DaffModelFactory<MagentoCartCoupon> {
+  constructor() {
+    super(MockMagentoCartCoupon);
+  }
+}

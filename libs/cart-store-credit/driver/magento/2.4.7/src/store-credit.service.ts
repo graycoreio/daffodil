@@ -15,7 +15,7 @@ import {
 import {
   DaffMagentoCartTransformer,
   DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
-} from '@daffodil/cart/driver/magento';
+} from '@daffodil/cart/driver/magento/2.4.7';
 import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 import { DaffCartStoreCreditDriverInterface } from '@daffodil/cart-store-credit/driver';
 import { DaffQueuedApollo } from '@daffodil/core/graphql';

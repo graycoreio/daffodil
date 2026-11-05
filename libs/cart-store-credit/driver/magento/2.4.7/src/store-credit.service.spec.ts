@@ -12,7 +12,7 @@ import { catchError } from 'rxjs/operators';
 import {
   provideDaffCartMagentoCartTransforms,
   provideDaffCartMagentoExtraCartFragments,
-} from '@daffodil/cart/driver/magento';
+} from '@daffodil/cart/driver/magento/2.4.7';
 import {
   MagentoCartWithStoreCredit,
   MagentoApplyStoreCreditResponse,

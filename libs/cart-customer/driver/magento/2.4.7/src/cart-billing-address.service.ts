@@ -7,7 +7,7 @@ import {
   DaffCart,
 } from '@daffodil/cart';
 import { DaffCartBillingAddressServiceInterface } from '@daffodil/cart/driver';
-import { DaffMagentoCartBillingAddressService } from '@daffodil/cart/driver/magento';
+import { DaffMagentoCartBillingAddressService } from '@daffodil/cart/driver/magento/2.4.7';
 
 /**
  * A service for making Magento GraphQL queries for carts.

@@ -1,0 +1,153 @@
+import { TestBed } from '@angular/core/testing';
+import { InMemoryCache } from '@apollo/client';
+import { addTypenameToDocument } from '@apollo/client/utilities';
+import {
+  ApolloTestingController,
+  ApolloTestingModule,
+  APOLLO_TESTING_CACHE,
+} from 'apollo-angular/testing';
+import { GraphQLError } from 'graphql';
+import { catchError } from 'rxjs';
+
+import { DaffCartPaymentMethod } from '@daffodil/cart';
+import {
+  MagentoCartPaymentMethod,
+  MagentoListPaymentMethodsResponse,
+  DaffMagentoCartPaymentTransformer,
+} from '@daffodil/cart/driver/magento/2.4.7';
+import { MagentoCartPaymentMethodFactory } from '@daffodil/cart/driver/magento/2.4.7/testing';
+import { DaffCartPaymentFactory } from '@daffodil/cart/testing';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
+
+import { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.service';
+import { listPaymentMethods } from './queries/public_api';
+
+
+describe('@daffodil/cart/driver/magento | CartPaymentMethodsService', () => {
+  let service: DaffMagentoCartPaymentMethodsService;
+  let controller: ApolloTestingController;
+
+  let magentoCartPaymentTransformerService: DaffMagentoCartPaymentTransformer;
+  let magentoCartPaymentTransformerSpy: jasmine.Spy;
+
+  let daffCartPaymentFactory: DaffCartPaymentFactory;
+  let magentoPaymentMethodFactory: MagentoCartPaymentMethodFactory;
+
+  let cartId;
+  let mockDaffCartPayment: DaffCartPaymentMethod;
+  let mockMagentoPaymentMethod: MagentoCartPaymentMethod;
+  let mockListCartPaymentMethodsResponse: MagentoListPaymentMethodsResponse;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        ApolloTestingModule,
+      ],
+      providers: [
+        DaffMagentoCartPaymentMethodsService,
+        {
+          provide: APOLLO_TESTING_CACHE,
+          useValue: new InMemoryCache({
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
+          }),
+        },
+      ],
+    });
+
+    service = TestBed.inject(DaffMagentoCartPaymentMethodsService);
+    controller = TestBed.inject(ApolloTestingController);
+
+    magentoCartPaymentTransformerService = TestBed.inject(DaffMagentoCartPaymentTransformer);
+
+    daffCartPaymentFactory = TestBed.inject(DaffCartPaymentFactory);
+    magentoPaymentMethodFactory = TestBed.inject(MagentoCartPaymentMethodFactory);
+
+    mockDaffCartPayment = daffCartPaymentFactory.create();
+    // TODO: create a factory and model for MagentoAvailablePaymentMethod
+    const temp = magentoPaymentMethodFactory.create();
+    mockMagentoPaymentMethod = {
+      __typename: 'AvailablePaymentMethod',
+      code: temp.code,
+      title: temp.title,
+    };
+
+    cartId = '15';
+    mockListCartPaymentMethodsResponse = {
+      cart: {
+        __typename: 'Cart',
+        available_payment_methods: [mockMagentoPaymentMethod],
+      },
+    };
+
+    magentoCartPaymentTransformerSpy = spyOn(magentoCartPaymentTransformerService, 'transform');
+    magentoCartPaymentTransformerSpy.withArgs(mockMagentoPaymentMethod).and.returnValue(mockDaffCartPayment);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
+  describe('list | listing payment methods', () => {
+    let method;
+
+    beforeEach(() => {
+      method = 'method';
+      mockDaffCartPayment.method = method;
+      mockMagentoPaymentMethod.code = method;
+    });
+
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw an Error', done => {
+        service.list(cartId).pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(Error));
+            done();
+            return [];
+          }),
+        ).subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(listPaymentMethods([])));
+
+        op.graphqlErrors([new GraphQLError(
+          'Can\'t find a cart with that ID.',
+          null,
+          null,
+          null,
+          null,
+          null,
+          { category: 'graphql-no-such-entity' },
+        )]);
+      });
+    });
+
+    it('should call the transformer with the correct argument', done => {
+      service.list(cartId).subscribe(() => {
+        expect(magentoCartPaymentTransformerSpy).toHaveBeenCalledWith(mockMagentoPaymentMethod);
+        done();
+      });
+
+      const op = controller.expectOne(addTypenameToDocument(listPaymentMethods([])));
+
+      op.flush({
+        data: mockListCartPaymentMethodsResponse,
+      });
+    });
+
+    it('should return the correct value', done => {
+      service.list(cartId).subscribe(result => {
+        expect(result[0].method).toEqual(method);
+        done();
+      });
+
+      const op = controller.expectOne(addTypenameToDocument(listPaymentMethods([])));
+
+      op.flush({
+        data: mockListCartPaymentMethodsResponse,
+      });
+    });
+
+    afterEach(() => {
+      controller.verify();
+    });
+  });
+});

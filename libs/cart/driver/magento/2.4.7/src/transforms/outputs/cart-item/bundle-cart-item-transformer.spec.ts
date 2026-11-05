@@ -1,0 +1,21 @@
+import { DaffCompositeCartItem } from '@daffodil/cart';
+import { MagentoBundleCartItem } from '@daffodil/cart/driver/magento/2.4.7';
+import { MagentoBundleCartItemFactory } from '@daffodil/cart/driver/magento/2.4.7/testing';
+
+import { transformMagentoBundleCartItem } from './bundle-cart-item-transformer';
+
+describe('@daffodil/cart/driver/magento | transformMagentoBundleCartItem', () => {
+  let stubMagentoBundleCartItem: MagentoBundleCartItem;
+  let transformedCartItem: DaffCompositeCartItem;
+
+  beforeEach(() => {
+    stubMagentoBundleCartItem = new MagentoBundleCartItemFactory().create();
+    transformedCartItem = transformMagentoBundleCartItem(stubMagentoBundleCartItem);
+  });
+
+  it('should return the expected composite product', () => {
+    expect(transformedCartItem.options[0].id).toEqual(String(stubMagentoBundleCartItem.bundle_options[0].values[0].id));
+    expect(transformedCartItem.options[0].option_label).toEqual(stubMagentoBundleCartItem.bundle_options[0].label);
+    expect(transformedCartItem.options[0].value_label).toEqual(stubMagentoBundleCartItem.bundle_options[0].values[0].label);
+  });
+});
