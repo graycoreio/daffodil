@@ -1,18 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoCmsPage } from '@daffodil/content/driver/magento';
+import { MagentoContentBlock } from '@daffodil/content/driver/magento/2.4.7';
 
-import { MagentoCmsPageFactory } from './page.factory';
+import { MagentoContentBlockFactory } from './block.factory';
 
-describe('@daffodil/content/driver/magento | MagentoCmsPageFactory', () => {
-  let factory: MagentoCmsPageFactory;
+describe('@daffodil/content/driver/magento | MagentoContentBlockFactory', () => {
+  let factory: MagentoContentBlockFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MagentoCmsPageFactory],
+      providers: [MagentoContentBlockFactory],
     });
 
-    factory = TestBed.inject(MagentoCmsPageFactory);
+    factory = TestBed.inject(MagentoContentBlockFactory);
   });
 
   it('should be created', () => {
@@ -20,7 +20,7 @@ describe('@daffodil/content/driver/magento | MagentoCmsPageFactory', () => {
   });
 
   describe('create', () => {
-    let result: MagentoCmsPage;
+    let result: MagentoContentBlock;
 
     beforeEach(() => {
       result = factory.create();
@@ -34,8 +34,6 @@ describe('@daffodil/content/driver/magento | MagentoCmsPageFactory', () => {
       expect(result.identifier).toBeDefined();
       expect(result.title).toBeDefined();
       expect(result.content).toBeDefined();
-      expect(result.meta_title).toBeDefined();
-      expect(result.meta_description).toBeDefined();
     });
   });
 });

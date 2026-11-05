@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffContentBlock } from '@daffodil/content';
-import { MagentoContentBlock } from '@daffodil/content/driver/magento';
-import { MagentoContentBlockFactory } from '@daffodil/content/driver/magento/testing';
+import { MagentoContentBlock } from '@daffodil/content/driver/magento/2.4.7';
+import { MagentoContentBlockFactory } from '@daffodil/content/driver/magento/2.4.7/testing';
 
 import { magentoContentBlockTransform } from './block';
 
