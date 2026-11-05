@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { MagentoCmsPage } from '@daffodil/content/driver/magento';
+import { MagentoCmsPage } from '@daffodil/content/driver/magento/2.4.7';
 import { DaffContentSchemaPageFactory } from '@daffodil/content/testing';
 import { DaffModelFactory } from '@daffodil/core/testing';
 

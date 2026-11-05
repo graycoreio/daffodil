@@ -9,29 +9,29 @@ import {
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
-import { DaffContentPage } from '@daffodil/content';
+import { DaffContentBlock } from '@daffodil/content';
 import {
   DaffContentInvalidAPIResponseError,
   DaffContentNotFoundError,
 } from '@daffodil/content/driver';
 import {
-  MagentoCmsPage,
-  MagentoContentGetPageResponse,
-  getCmsPage,
-} from '@daffodil/content/driver/magento';
-import { MagentoCmsPageFactory } from '@daffodil/content/driver/magento/testing';
+  MagentoContentBlock,
+  MagentoGetBlocksResponse,
+  getCmsBlocks,
+} from '@daffodil/content/driver/magento/2.4.7';
+import { MagentoContentBlockFactory } from '@daffodil/content/driver/magento/2.4.7/testing';
 import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
 
-import { MagentoContentPageService } from './page.service';
+import { MagentoContentService } from './service';
 
-describe('@daffodil/content/driver/magento | MagentoContentPageService', () => {
-  let service: MagentoContentPageService;
+describe('@daffodil/content/driver/magento | MagentoContentService', () => {
+  let service: MagentoContentService;
   let controller: ApolloTestingController;
-  let factory: MagentoCmsPageFactory;
+  let blockFactory: MagentoContentBlockFactory;
 
-  let pageId: DaffContentPage['id'];
-  let mockMagentoPage: MagentoCmsPage;
-  let mockGetPageResponse: MagentoContentGetPageResponse;
+  let blockId: DaffContentBlock['id'];
+  let mockMagentoBlock: MagentoContentBlock;
+  let mockGetBlocksResponse: MagentoGetBlocksResponse;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -39,7 +39,7 @@ describe('@daffodil/content/driver/magento | MagentoContentPageService', () => {
         ApolloTestingModule,
       ],
       providers: [
-        MagentoContentPageService,
+        MagentoContentService,
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
@@ -49,16 +49,19 @@ describe('@daffodil/content/driver/magento | MagentoContentPageService', () => {
       ],
     });
 
-    service = TestBed.inject(MagentoContentPageService);
+    service = TestBed.inject(MagentoContentService);
     controller = TestBed.inject(ApolloTestingController);
-    factory = TestBed.inject(MagentoCmsPageFactory);
+    blockFactory = TestBed.inject(MagentoContentBlockFactory);
 
-    mockMagentoPage = factory.create();
+    mockMagentoBlock = blockFactory.create();
 
-    pageId = mockMagentoPage.identifier;
+    blockId = mockMagentoBlock.identifier;
 
-    mockGetPageResponse = {
-      route: mockMagentoPage,
+    mockGetBlocksResponse = {
+      cmsBlocks: {
+        __typename: 'CmsBlocks',
+        items: [mockMagentoBlock],
+      },
     };
   });
 
@@ -70,11 +73,11 @@ describe('@daffodil/content/driver/magento | MagentoContentPageService', () => {
     describe('when the call to the Magento API is successful', () => {
       describe('and the response fails validation', () => {
         beforeEach(() => {
-          mockGetPageResponse.route = null;
+          mockGetBlocksResponse.cmsBlocks.items = null;
         });
 
         it('should throw a DaffContentInvalidAPIResponseError', done => {
-          service.get(pageId).pipe(
+          service.getBlocks(blockId).pipe(
             catchError(err => {
               expect(err instanceof DaffContentInvalidAPIResponseError).toEqual(true);
               done();
@@ -82,25 +85,25 @@ describe('@daffodil/content/driver/magento | MagentoContentPageService', () => {
             }),
           ).subscribe();
 
-          const op = controller.expectOne(addTypenameToDocument(getCmsPage()));
+          const op = controller.expectOne(addTypenameToDocument(getCmsBlocks));
 
           op.flush({
-            data: mockGetPageResponse,
+            data: mockGetBlocksResponse,
           });
         });
       });
 
       describe('and the response passes validation', () => {
         it('should return the correct Daffodil content', done => {
-          service.get(pageId).subscribe(result => {
-            expect(result.id).toEqual(mockMagentoPage.identifier);
+          service.getBlocks(blockId).subscribe(result => {
+            expect(result[blockId].id).toEqual(mockMagentoBlock.identifier);
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(getCmsPage()));
+          const op = controller.expectOne(addTypenameToDocument(getCmsBlocks));
 
           op.flush({
-            data: mockGetPageResponse,
+            data: mockGetBlocksResponse,
           });
         });
       });
@@ -108,7 +111,7 @@ describe('@daffodil/content/driver/magento | MagentoContentPageService', () => {
 
     describe('when the call to the Magento API is unsuccessful', () => {
       it('should throw a DaffContentNotFoundError', done => {
-        service.get(pageId).pipe(
+        service.getBlocks(blockId).pipe(
           catchError(err => {
             expect(err instanceof DaffContentNotFoundError).toEqual(true);
             done();
@@ -116,10 +119,10 @@ describe('@daffodil/content/driver/magento | MagentoContentPageService', () => {
           }),
         ).subscribe();
 
-        const op = controller.expectOne(addTypenameToDocument(getCmsPage()));
+        const op = controller.expectOne(addTypenameToDocument(getCmsBlocks));
 
         op.graphqlErrors([new GraphQLError(
-          'Can\'t find a page with that ID.',
+          'Can\'t find a block with that ID.',
           null,
           null,
           null,

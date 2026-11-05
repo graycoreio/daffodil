@@ -1,7 +1,7 @@
 import { Apollo } from 'apollo-angular';
 
 import { DaffContentInvalidAPIResponseError } from '@daffodil/content/driver';
-import { MagentoGetBlocksResponse } from '@daffodil/content/driver/magento';
+import { MagentoGetBlocksResponse } from '@daffodil/content/driver/magento/2.4.7';
 
 import { validateGetBlocksResponse as validator } from './get-blocks';
 

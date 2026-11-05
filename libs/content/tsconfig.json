@@ -28,11 +28,11 @@
       "@daffodil/content/driver/testing": [
         "./driver/testing/src"
       ],
-      "@daffodil/content/driver/magento": [
-        "./driver/magento/src"
+      "@daffodil/content/driver/magento/2.4.7": [
+        "./driver/magento/2.4.7/src"
       ],
-      "@daffodil/content/driver/magento/testing": [
-        "./driver/magento/testing/src"
+      "@daffodil/content/driver/magento/2.4.7/testing": [
+        "./driver/magento/2.4.7/testing/src"
       ],
     }
   }

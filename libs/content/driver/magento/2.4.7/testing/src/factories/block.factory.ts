@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { MagentoContentBlock } from '@daffodil/content/driver/magento';
+import { MagentoContentBlock } from '@daffodil/content/driver/magento/2.4.7';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockMagentoContentBlock implements MagentoContentBlock {

@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffContentHtmlPage } from '@daffodil/content';
-import { MagentoCmsPage } from '@daffodil/content/driver/magento';
-import { MagentoCmsPageFactory } from '@daffodil/content/driver/magento/testing';
+import { MagentoCmsPage } from '@daffodil/content/driver/magento/2.4.7';
+import { MagentoCmsPageFactory } from '@daffodil/content/driver/magento/2.4.7/testing';
 
 import { magentoContentPageTransform } from './page';
 
