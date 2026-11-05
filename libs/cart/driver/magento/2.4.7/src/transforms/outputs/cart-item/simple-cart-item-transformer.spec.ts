@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { DaffCartItemInputType } from '@daffodil/cart';
 import { MagentoCartItemFactory } from '@daffodil/cart/driver/magento/2.4.7/testing';
 import { DaffCartItemFactory } from '@daffodil/cart/testing';
-import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento';
+import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento/2.4.7';
 
 import { transformMagentoSimpleCartItem } from './simple-cart-item-transformer';
 

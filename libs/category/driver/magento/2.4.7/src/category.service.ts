@@ -34,7 +34,7 @@ import {
   MAGENTO_PRODUCT_CONFIG_TOKEN,
   magentoAppliedSortOptionTransform,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 
 import { MAGENTO_CATEGORY_EXTRA_FRAGMENTS } from './fragments/public_api';
 import {

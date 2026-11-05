@@ -23,7 +23,7 @@ import {
   MagentoProductGetFilterTypesResponse,
   MagentoProductSortFields,
   MagentoSimpleProduct,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 import {
   MagentoProductAggregationPriceFactory,
   MagentoProductAggregationSelectFactory,
@@ -31,7 +31,7 @@ import {
   MagentoProductFilterTypeFieldFactory,
   MagentoProductSortFieldsFactory,
   MagentoSimpleProductFactory,
-} from '@daffodil/product/driver/magento/testing';
+} from '@daffodil/product/driver/magento/2.4.7/testing';
 import { DAFF_SEARCH_PRODUCT_RESULT_KIND } from '@daffodil/search-product';
 import {
   MagentoSearchForProductsResponse,

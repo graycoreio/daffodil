@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductDriverResponse } from '@daffodil/product/driver';
-import { provideDaffProductMagentoExtraProductPreviewTransforms } from '@daffodil/product/driver/magento';
-import { MagentoCoreProductFactory } from '@daffodil/product/driver/magento/testing';
+import { provideDaffProductMagentoExtraProductPreviewTransforms } from '@daffodil/product/driver/magento/2.4.7';
+import { MagentoCoreProductFactory } from '@daffodil/product/driver/magento/2.4.7/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffRelatedProduct } from '@daffodil/related-products';
 import { MagentoProductWithRelatedFactory } from '@daffodil/related-products/driver/magento/2.4.7/testing';

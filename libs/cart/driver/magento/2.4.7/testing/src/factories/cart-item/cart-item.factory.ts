@@ -15,7 +15,7 @@ import {
   MagentoMoneyFactory,
   MagentoDiscountFactory,
 } from '@daffodil/driver/magento/testing';
-import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento';
+import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento/2.4.7';
 
 export class MockMagentoCartItem implements MagentoCartItem {
   __typename = MagentoCartItemTypeEnum.Simple;

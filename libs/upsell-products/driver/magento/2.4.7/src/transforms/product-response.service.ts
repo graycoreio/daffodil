@@ -7,7 +7,7 @@ import { DaffProductDriverResponse } from '@daffodil/product/driver';
 import {
   DaffMagentoProductTransform,
   DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 
 import { MagentoProductWithUpsell } from '../models/product-with-upsell.interface';
 

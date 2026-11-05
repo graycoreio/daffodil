@@ -1,7 +1,7 @@
 import {
   MagentoProduct,
   MagentoSimpleProduct,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 
 export interface MagentoConfigurableProduct extends MagentoProduct {
   configurable_options: MagentoConfigurableProductOption[];

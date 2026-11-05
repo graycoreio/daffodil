@@ -5,7 +5,7 @@ import {
   daffBuildFragmentDefinition,
   daffBuildFragmentNameSpread,
 } from '@daffodil/core/graphql';
-import { magentoProductPreviewFragment } from '@daffodil/product/driver/magento';
+import { magentoProductPreviewFragment } from '@daffodil/product/driver/magento/2.4.7';
 
 export const magentoRelatedProductsFragment = (extraProductFragments: DocumentNode[] = []) => gql`
   fragment relatedProducts on ProductInterface {

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { MagentoSimpleProduct } from '@daffodil/product/driver/magento';
-import { MagentoSimpleProductFactory } from '@daffodil/product/driver/magento/testing';
+import { MagentoSimpleProduct } from '@daffodil/product/driver/magento/2.4.7';
+import { MagentoSimpleProductFactory } from '@daffodil/product/driver/magento/2.4.7/testing';
 import { MagentoBundledProductItemOption } from '@daffodil/product-composite/driver/magento/2.4.7';
 
 

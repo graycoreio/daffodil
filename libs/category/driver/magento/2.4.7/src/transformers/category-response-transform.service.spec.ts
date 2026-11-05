@@ -20,11 +20,11 @@ import {
   MagentoAggregation,
   MagentoProductSortFields,
   MAGENTO_PRODUCT_CONFIG_TOKEN,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 import {
   MagentoProductAggregationFactory,
   MagentoProductFactory,
-} from '@daffodil/product/driver/magento/testing';
+} from '@daffodil/product/driver/magento/2.4.7/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffMagentoCategoryResponseTransformService } from './category-response-transform.service';

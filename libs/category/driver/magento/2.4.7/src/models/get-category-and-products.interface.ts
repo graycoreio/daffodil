@@ -3,7 +3,7 @@ import {
   MagentoAggregation,
   MagentoProduct,
   MagentoProductSortFields,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 
 import { MagentoCategory } from './category';
 

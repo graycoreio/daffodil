@@ -1,7 +1,7 @@
 import {
   MagentoProductGetFilterTypesResponse,
   magentoProductGetMatchedAttributeType,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 
 import { MagentoGetCategoryAndProductsResponse } from '../../models/public_api';
 

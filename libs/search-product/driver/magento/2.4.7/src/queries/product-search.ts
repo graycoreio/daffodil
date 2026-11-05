@@ -10,7 +10,7 @@ import {
   magentoProductAggregationsFragment,
   magentoProductFragment,
   magentoProductSortFieldsFragment,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 
 export const DAFF_MAGENTO_SEARCH_FOR_PRODUCTS_QUERY_NAME = 'MagentoSearchForProducts';
 

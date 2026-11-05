@@ -1,4 +1,4 @@
-import { MagentoProduct } from '@daffodil/product/driver/magento';
+import { MagentoProduct } from '@daffodil/product/driver/magento/2.4.7';
 
 export interface MagentoReviewedProduct extends MagentoProduct {
   sku: string;

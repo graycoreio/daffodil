@@ -9,7 +9,7 @@ import {
   MagentoProductTypeEnum,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_TRANSFORMS,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 
 import { magentoConfigurableProductFragment } from './fragments/configurable-product';
 import { DAFF_PRODUCT_CONFIGURABLE_MAGENTO_EXTRA_VARIANT_FRAGMENTS } from './injection-tokens/public_api';

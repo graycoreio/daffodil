@@ -7,7 +7,7 @@ import { provideDaffMagentoCacheableOperation } from '@daffodil/driver/magento';
 import {
   provideDaffProductMagentoExtraProductPreviewFragments,
   provideDaffProductMagentoExtraProductPreviewTransforms,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 import { provideDaffReviewsDriver } from '@daffodil/reviews/driver';
 
 import {

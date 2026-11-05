@@ -22,8 +22,8 @@ import {
   provideDaffProductMagentoExtraProductResponseTransforms,
   MagentoSimpleProduct,
   DAFF_MAGENTO_GET_A_PRODUCT_QUERY_NAME,
-} from '@daffodil/product/driver/magento';
-import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
+} from '@daffodil/product/driver/magento/2.4.7';
+import { MagentoProductFactory } from '@daffodil/product/driver/magento/2.4.7/testing';
 
 
 interface MyProduct extends DaffProduct {

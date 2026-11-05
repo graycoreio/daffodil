@@ -11,7 +11,7 @@ import {
 import {
   MagentoProductFilters,
   MagentoProductFilterActionEnum,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 
 import { DaffMagentoAppliedFiltersTransformService } from './applied-filter-transformer.service';
 

@@ -9,7 +9,7 @@ import {
   provideDaffProductMagentoExtraProductPreviewTransforms,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_TRANSFORMS,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
-} from '@daffodil/product/driver/magento';
+} from '@daffodil/product/driver/magento/2.4.7';
 
 import { magentoBundledProductFragment } from './fragments/bundled-product';
 import {
