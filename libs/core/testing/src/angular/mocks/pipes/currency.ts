@@ -11,7 +11,6 @@ import {
  */
 @Pipe({
   name: 'currency',
-  standalone: false,
 })
 export class DaffMockCurrencyPipe implements PipeTransform {
   transform(value: number) {};
