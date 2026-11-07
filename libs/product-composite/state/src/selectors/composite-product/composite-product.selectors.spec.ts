@@ -59,6 +59,10 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
   const stubDiscountAmount11 = 4;
   const stubQty0 = 3;
   const stubQty1 = 2;
+  const stubOptionQty00 = 3;
+  const stubOptionQty01 = 2;
+  const stubOptionQty10 = 2;
+  const stubOptionQty11 = 4;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -80,8 +84,9 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
     stubCompositeProduct.items[0].required = true;
     stubCompositeProduct.items[0].options[0].is_default = true;
     stubCompositeProduct.items[0].options[0].price = stubPrice00;
-    stubCompositeProduct.items[0].options[0].quantity = stubQty0;
+    stubCompositeProduct.items[0].options[0].quantity = stubOptionQty00;
     stubCompositeProduct.items[0].options[1].price = stubPrice01;
+    stubCompositeProduct.items[0].options[1].quantity = stubOptionQty01;
     stubCompositeProduct.items[0].options[0].discount = {
       amount: stubDiscountAmount00,
       percent: null,
@@ -94,7 +99,8 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
     stubCompositeProduct.items[1].options[0].is_default = false;
     stubCompositeProduct.items[1].options[0].price = stubPrice10;
     stubCompositeProduct.items[1].options[1].price = stubPrice11;
-    stubCompositeProduct.items[1].options[0].quantity = stubQty1;
+    stubCompositeProduct.items[1].options[0].quantity = stubOptionQty10;
+    stubCompositeProduct.items[1].options[1].quantity = stubOptionQty11;
     stubCompositeProduct.items[1].options[0].discount = {
       amount: stubDiscountAmount10,
       percent: null,
@@ -130,24 +136,78 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
       expect(spy).toHaveBeenCalledTimes(1);
     });
 
-    it('should return the broadest price range when no configuration is provided', () => {
+    it('should return the broadest price range according to the option quantities when no configuration is provided', () => {
       const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration(stubCompositeProduct.id)));
       const expected = cold('a', { a: {
         minPrice: {
-          discountedPrice: stubCompositeProduct.price + stubPrice00 - stubCompositeProduct.discount.amount - stubDiscountAmount00,
+          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+						(stubPrice00 - stubDiscountAmount00) * stubOptionQty00,
           discount: {
             amount: null,
             percent: null,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice00,
+          originalPrice: stubCompositeProduct.price + (stubPrice00 * stubOptionQty00),
         },
         maxPrice: {
-          discountedPrice: stubCompositeProduct.price + stubPrice01 - stubCompositeProduct.discount.amount - stubDiscountAmount01,
+          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+						(stubPrice01 - stubDiscountAmount01) * stubOptionQty01,
           discount: {
             amount: null,
             percent: null,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice01,
+          originalPrice: stubCompositeProduct.price + (stubPrice01 * stubOptionQty01),
+        },
+      }});
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    it('should compare the option totals instead of the unit prices when no configuration is provided', () => {
+      const cheapestUnitPriceQty = 5;
+      const priciestUnitPriceQty = 1;
+      const product = {
+        ...stubCompositeProduct,
+        items: [
+          {
+            ...stubCompositeProduct.items[0],
+            options: [
+              {
+                ...stubCompositeProduct.items[0].options[0],
+                quantity: cheapestUnitPriceQty,
+              },
+              {
+                ...stubCompositeProduct.items[0].options[1],
+                quantity: priciestUnitPriceQty,
+              },
+            ],
+          },
+          ...stubCompositeProduct.items.slice(1),
+        ],
+      };
+      store.dispatch(new DaffProductLoadSuccess({
+        id: product.id,
+        products: [product],
+      }));
+
+      const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration(stubCompositeProduct.id)));
+      const expected = cold('a', { a: {
+        minPrice: {
+          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+						(stubPrice01 - stubDiscountAmount01) * priciestUnitPriceQty,
+          discount: {
+            amount: null,
+            percent: null,
+          },
+          originalPrice: stubCompositeProduct.price + (stubPrice01 * priciestUnitPriceQty),
+        },
+        maxPrice: {
+          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+						(stubPrice00 - stubDiscountAmount00) * cheapestUnitPriceQty,
+          discount: {
+            amount: null,
+            percent: null,
+          },
+          originalPrice: stubCompositeProduct.price + (stubPrice00 * cheapestUnitPriceQty),
         },
       }});
 
@@ -165,23 +225,23 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
       const expected = cold('a', { a: {
         minPrice: {
           discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
-						stubPrice00 - stubDiscountAmount00 +
+						(stubPrice00 - stubDiscountAmount00) * stubOptionQty00 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
           discount: {
             amount: null,
             percent: null,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice00 + (stubPrice11 * stubQty1),
+          originalPrice: stubCompositeProduct.price + (stubPrice00 * stubOptionQty00) + (stubPrice11 * stubQty1),
         },
         maxPrice: {
           discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
-						stubPrice01 - stubDiscountAmount01 +
+						(stubPrice01 - stubDiscountAmount01) * stubOptionQty01 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
           discount: {
             amount: null,
             percent: null,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice01 + (stubPrice11 * stubQty1),
+          originalPrice: stubCompositeProduct.price + (stubPrice01 * stubOptionQty01) + (stubPrice11 * stubQty1),
         },
       }});
 
@@ -322,21 +382,23 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
       const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration(stubCompositeProduct.id)));
       const expected = cold('a', { a: {
         minPrice: {
-          discountedPrice: stubCompositeProduct.price + stubPrice00 - stubCompositeProduct.discount.amount - stubDiscountAmount00,
+          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+						(stubPrice00 - stubDiscountAmount00) * stubOptionQty00,
           discount: {
             amount: null,
             percent: null,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice00,
+          originalPrice: stubCompositeProduct.price + (stubPrice00 * stubOptionQty00),
         },
         maxPrice: {
-          discountedPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11 -
-						stubCompositeProduct.discount.amount - stubDiscountAmount01 - stubDiscountAmount11,
+          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+						(stubPrice01 - stubDiscountAmount01) * stubOptionQty01 +
+						(stubPrice11 - stubDiscountAmount11) * stubOptionQty11,
           discount: {
             amount: null,
             percent: null,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11,
+          originalPrice: stubCompositeProduct.price + (stubPrice01 * stubOptionQty01) + (stubPrice11 * stubOptionQty11),
         },
       }});
 
@@ -363,12 +425,12 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
         },
         maxPrice: {
           discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
-						(stubPrice00 - stubDiscountAmount00) * stubQty0 + (stubPrice11 - stubDiscountAmount11),
+						(stubPrice00 - stubDiscountAmount00) * stubQty0 + (stubPrice11 - stubDiscountAmount11) * stubOptionQty11,
           discount: {
             amount: null,
             percent: null,
           },
-          originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0) + (stubPrice11),
+          originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0) + (stubPrice11 * stubOptionQty11),
         },
       }});
 
@@ -545,6 +607,50 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
       expect(selector).toBeObservable(expected);
     });
 
+    it('should return a price range according to the option quantities when a required item has no default option', () => {
+      const product = {
+        ...stubCompositeProduct,
+        items: [
+          {
+            ...stubCompositeProduct.items[0],
+            options: stubCompositeProduct.items[0].options.map(option => ({
+              ...option,
+              is_default: false,
+            })),
+          },
+          ...stubCompositeProduct.items.slice(1),
+        ],
+      };
+      store.dispatch(new DaffProductLoadSuccess({
+        id: product.id,
+        products: [product],
+      }));
+
+      const selector = store.pipe(select(selectCompositeProductPricesAsCurrentlyConfigured(stubCompositeProduct.id)));
+      const expected = cold('a', { a: {
+        minPrice: {
+          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+						(stubPrice00 - stubDiscountAmount00) * stubOptionQty00,
+          discount: {
+            amount: null,
+            percent: null,
+          },
+          originalPrice: stubCompositeProduct.price + (stubPrice00 * stubOptionQty00),
+        },
+        maxPrice: {
+          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+						(stubPrice01 - stubDiscountAmount01) * stubOptionQty01,
+          discount: {
+            amount: null,
+            percent: null,
+          },
+          originalPrice: stubCompositeProduct.price + (stubPrice01 * stubOptionQty01),
+        },
+      }});
+
+      expect(selector).toBeObservable(expected);
+    });
+
     it('should return a price range that reflects the expected option quantity when the default item option is out of stock', () => {
       const product = {
         ...stubCompositeProduct,
@@ -571,21 +677,21 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
       const expected = cold('a', { a: {
         minPrice: {
           discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
-						(stubPrice00 - stubDiscountAmount00) * stubQty0,
+						(stubPrice00 - stubDiscountAmount00) * stubOptionQty00,
           discount: {
             amount: null,
             percent: null,
           },
-          originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0),
+          originalPrice: stubCompositeProduct.price + (stubPrice00 * stubOptionQty00),
         },
         maxPrice: {
           discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
-						(stubPrice01 - stubDiscountAmount01) * stubQty0,
+						(stubPrice01 - stubDiscountAmount01) * stubOptionQty00,
           discount: {
             amount: null,
             percent: null,
           },
-          originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0),
+          originalPrice: stubCompositeProduct.price + (stubPrice01 * stubOptionQty00),
         },
       }});
 
