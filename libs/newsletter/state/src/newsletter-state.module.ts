@@ -8,7 +8,7 @@ import { DAFF_NEWSLETTER_STORE_FEATURE_KEY } from './reducers/newsletter-store-f
 import { daffNewsletterStateReducer } from './reducers/newsletter.reducer';
 
 /**
- * @deprecated in favor of {@link provideDaffNewsletterState}
+ * @deprecated in favor of {@link provideDaffNewsletterState} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

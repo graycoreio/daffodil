@@ -7,7 +7,7 @@ import {
 import { provideDaffReviewsTestingDriver } from './provider';
 
 /**
- * @deprecated in favor of {@link provideDaffReviewsTestingDriver}
+ * @deprecated in favor of {@link provideDaffReviewsTestingDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

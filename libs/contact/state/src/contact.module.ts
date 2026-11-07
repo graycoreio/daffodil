@@ -7,7 +7,7 @@ import { DAFF_CONTACT_STORE_FEATURE_KEY } from './reducers/contact-store-feature
 import { daffContactStateReducer } from './reducers/contact.reducer';
 
 /**
- * @deprecated in favor of {@link provideDaffContactState}
+ * @deprecated in favor of {@link provideDaffContactState} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   declarations: [],

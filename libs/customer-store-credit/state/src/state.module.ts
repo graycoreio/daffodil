@@ -22,7 +22,7 @@ import {
 /**
  * Creates the customer store credit feature store.
  *
- * @deprecated in favor of {@link provideDaffCustomerStoreCreditState}
+ * @deprecated in favor of {@link provideDaffCustomerStoreCreditState} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [
