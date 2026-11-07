@@ -20,7 +20,7 @@ import {
   getCmsBlocks,
 } from '@daffodil/content/driver/magento/2.4.7';
 import { MagentoContentBlockFactory } from '@daffodil/content/driver/magento/2.4.7/testing';
-import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento/2.4.7';
 
 import { MagentoContentService } from './service';
 

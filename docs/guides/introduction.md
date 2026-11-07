@@ -8,7 +8,7 @@ For example, you could be on [Magento](https://business.adobe.com/products/comme
 
 ```ts
 import { ApplicationConfig } from '@angular/core';
-import { provideMagentoDriver } from '@daffodil/driver/magento';
+import { provideMagentoDriver } from '@daffodil/driver/magento/2.4.7';
 import { provideDaffProductMagentoDriver } from '@daffodil/product/driver/magento/2.4.7';
 
 export const appConfig: ApplicationConfig = {

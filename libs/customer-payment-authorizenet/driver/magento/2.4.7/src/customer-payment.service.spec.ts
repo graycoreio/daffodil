@@ -43,7 +43,7 @@ import {
 import {
   DaffDriverMagentoError,
   MAGENTO_POSSIBLE_TYPES,
-} from '@daffodil/driver/magento';
+} from '@daffodil/driver/magento/2.4.7';
 
 import { DaffCustomerPaymentAuthorizeNetMagentoService } from './customer-payment.service';
 

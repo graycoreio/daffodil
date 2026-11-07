@@ -44,7 +44,7 @@ Drivers are provided to your application using Angular providers:
 
 ```ts
 import { ApplicationConfig } from '@angular/core';
-import { provideMagentoDriver } from '@daffodil/driver/magento';
+import { provideMagentoDriver } from '@daffodil/driver/magento/2.4.7';
 import { provideDaffProductMagentoDriver } from '@daffodil/product/driver/magento/2.4.7';
 
 export const appConfig: ApplicationConfig = {
@@ -95,7 +95,7 @@ npm install @daffodil/product --save
 2. Configure the driver providers in your app config:
 ```ts
 import { ApplicationConfig } from '@angular/core';
-import { provideMagentoDriver } from '@daffodil/driver/magento';
+import { provideMagentoDriver } from '@daffodil/driver/magento/2.4.7';
 import { provideDaffProductMagentoDriver } from '@daffodil/product/driver/magento/2.4.7';
 
 export const appConfig: ApplicationConfig = {

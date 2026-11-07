@@ -3,7 +3,7 @@ import {
   makeEnvironmentProviders,
 } from '@angular/core';
 
-import { provideDaffMagentoCacheableOperation } from '@daffodil/driver/magento';
+import { provideDaffMagentoCacheableOperation } from '@daffodil/driver/magento/2.4.7';
 import { provideDaffGeographyDriver } from '@daffodil/geography/driver';
 
 import { DaffGeographyMagentoService } from './geography.service';

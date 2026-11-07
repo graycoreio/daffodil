@@ -18,7 +18,7 @@ import { MagentoCustomerStoreCreditFactory } from '@daffodil/customer-store-cred
 import {
   DaffDriverMagentoError,
   MAGENTO_POSSIBLE_TYPES,
-} from '@daffodil/driver/magento';
+} from '@daffodil/driver/magento/2.4.7';
 
 import { DaffCustomerStoreCreditMagentoService } from './customer-store-credit.service';
 

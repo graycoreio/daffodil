@@ -6,7 +6,7 @@ import {
   DaffCustomerDriverErrorMap,
   DaffCustomerInvalidAPIResponseError,
 } from '@daffodil/customer/driver';
-import { daffTransformMagentoError } from '@daffodil/driver/magento';
+import { daffTransformMagentoError } from '@daffodil/driver/magento/2.4.7';
 
 import { DaffCustomerMagentoErrorMessageRegexMap } from './map';
 

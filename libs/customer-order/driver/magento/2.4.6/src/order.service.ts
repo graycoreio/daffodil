@@ -18,7 +18,7 @@ import { DaffCollectionRequest } from '@daffodil/core';
 import {
   MagentoSortEnum,
   magentoSortDirectionRequestTransform,
-} from '@daffodil/driver/magento';
+} from '@daffodil/driver/magento/2.4.7';
 import {
   DaffOrder,
   DaffOrderCollection,

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoDiscount } from '@daffodil/driver/magento';
+import { MagentoDiscount } from '@daffodil/driver/magento/2.4.7';
 
 import { MagentoDiscountFactory } from './discount.factory';
 

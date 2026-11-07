@@ -5,7 +5,7 @@ import { DaffError } from '@daffodil/core';
 import {
   daffTransformMagentoError,
   daffMagentoTransformGraphQlError,
-} from '@daffodil/driver/magento';
+} from '@daffodil/driver/magento/2.4.7';
 
 import {
   MagentoSearchCategoryErrorMap,

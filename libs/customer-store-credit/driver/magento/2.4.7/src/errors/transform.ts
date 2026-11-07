@@ -6,7 +6,7 @@ import {
   DaffCustomerStoreCreditDriverErrorMap,
   DaffCustomerStoreCreditInvalidAPIResponseError,
 } from '@daffodil/customer-store-credit/driver';
-import { daffTransformMagentoError } from '@daffodil/driver/magento';
+import { daffTransformMagentoError } from '@daffodil/driver/magento/2.4.7';
 
 import { DaffCustomerStoreCreditMagentoErrorMessageRegexMap } from './map';
 

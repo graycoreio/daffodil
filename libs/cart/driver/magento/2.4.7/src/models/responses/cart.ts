@@ -1,4 +1,4 @@
-import { MagentoMoney } from '@daffodil/driver/magento';
+import { MagentoMoney } from '@daffodil/driver/magento/2.4.7';
 
 import { MagentoCartAddress } from './cart-address';
 import { MagentoCartCoupon } from './cart-coupon';

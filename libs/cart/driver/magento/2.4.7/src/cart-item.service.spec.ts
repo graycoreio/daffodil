@@ -53,7 +53,7 @@ import {
 } from '@daffodil/cart/testing';
 import { DaffError } from '@daffodil/core';
 import { DaffBadInputError } from '@daffodil/driver';
-import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento/2.4.7';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 

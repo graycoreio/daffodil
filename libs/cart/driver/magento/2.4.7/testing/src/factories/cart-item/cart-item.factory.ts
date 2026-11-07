@@ -10,11 +10,11 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import {
   MagentoMoney,
   MagentoDiscount,
-} from '@daffodil/driver/magento';
+} from '@daffodil/driver/magento/2.4.7';
 import {
   MagentoMoneyFactory,
   MagentoDiscountFactory,
-} from '@daffodil/driver/magento/testing';
+} from '@daffodil/driver/magento/2.4.7/testing';
 import { MagentoProductStockStatusEnum } from '@daffodil/product/driver/magento/2.4.7';
 
 export class MockMagentoCartItem implements MagentoCartItem {

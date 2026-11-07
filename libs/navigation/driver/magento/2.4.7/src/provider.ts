@@ -1,6 +1,6 @@
 import { Provider } from '@angular/core';
 
-import { provideDaffMagentoCacheableOperation } from '@daffodil/driver/magento';
+import { provideDaffMagentoCacheableOperation } from '@daffodil/driver/magento/2.4.7';
 import {
   DaffNavigationTransformer,
   provideDaffNavigationDriver,

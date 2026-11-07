@@ -5,7 +5,7 @@ import {
   daffBuildFragmentDefinition,
   daffBuildFragmentNameSpread,
 } from '@daffodil/core/graphql';
-import { magentoSearchResultPageInfoFragment } from '@daffodil/driver/magento';
+import { magentoSearchResultPageInfoFragment } from '@daffodil/driver/magento/2.4.7';
 import {
   magentoProductAggregationsFragment,
   magentoProductFragment,

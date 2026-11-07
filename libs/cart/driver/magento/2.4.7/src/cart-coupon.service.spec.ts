@@ -31,7 +31,7 @@ import {
   DaffCartCouponFactory,
 } from '@daffodil/cart/testing';
 import { DaffBadInputError } from '@daffodil/driver';
-import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento/2.4.7';
 
 import { DaffMagentoCartCouponService } from './cart-coupon.service';
 

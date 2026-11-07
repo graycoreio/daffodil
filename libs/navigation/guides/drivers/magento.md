@@ -9,7 +9,7 @@ The `@daffodil/navigation` Magento driver connects your storefront's menus to yo
 ## Usage
 ```ts
 import { ApplicationConfig } from '@angular/core';
-import { provideMagentoDriver } from '@daffodil/driver/magento';
+import { provideMagentoDriver } from '@daffodil/driver/magento/2.4.7';
 import { provideDaffNavigationMagentoDriver } from '@daffodil/navigation/driver/magento/2.4.7';
 
 export const appConfig: ApplicationConfig = {

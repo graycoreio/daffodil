@@ -3,7 +3,7 @@ import {
   makeEnvironmentProviders,
 } from '@angular/core';
 
-import { provideManyDaffMagentoCacheableOperations } from '@daffodil/driver/magento';
+import { provideManyDaffMagentoCacheableOperations } from '@daffodil/driver/magento/2.4.7';
 import { provideDaffSearchDriver } from '@daffodil/search/driver';
 import {
   DAFF_SEARCH_FEDERATED_DRIVERS,

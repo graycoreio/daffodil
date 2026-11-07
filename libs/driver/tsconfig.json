@@ -22,11 +22,11 @@
       "@daffodil/driver/hubspot/testing": [
         "./hubspot/testing/src"
       ],
-      "@daffodil/driver/magento": [
-        "./magento/src"
+      "@daffodil/driver/magento/2.4.7": [
+        "./magento/2.4.7/src"
       ],
-      "@daffodil/driver/magento/testing": [
-        "./magento/testing/src"
+      "@daffodil/driver/magento/2.4.7/testing": [
+        "./magento/2.4.7/testing/src"
       ],
       "@daffodil/driver/in-memory": [
         "./in-memory/src"

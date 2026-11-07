@@ -14,7 +14,7 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
-import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento/2.4.7';
 import {
   DaffMagentoProductsTransformer,
   MagentoAggregation,

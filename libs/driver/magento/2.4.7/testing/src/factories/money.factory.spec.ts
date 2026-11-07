@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoMoney } from '@daffodil/driver/magento';
+import { MagentoMoney } from '@daffodil/driver/magento/2.4.7';
 
 import { MagentoMoneyFactory } from './money.factory';
 

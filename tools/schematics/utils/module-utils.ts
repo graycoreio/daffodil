@@ -167,7 +167,7 @@ export function addProvidersToStandaloneApp(tree: Tree, project: any, providers:
 function getPackageForImport(importName: string): string {
   const packageMap: { [key: string]: string } = {
     DaffCoreModule: '@daffodil/core',
-    DaffMagentoModule: '@daffodil/driver/magento',
+    DaffMagentoModule: '@daffodil/driver/magento/2.4.7',
     DaffInMemoryModule: '@daffodil/driver/in-memory',
     DaffButtonModule: '@daffodil/design/button',
     DaffCardModule: '@daffodil/design/card',
@@ -215,7 +215,7 @@ function getPackageForProvider(providerName: string): string {
     DaffProductInMemoryDriver: '@daffodil/product/driver/in-memory',
     provideDaffDevTools: '@daffodil/dev-tools',
     withDriverConfig: '@daffodil/dev-tools',
-    provideMagentoDriver: '@daffodil/driver/magento',
+    provideMagentoDriver: '@daffodil/driver/magento/2.4.7',
     provideDaffProductMagentoDriver: '@daffodil/product/driver/magento/2.4.7',
     DaffProductMagentoDriver: '@daffodil/product/driver/magento/2.4.7',
     provideShopifyDriver: '@daffodil/driver/shopify',

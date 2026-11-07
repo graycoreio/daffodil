@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { MagentoDiscount } from '@daffodil/driver/magento';
+import { MagentoDiscount } from '@daffodil/driver/magento/2.4.7';
 import {
   MagentoDiscountFactory,
   MagentoMoneyFactory,
-} from '@daffodil/driver/magento/testing';
+} from '@daffodil/driver/magento/2.4.7/testing';
 import {
   MagentoOrderItem,
   MagentoOrderItemType,

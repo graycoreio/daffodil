@@ -7,7 +7,7 @@ import {
   DaffCollectionRequest,
   daffIdentifiableArrayToDict,
 } from '@daffodil/core';
-import { magentoPageInfoTransform } from '@daffodil/driver/magento';
+import { magentoPageInfoTransform } from '@daffodil/driver/magento/2.4.7';
 import { DaffOrderCollection } from '@daffodil/order';
 
 import { magentoCustomerOrderSortFields } from '../../constants/sort/fields';

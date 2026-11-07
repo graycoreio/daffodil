@@ -7,7 +7,7 @@ import {
   APOLLO_TESTING_CACHE,
 } from 'apollo-angular/testing';
 
-import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento/2.4.7';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductServiceInterface,

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
-import { MagentoSearchResultPageInfoFactory } from '@daffodil/driver/magento/testing';
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento/2.4.7';
+import { MagentoSearchResultPageInfoFactory } from '@daffodil/driver/magento/2.4.7/testing';
 import {
   MagentoProductReviews,
   MagentoProductReview,

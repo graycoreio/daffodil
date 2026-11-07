@@ -26,7 +26,7 @@ import { MagentoCartWithStoreCreditFactory } from '@daffodil/cart-store-credit/d
 import {
   DaffDriverMagentoError,
   MAGENTO_POSSIBLE_TYPES,
-} from '@daffodil/driver/magento';
+} from '@daffodil/driver/magento/2.4.7';
 
 import { DaffCartStoreCreditMagentoService } from './store-credit.service';
 

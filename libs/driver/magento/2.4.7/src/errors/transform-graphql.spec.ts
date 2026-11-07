@@ -3,7 +3,7 @@ import {
   DaffErrorCodeMap,
   DaffInheritableError,
 } from '@daffodil/core';
-import { DaffDriverMagentoError } from '@daffodil/driver/magento';
+import { DaffDriverMagentoError } from '@daffodil/driver/magento/2.4.7';
 
 import { daffMagentoTransformGraphQlError } from './transform-graphql';
 
@@ -15,7 +15,7 @@ class MockError extends DaffInheritableError implements DaffError {
   }
 }
 
-describe('@daffodil/driver/magento | daffMagentoTransformGraphQlError', () => {
+describe('@daffodil/driver/magento/2.4.7 | daffMagentoTransformGraphQlError', () => {
   let unhandledGraphQlError;
   let handledGraphQlError;
   let category;

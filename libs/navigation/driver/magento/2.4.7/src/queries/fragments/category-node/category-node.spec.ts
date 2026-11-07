@@ -12,7 +12,7 @@ import {
 import { DocumentNode } from 'graphql';
 import { Observable } from 'rxjs';
 
-import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento/2.4.7';
 import { CategoryNode } from '@daffodil/navigation/driver/magento/2.4.7';
 
 import { getCategoryNodeFragment } from './category-node';

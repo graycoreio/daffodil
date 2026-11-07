@@ -2,7 +2,7 @@ import {
   daffAdd,
   daffSubtract,
 } from '@daffodil/core';
-import { MagentoDiscount } from '@daffodil/driver/magento';
+import { MagentoDiscount } from '@daffodil/driver/magento/2.4.7';
 import {
   DaffOrder,
   DaffOrderTotal,

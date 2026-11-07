@@ -1,5 +1,5 @@
 import { DaffAuthInvalidAPIResponseError } from '@daffodil/auth/driver';
-import { daffTransformMagentoError } from '@daffodil/driver/magento';
+import { daffTransformMagentoError } from '@daffodil/driver/magento/2.4.7';
 
 import { DaffAuthMagentoErrorMap } from './map';
 

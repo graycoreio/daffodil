@@ -1,5 +1,5 @@
 import { DaffSortDirectionEnum } from '@daffodil/core';
-import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento/2.4.7';
 import {
   MagentoAggregation,
   MagentoProduct,

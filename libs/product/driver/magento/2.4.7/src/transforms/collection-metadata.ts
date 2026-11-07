@@ -3,7 +3,7 @@ import {
   DaffCollectionMetadata ,
   daffFilterArrayToDict,
 } from '@daffodil/core';
-import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento/2.4.7';
 
 import { magentoProductTransformAggregate } from './aggregate/public_api';
 import { coerceDefaultSortOptionFirst } from './sort-options/sort-default-option-first';

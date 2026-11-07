@@ -7,7 +7,7 @@ import {
   daffIdentifiableArrayToDict,
   DaffSortDirectionEnum,
 } from '@daffodil/core';
-import { magentoPageInfoTransform } from '@daffodil/driver/magento';
+import { magentoPageInfoTransform } from '@daffodil/driver/magento/2.4.7';
 import { DaffOrderCollection } from '@daffodil/order';
 
 import { DAFF_CUSTOMER_ORDER_MAGENTO_ORDER_TRANSFORM } from '../../injection-tokens/transforms/token';

@@ -10,7 +10,7 @@ import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
 import { DaffCart } from '@daffodil/cart';
-import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento/2.4.7';
 import {
   DaffOrder,
   DaffOrderAddress,

@@ -1,5 +1,5 @@
 import { MagentoCustomerOrder } from '@daffodil/customer-order/driver/magento/2.4.6';
-import { MagentoMoney } from '@daffodil/driver/magento';
+import { MagentoMoney } from '@daffodil/driver/magento/2.4.7';
 
 export interface MagentoCustomerOrderWithStoreCredit extends MagentoCustomerOrder {
   total: MagentoCustomerOrder['total'] & {
