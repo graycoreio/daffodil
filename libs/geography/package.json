@@ -43,11 +43,11 @@
   "exports": {
     "./driver/magento/auto": {
       "geography-magento-2.4.7": {
-        "types": "./driver/magento/2.4.7/index.d.ts",
+        "types": "./types/daffodil-geography-driver-magento-2.4.7.d.ts",
         "default": "./fesm2022/daffodil-geography-driver-magento-2.4.7.mjs"
       },
       "default": {
-        "types": "./driver/magento/2.4.7/index.d.ts",
+        "types": "./types/daffodil-geography-driver-magento-2.4.7.d.ts",
         "default": "./fesm2022/daffodil-geography-driver-magento-2.4.7.mjs"
       }
     }

@@ -4,6 +4,12 @@
  * Asserts that a @daffodil/* package exposing a Magento driver via
  * `exports["./driver/magento/auto"]` declares a `<pkg>-magento-X.Y.Z`
  * condition for every versioned driver directory found under `driver/magento/`.
+ *
+ * `@daffodil/driver` has no `driver/` segment, so its Magento driver lives under
+ * `magento/` and is exposed via `exports["./magento/auto"]`.
+ *
+ * Each condition must point at the files ng-packagr emits for that entrypoint:
+ * `./types/<flat-name>.d.ts` and `./fesm2022/<flat-name>.mjs`.
  */
 
 import type { Rule } from 'eslint';
@@ -14,13 +20,23 @@ import type {
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-const AUTO_EXPORT_KEY = './driver/magento/auto';
-const AUTO_TESING_EXPORT_KEY = './driver/magento/auto/testing';
+/**
+ * The package-relative paths under which a Magento driver may live.
+ */
+const MAGENTO_DRIVER_BASES = ['driver/magento', 'magento'];
 const VERSION_DIR_RE = /^\d+\.\d+\.\d+(-p\d+)?$/;
 
-function readPackageVersions(pkgDir: string): Set<string> {
+/**
+ * The name ng-packagr uses for an entrypoint's flattened bundle and declaration files,
+ * e.g. `daffodil-product-driver-magento-2.4.7-testing`.
+ */
+function flatEntrypointName(packageName: string, base: string, version: string, suffix: string): string {
+  return `daffodil-${packageName}-${base.replaceAll('/', '-')}-${version}${suffix}`;
+}
+
+function readPackageVersions(pkgDir: string, base: string): Set<string> {
   const packageName = path.basename(pkgDir);
-  const magentoDir = path.join(pkgDir, 'driver', 'magento');
+  const magentoDir = path.join(pkgDir, ...base.split('/'));
   const versions = new Set<string>();
   try {
     const entries = fs.readdirSync(magentoDir, { withFileTypes: true });
@@ -70,22 +86,22 @@ export const rule: Rule.RuleModule = {
     type: 'problem',
     docs: {
       description:
-        'Enforce that a @daffodil package exposing a versioned Magento driver declares a <pkg>-magento-X.Y.Z condition under exports["./driver/magento/auto"] for every version directory present under driver/magento/',
+        'Enforce that a @daffodil package exposing a versioned Magento driver declares a <pkg>-magento-X.Y.Z condition under exports["./driver/magento/auto"] (or exports["./magento/auto"] for @daffodil/driver) for every version directory present, pointing at the files ng-packagr emits',
     },
     schema: [],
     messages: {
       invalidKey:
         'Key `{{key}}` is not a valid Magento version condition. Expected `{{packageName}}-magento-<major>.<minor>.<patch>`.',
       missingVersion:
-        'Missing Magento version condition `{{key}}`. A `driver/magento/{{version}}/` directory exists in this package but has no matching export condition.',
+        'Missing Magento version condition `{{key}}`. A `{{base}}/{{version}}/` directory exists in this package but has no matching export condition.',
       entryNotObject:
         'Condition `{{key}}` must be an object with `types` and `default` fields.',
       missingField:
         'Condition `{{key}}` is missing required field `{{field}}`.',
       typesPathMismatch:
-        'Condition `{{key}}` has a `types` path that does not reference `./driver/magento/{{version}}/`.',
+        'Condition `{{key}}` has `types` path `{{actual}}`, expected `{{expected}}` (ng-packagr emits declarations to `./types/`).',
       defaultPathMismatch:
-        'Condition `{{key}}` has a `default` path that does not end with `-magento-{{version}}{{suffix}}.mjs`.',
+        'Condition `{{key}}` has `default` path `{{actual}}`, expected `{{expected}}`.',
     },
   },
 
@@ -95,15 +111,13 @@ export const rule: Rule.RuleModule = {
     }
 
     const pkgDir = path.dirname(context.physicalFilename);
-    const expectedVersions = readPackageVersions(pkgDir);
     const packageName = path.basename(pkgDir);
     const MAGENTO_KEY_RE = new RegExp(`^${packageName}-magento-(\\d+\\.\\d+\\.\\d+(-p\\d+)?)$`);
 
     function checkEntryShape(
       prop: AST.JSONProperty,
       keyName: string,
-      version: string | null | undefined,
-      suffix = '',
+      expectedName: string | null,
     ): void {
       if (prop.value.type !== 'JSONObjectExpression') {
         context.report({
@@ -131,11 +145,11 @@ export const rule: Rule.RuleModule = {
             messageId: 'missingField',
             data: { key: keyName, field: 'types' },
           });
-        } else if (version !== null && !typesVal.includes(`./driver/magento/${version}/`)) {
+        } else if (expectedName !== null && typesVal !== `./types/${expectedName}.d.ts`) {
           context.report({
             loc: typesProp.value.loc,
             messageId: 'typesPathMismatch',
-            data: { key: keyName, version },
+            data: { key: keyName, actual: typesVal, expected: `./types/${expectedName}.d.ts` },
           });
         }
       }
@@ -154,15 +168,11 @@ export const rule: Rule.RuleModule = {
             messageId: 'missingField',
             data: { key: keyName, field: 'default' },
           });
-        } else if (version !== null && !defaultVal.endsWith(`-magento-${version}${suffix}.mjs`)) {
+        } else if (expectedName !== null && defaultVal !== `./fesm2022/${expectedName}.mjs`) {
           context.report({
             loc: defaultProp.value.loc,
             messageId: 'defaultPathMismatch',
-            data: {
-              key: keyName,
-              version,
-              suffix,
-            },
+            data: { key: keyName, actual: defaultVal, expected: `./fesm2022/${expectedName}.mjs` },
           });
         }
       }
@@ -179,17 +189,20 @@ export const rule: Rule.RuleModule = {
         if (!exportsProp) {
           return;
         }
-        const objs: Record<string, [AST.JSONProperty, AST.JSONObjectExpression]> = {};
-        const autoProp = findProp(exportsProp.value, AUTO_EXPORT_KEY);
-        if (autoProp?.value.type === 'JSONObjectExpression') {
-          objs[''] = [autoProp, autoProp.value];
-        }
-        const autoTestingProp = findProp(exportsProp.value, AUTO_TESING_EXPORT_KEY);
-        if (autoTestingProp?.value.type === 'JSONObjectExpression') {
-          objs['-testing'] = [autoTestingProp, autoTestingProp.value];
+        const objs: Array<[string, string, AST.JSONProperty, AST.JSONObjectExpression]> = [];
+        for (const base of MAGENTO_DRIVER_BASES) {
+          const autoProp = findProp(exportsProp.value, `./${base}/auto`);
+          if (autoProp?.value.type === 'JSONObjectExpression') {
+            objs.push([base, '', autoProp, autoProp.value]);
+          }
+          const autoTestingProp = findProp(exportsProp.value, `./${base}/auto/testing`);
+          if (autoTestingProp?.value.type === 'JSONObjectExpression') {
+            objs.push([base, '-testing', autoTestingProp, autoTestingProp.value]);
+          }
         }
 
-        Object.entries(objs).forEach(([suffix, [aProp, autoObj]]) => {
+        objs.forEach(([base, suffix, aProp, autoObj]) => {
+          const expectedVersions = readPackageVersions(pkgDir, base);
           const seenVersions = new Set<string>();
 
           for (const prop of autoObj.properties) {
@@ -216,8 +229,8 @@ export const rule: Rule.RuleModule = {
             }
 
             seenVersions.add(keyName);
-            const version = MAGENTO_KEY_RE.exec(keyName)?.[1];
-            checkEntryShape(prop, keyName, version, suffix);
+            const version = MAGENTO_KEY_RE.exec(keyName)![1];
+            checkEntryShape(prop, keyName, flatEntrypointName(packageName, base, version, suffix));
           }
 
           for (const expected of expectedVersions) {
@@ -226,7 +239,7 @@ export const rule: Rule.RuleModule = {
               context.report({
                 loc: aProp.key.loc,
                 messageId: 'missingVersion',
-                data: { key: expected, version },
+                data: { key: expected, version, base },
               });
             }
           }
