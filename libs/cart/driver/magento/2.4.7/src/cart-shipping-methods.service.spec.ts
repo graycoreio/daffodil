@@ -18,7 +18,7 @@ import {
 } from '@daffodil/cart/driver/magento/2.4.7';
 import { MagentoCartShippingMethodFactory } from '@daffodil/cart/driver/magento/2.4.7/testing';
 import { DaffCartShippingRateFactory } from '@daffodil/cart/testing';
-import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento/2.4.7';
 
 import { DaffMagentoCartShippingMethodsService } from './cart-shipping-methods.service';
 

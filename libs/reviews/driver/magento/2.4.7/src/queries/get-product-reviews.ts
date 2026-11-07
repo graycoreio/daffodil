@@ -1,6 +1,6 @@
 import { gql } from 'apollo-angular';
 
-import { magentoSearchResultPageInfoFragment } from '@daffodil/driver/magento';
+import { magentoSearchResultPageInfoFragment } from '@daffodil/driver/magento/2.4.7';
 
 import { magentoProductReviewFragment } from './fragments/public_api';
 

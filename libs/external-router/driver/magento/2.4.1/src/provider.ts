@@ -3,7 +3,7 @@ import {
   makeEnvironmentProviders,
 } from '@angular/core';
 
-import { provideDaffMagentoCacheableOperation } from '@daffodil/driver/magento';
+import { provideDaffMagentoCacheableOperation } from '@daffodil/driver/magento/2.4.7';
 import { provideDaffExternalRouterDriver } from '@daffodil/external-router/driver';
 
 import { DAFF_MAGENTO_RESOLVE_URL_QUERY_NAME } from './graphql/queries/resolve-url-v2.4.1';

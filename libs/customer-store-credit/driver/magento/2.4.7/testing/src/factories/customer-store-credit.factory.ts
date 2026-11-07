@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { MagentoCustomerStoreCredit } from '@daffodil/customer-store-credit/driver/magento/2.4.7';
-import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
+import { MagentoMoneyFactory } from '@daffodil/driver/magento/2.4.7/testing';
 
 export class MockMagentoCustomerStoreCredit implements MagentoCustomerStoreCredit {
   __typename = <const>'CustomerStoreCredit';

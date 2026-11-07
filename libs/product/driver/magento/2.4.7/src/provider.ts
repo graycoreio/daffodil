@@ -1,6 +1,6 @@
 import { Provider } from '@angular/core';
 
-import { provideManyDaffMagentoCacheableOperations } from '@daffodil/driver/magento';
+import { provideManyDaffMagentoCacheableOperations } from '@daffodil/driver/magento/2.4.7';
 import { provideDaffProductDriver } from '@daffodil/product/driver';
 
 import { MAGENTO_PRODUCT_CONFIG_DEFAULT } from './config/public_api';

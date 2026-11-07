@@ -5,7 +5,7 @@ import {
   provideMagentoDriver,
 } from './provider';
 
-describe('@daffodil/driver/magento | provideMagentoDriver', () => {
+describe('@daffodil/driver/magento/2.4.7 | provideMagentoDriver', () => {
   describe('when options is an InjectionToken', () => {
     const CONFIG_TOKEN = new InjectionToken<DaffMagentoDriverConfig>('test config');
 

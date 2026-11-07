@@ -8,7 +8,7 @@ import {
 } from 'apollo-angular/testing';
 import { Observable } from 'rxjs';
 
-import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento/2.4.7';
 import { DaffProductDriverResponse } from '@daffodil/product/driver';
 import {
   MagentoSimpleProduct,

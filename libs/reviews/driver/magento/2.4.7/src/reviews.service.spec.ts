@@ -12,7 +12,7 @@ import { catchError } from 'rxjs/operators';
 import {
   DaffDriverMagentoError,
   MAGENTO_POSSIBLE_TYPES,
-} from '@daffodil/driver/magento';
+} from '@daffodil/driver/magento/2.4.7';
 import { DaffProduct } from '@daffodil/product';
 import {
   getProductReviews,

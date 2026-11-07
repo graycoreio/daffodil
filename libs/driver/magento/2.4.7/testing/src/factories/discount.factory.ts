@@ -5,7 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import {
   MagentoDiscount,
   MagentoMoney,
-} from '@daffodil/driver/magento';
+} from '@daffodil/driver/magento/2.4.7';
 
 import { MagentoMoneyFactory } from './money.factory';
 

@@ -10,7 +10,7 @@ import { DaffCategoryMagentoDriverModule } from '@daffodil/category/driver/magen
 import {
   provideMagentoDriver,
   withOperationCache,
-} from '@daffodil/driver/magento';
+} from '@daffodil/driver/magento/2.4.7';
 import { provideDaffExternalRouterMagentoDriver } from '@daffodil/external-router/driver/magento/2.4.3';
 import { DaffGeographyMagentoDriverModule } from '@daffodil/geography/driver/magento/2.4.7';
 import { provideDaffNavigationMagentoDriver } from '@daffodil/navigation/driver/magento/2.4.7';

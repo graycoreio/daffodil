@@ -975,7 +975,7 @@
           "builder": "@daffodil/builders:generateFragmentTypes",
           "options": {
             "url": "https://demo.mage-os.org/graphql",
-            "path": "libs/driver/magento/src/schema/introspection.json"
+            "path": "libs/driver/magento/2.4.7/src/schema/introspection.json"
           }
         }
       }

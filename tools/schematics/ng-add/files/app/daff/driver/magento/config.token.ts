@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { DaffDevToolsConfigService } from '@daffodil/dev-tools';
-import { DaffMagentoDriverConfig } from '@daffodil/driver/magento';
+import { DaffMagentoDriverConfig } from '@daffodil/driver/magento/2.4.7';
 
 export const DEMO_MAGENTO_DRIVER_CONFIG = new InjectionToken<DaffMagentoDriverConfig>('DEMO_MAGENTO_DRIVER_CONFIG', {
   factory: () => {

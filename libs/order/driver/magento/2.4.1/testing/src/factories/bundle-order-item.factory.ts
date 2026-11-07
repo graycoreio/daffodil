@@ -5,7 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import {
   MagentoDiscountFactory,
   MagentoMoneyFactory,
-} from '@daffodil/driver/magento/testing';
+} from '@daffodil/driver/magento/2.4.7/testing';
 import {
   MagentoOrderBundleItem,
   MagentoOrderItemType,

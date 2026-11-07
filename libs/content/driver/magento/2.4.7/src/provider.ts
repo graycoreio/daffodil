@@ -9,7 +9,7 @@ import {
   provideDaffContentHtmlPageDriver,
   provideDaffContentSchemaPageDriver,
 } from '@daffodil/content/driver';
-import { provideManyDaffMagentoCacheableOperations } from '@daffodil/driver/magento';
+import { provideManyDaffMagentoCacheableOperations } from '@daffodil/driver/magento/2.4.7';
 
 import { MagentoContentPageSchemaService } from './page-schema.service';
 import { MagentoContentPageService } from './page.service';

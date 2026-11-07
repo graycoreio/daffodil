@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker/locale/en_US';
 import { MockMagentoCart } from '@daffodil/cart/driver/magento/2.4.7/testing';
 import { MagentoCartWithStoreCredit } from '@daffodil/cart-store-credit/driver/magento/2.4.7';
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
+import { MagentoMoneyFactory } from '@daffodil/driver/magento/2.4.7/testing';
 
 export class MockMagentoCartWithStoreCredit extends MockMagentoCart implements MagentoCartWithStoreCredit {
   applied_store_credit = {

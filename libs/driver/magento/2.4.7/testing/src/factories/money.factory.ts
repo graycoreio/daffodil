@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { MagentoMoney } from '@daffodil/driver/magento';
+import { MagentoMoney } from '@daffodil/driver/magento/2.4.7';
 
 export class MockMagentoMoney implements MagentoMoney {
   __typename = 'Money';

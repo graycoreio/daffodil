@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento/2.4.7';
 
 import { MagentoSearchResultPageInfoFactory } from './page-info.factory';
 
-describe('@daffodil/driver/magento/testing | MagentoSearchResultPageInfoFactory', () => {
+describe('@daffodil/driver/magento/2.4.7/testing | MagentoSearchResultPageInfoFactory', () => {
 
   let factory: MagentoSearchResultPageInfoFactory;
 

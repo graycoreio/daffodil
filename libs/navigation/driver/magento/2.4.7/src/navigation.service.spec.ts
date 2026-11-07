@@ -13,7 +13,7 @@ import {
   TestOperation,
 } from 'apollo-angular/testing';
 
-import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento/2.4.7';
 import { DaffNavigationTransformer } from '@daffodil/navigation/driver';
 import {
   DaffMagentoNavigationTransformerService,

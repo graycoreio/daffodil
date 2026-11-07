@@ -35,7 +35,7 @@ import {
   DaffCartAddressFactory,
 } from '@daffodil/cart/testing';
 import { DaffError } from '@daffodil/core';
-import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento/2.4.7';
 
 import { DaffMagentoCartAddressService } from './cart-address.service';
 

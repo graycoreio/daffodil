@@ -6,8 +6,8 @@ import {
   MagentoCustomerOrders,
   MagentoCustomerOrder,
 } from '@daffodil/customer-order/driver/magento/2.4.5';
-import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
-import { MagentoSearchResultPageInfoFactory } from '@daffodil/driver/magento/testing';
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento/2.4.7';
+import { MagentoSearchResultPageInfoFactory } from '@daffodil/driver/magento/2.4.7/testing';
 
 import { MagentoCustomerOrderFactory } from './order.factory';
 

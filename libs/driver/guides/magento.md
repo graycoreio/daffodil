@@ -1,11 +1,11 @@
 
 # Magento/MageOS
 
-The `@daffodil/driver/magento` package configures the integration between your storefront and Magento 2/MageOS ecommerce platforms.
+The `@daffodil/driver/magento/2.4.7` package configures the integration between your storefront and Magento 2/MageOS ecommerce platforms.
 
 ## Features
 
-`@daffodil/driver/magento` provides fundamental configurations that other Daffodil packages use to interact with Magento-like platforms. Under the hood, this package configures the Apollo GraphQL client to query the Magento GraphQL API.
+`@daffodil/driver/magento/2.4.7` provides fundamental configurations that other Daffodil packages use to interact with Magento-like platforms. Under the hood, this package configures the Apollo GraphQL client to query the Magento GraphQL API.
 
 
 - GraphQl Caching via conversion of relevant requests to Varnish cacheable GET requests.

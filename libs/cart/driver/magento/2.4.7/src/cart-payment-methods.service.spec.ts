@@ -17,7 +17,7 @@ import {
 } from '@daffodil/cart/driver/magento/2.4.7';
 import { MagentoCartPaymentMethodFactory } from '@daffodil/cart/driver/magento/2.4.7/testing';
 import { DaffCartPaymentFactory } from '@daffodil/cart/testing';
-import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento/2.4.7';
 
 import { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.service';
 import { listPaymentMethods } from './queries/public_api';

@@ -5,11 +5,11 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import {
   MagentoDiscount,
   MagentoMoney,
-} from '@daffodil/driver/magento';
+} from '@daffodil/driver/magento/2.4.7';
 import {
   MagentoDiscountFactory,
   MagentoMoneyFactory,
-} from '@daffodil/driver/magento/testing';
+} from '@daffodil/driver/magento/2.4.7/testing';
 import { MagentoOrderTotal } from '@daffodil/order/driver/magento/2.4.1';
 
 export class MockOrderTotal implements MagentoOrderTotal {

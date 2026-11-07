@@ -6,7 +6,7 @@ import {
   DaffCartStoreCreditInvalidAPIResponseError,
 } from '@daffodil/cart-store-credit/driver';
 import { DaffError } from '@daffodil/core';
-import { daffTransformMagentoError } from '@daffodil/driver/magento';
+import { daffTransformMagentoError } from '@daffodil/driver/magento/2.4.7';
 
 import { DaffCartStoreCreditMagentoErrorMessageRegexMap } from './map';
 

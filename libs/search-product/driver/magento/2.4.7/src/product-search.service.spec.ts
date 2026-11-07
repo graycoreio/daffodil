@@ -13,8 +13,8 @@ import { DaffCollectionMetadata } from '@daffodil/core';
 import {
   MagentoSearchResultPageInfo,
   MAGENTO_POSSIBLE_TYPES,
-} from '@daffodil/driver/magento';
-import { MagentoSearchResultPageInfoFactory } from '@daffodil/driver/magento/testing';
+} from '@daffodil/driver/magento/2.4.7';
+import { MagentoSearchResultPageInfoFactory } from '@daffodil/driver/magento/2.4.7/testing';
 import {
   MagentoAggregation,
   MagentoProduct,

@@ -27,7 +27,7 @@ import { DaffCustomerAddressFactory } from '@daffodil/customer/testing';
 import {
   DaffDriverMagentoError,
   MAGENTO_POSSIBLE_TYPES,
-} from '@daffodil/driver/magento';
+} from '@daffodil/driver/magento/2.4.7';
 
 import { DaffCustomerMagentoAddressService } from './address.service';
 

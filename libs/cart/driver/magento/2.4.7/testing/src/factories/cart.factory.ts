@@ -3,8 +3,8 @@ import { faker } from '@faker-js/faker/locale/en_US';
 
 import { MagentoCart } from '@daffodil/cart/driver/magento/2.4.7';
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { MagentoMoney } from '@daffodil/driver/magento';
-import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
+import { MagentoMoney } from '@daffodil/driver/magento/2.4.7';
+import { MagentoMoneyFactory } from '@daffodil/driver/magento/2.4.7/testing';
 
 export class MockMagentoCart implements MagentoCart {
   __typename = 'Cart';

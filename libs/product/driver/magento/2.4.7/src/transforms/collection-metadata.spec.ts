@@ -5,8 +5,8 @@ import {
   DaffCollectionMetadata ,
   DaffFilterType,
 } from '@daffodil/core';
-import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
-import { MagentoSearchResultPageInfoFactory } from '@daffodil/driver/magento/testing';
+import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento/2.4.7';
+import { MagentoSearchResultPageInfoFactory } from '@daffodil/driver/magento/2.4.7/testing';
 import {
   MagentoProduct,
   MagentoProductSortFields,

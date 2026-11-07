@@ -8,7 +8,7 @@ import {
 import { TestScheduler } from 'rxjs/testing';
 
 import { ID } from '@daffodil/core';
-import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento/2.4.7';
 import {
   DaffExternallyResolvableUrl,
   DaffExternalRouterNotFoundError,

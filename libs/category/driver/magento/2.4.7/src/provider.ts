@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { provideDaffCategoryDriver } from '@daffodil/category/driver';
-import { provideManyDaffMagentoCacheableOperations } from '@daffodil/driver/magento';
+import { provideManyDaffMagentoCacheableOperations } from '@daffodil/driver/magento/2.4.7';
 import { DAFF_MAGENTO_GET_FILTER_TYPES_QUERY_NAME } from '@daffodil/product/driver/magento/2.4.7';
 
 import { DaffMagentoCategoryService } from './category.service';

@@ -31,7 +31,8 @@ export async function collectPlatformVersions(searchGlobs: Array<string>): Promi
     const packageName = packageJson.name?.match(/@daffodil\/(?<package>.*)/)?.groups?.package;
     if (packageName && packageJson.exports) {
       Object.entries(packageJson.exports).forEach(([platformExport, overrides]) => {
-        const platform = platformExport.match(/\.\/driver\/(?<platform>\w*)\/auto/)?.groups?.platform;
+        // `./driver/<platform>/auto` for domain packages, `./<platform>/auto` for `@daffodil/driver` itself
+        const platform = platformExport.match(/^\.\/(?:driver\/)?(?<platform>\w+)\/auto(?:\/|$)/)?.groups?.platform;
         if (daffVersioningIsSupportedPlatform(platform) && overrides) {
           Object.keys(overrides).forEach((condition) => {
             const version = condition.match(new RegExp(`${packageName}-${platform}-(?<version>[\\w-.]*)`))?.groups?.version;

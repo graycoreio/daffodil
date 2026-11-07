@@ -8,7 +8,7 @@ import {
 import {
   DAFF_DRIVER_MAGENTO_ERROR_CODE,
   DaffDriverMagentoError,
-} from '@daffodil/driver/magento';
+} from '@daffodil/driver/magento/2.4.7';
 
 import { daffTransformMagentoError } from './transform';
 
@@ -20,7 +20,7 @@ class MockError extends DaffInheritableError implements DaffError {
   }
 }
 
-describe('@daffodil/driver/magento | daffTransformMagentoError', () => {
+describe('@daffodil/driver/magento/2.4.7 | daffTransformMagentoError', () => {
   let unhandledGraphQlError;
   let handledGraphQlError;
   let category;

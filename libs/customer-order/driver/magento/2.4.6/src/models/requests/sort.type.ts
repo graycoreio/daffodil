@@ -1,4 +1,4 @@
-import { MagentoSortEnum } from '@daffodil/driver/magento';
+import { MagentoSortEnum } from '@daffodil/driver/magento/2.4.7';
 
 import { MagentoCustomerOrderSortableField } from './sortable-field.enum';
 
