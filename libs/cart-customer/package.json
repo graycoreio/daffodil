@@ -46,11 +46,11 @@
   "exports": {
     "./driver/magento/auto": {
       "cart-customer-magento-2.4.7": {
-        "types": "./driver/magento/2.4.7/index.d.ts",
+        "types": "./types/daffodil-cart-customer-driver-magento-2.4.7.d.ts",
         "default": "./fesm2022/daffodil-cart-customer-driver-magento-2.4.7.mjs"
       },
       "default": {
-        "types": "./driver/magento/2.4.7/index.d.ts",
+        "types": "./types/daffodil-cart-customer-driver-magento-2.4.7.d.ts",
         "default": "./fesm2022/daffodil-cart-customer-driver-magento-2.4.7.mjs"
       }
     }

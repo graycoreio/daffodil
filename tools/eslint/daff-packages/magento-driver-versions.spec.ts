@@ -11,6 +11,9 @@ import { rule } from './magento-driver-versions';
 // `package-magento-2.4.6-p1` conditions.
 const FIXTURE_PKG_DIR = path.join(import.meta.dirname, 'test', 'fixtures', 'package');
 const FILENAME = path.join(FIXTURE_PKG_DIR, 'package.json');
+// The fixture package at test/fixtures/driver mirrors `@daffodil/driver`, which has
+// no `driver/` segment: its Magento driver lives under magento/2.4.7/.
+const DRIVER_FILENAME = path.join(import.meta.dirname, 'test', 'fixtures', 'driver', 'package.json');
 
 const ruleTester = new RuleTester({
   languageOptions: {
@@ -29,12 +32,12 @@ describe('magento-driver-versions', () => {
           "exports": {
             "./driver/magento/auto": {
               "package-magento-2.4.5": {
-                "types": "./driver/magento/2.4.5/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.5.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.5.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.5.mjs"
               },
               "package-magento-2.4.6-p1": {
-                "types": "./driver/magento/2.4.6-p1/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.6-p1.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.6-p1.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.6-p1.mjs"
               },
               "default": {
                 "types": "./src/index.d.ts",
@@ -43,12 +46,12 @@ describe('magento-driver-versions', () => {
             },
             "./driver/magento/auto/testing": {
               "package-magento-2.4.5": {
-                "types": "./driver/magento/2.4.5/testing/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.5-testing.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.5-testing.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.5-testing.mjs"
               },
               "package-magento-2.4.6-p1": {
-                "types": "./driver/magento/2.4.6-p1/testing/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.6-p1-testing.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.6-p1-testing.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.6-p1-testing.mjs"
               },
               "default": {
                 "types": "./src/testing/index.d.ts",
@@ -66,16 +69,41 @@ describe('magento-driver-versions', () => {
           "exports": {
             "./driver/magento/auto": {
               "package-magento-2.4.5": {
-                "types": "./driver/magento/2.4.5/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.5.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.5.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.5.mjs"
               },
               "package-magento-2.4.6-p1": {
-                "types": "./driver/magento/2.4.6-p1/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.6-p1.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.6-p1.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.6-p1.mjs"
               },
               "default": {
                 "types": "./src/index.d.ts",
                 "default": "./fesm2022/daffodil-package.mjs"
+              }
+            }
+          }
+        }`,
+      },
+      // `@daffodil/driver` exposes its Magento driver via `./magento/auto`
+      {
+        filename: DRIVER_FILENAME,
+        code: `{
+          "name": "@daffodil/driver",
+          "exports": {
+            "./magento/auto": {
+              "driver-magento-2.4.7": {
+                "types": "./types/daffodil-driver-magento-2.4.7.d.ts",
+                "default": "./fesm2022/daffodil-driver-magento-2.4.7.mjs"
+              },
+              "default": {
+                "types": "./types/daffodil-driver-magento-2.4.7.d.ts",
+                "default": "./fesm2022/daffodil-driver-magento-2.4.7.mjs"
+              }
+            },
+            "./magento/auto/testing": {
+              "driver-magento-2.4.7": {
+                "types": "./types/daffodil-driver-magento-2.4.7-testing.d.ts",
+                "default": "./fesm2022/daffodil-driver-magento-2.4.7-testing.mjs"
               }
             }
           }
@@ -112,14 +140,14 @@ describe('magento-driver-versions', () => {
           "exports": {
             "./driver/magento/auto": {
               "package-magento-2.4.5": {
-                "types": "./driver/magento/2.4.5/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.5.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.5.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.5.mjs"
               }
             },
             "./driver/magento/auto/testing": {
               "package-magento-2.4.5": {
-                "types": "./driver/magento/2.4.5/testing/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.5-testing.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.5-testing.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.5-testing.mjs"
               }
             }
           }
@@ -127,11 +155,11 @@ describe('magento-driver-versions', () => {
         errors: [
           {
             messageId: 'missingVersion',
-            data: { key: 'package-magento-2.4.6-p1', version: '2.4.6-p1' },
+            data: { key: 'package-magento-2.4.6-p1', version: '2.4.6-p1', base: 'driver/magento' },
           },
           {
             messageId: 'missingVersion',
-            data: { key: 'package-magento-2.4.6-p1', version: '2.4.6-p1' },
+            data: { key: 'package-magento-2.4.6-p1', version: '2.4.6-p1', base: 'driver/magento' },
           },
         ],
       },
@@ -143,8 +171,8 @@ describe('magento-driver-versions', () => {
           "exports": {
             "./driver/magento/auto": {
               "package-magento-2.4.5": {
-                "types": "./driver/magento/2.4.5/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.5.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.5.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.5.mjs"
               }
             }
           }
@@ -152,7 +180,7 @@ describe('magento-driver-versions', () => {
         errors: [
           {
             messageId: 'missingVersion',
-            data: { key: 'package-magento-2.4.6-p1', version: '2.4.6-p1' },
+            data: { key: 'package-magento-2.4.6-p1', version: '2.4.6-p1', base: 'driver/magento' },
           },
         ],
       },
@@ -164,26 +192,26 @@ describe('magento-driver-versions', () => {
           "exports": {
             "./driver/magento/auto": {
               "package-magento-latest": {
-                "types": "./driver/magento/2.4.5/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.5.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.5.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.5.mjs"
               },
               "package-magento-2.4.5": {
-                "types": "./driver/magento/2.4.5/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.5.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.5.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.5.mjs"
               },
               "package-magento-2.4.6-p1": {
-                "types": "./driver/magento/2.4.6-p1/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.6-p1.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.6-p1.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.6-p1.mjs"
               }
             },
             "./driver/magento/auto/testing": {
               "package-magento-2.4.5": {
-                "types": "./driver/magento/2.4.5/testing/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.5-testing.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.5-testing.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.5-testing.mjs"
               },
               "package-magento-2.4.6-p1": {
-                "types": "./driver/magento/2.4.6-p1/testing/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.6-p1-testing.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.6-p1-testing.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.6-p1-testing.mjs"
               }
             }
           }
@@ -202,20 +230,20 @@ describe('magento-driver-versions', () => {
           "name": "@daffodil/package",
           "exports": {
             "./driver/magento/auto": {
-              "package-magento-2.4.5": "./fesm2022/daffodil-package-magento-2.4.5.mjs",
+              "package-magento-2.4.5": "./fesm2022/daffodil-package-driver-magento-2.4.5.mjs",
               "package-magento-2.4.6-p1": {
-                "types": "./driver/magento/2.4.6-p1/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.6-p1.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.6-p1.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.6-p1.mjs"
               }
             },
             "./driver/magento/auto/testing": {
               "package-magento-2.4.5": {
-                "types": "./driver/magento/2.4.5/testing/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.5-testing.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.5-testing.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.5-testing.mjs"
               },
               "package-magento-2.4.6-p1": {
-                "types": "./driver/magento/2.4.6-p1/testing/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.6-p1-testing.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.6-p1-testing.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.6-p1-testing.mjs"
               }
             }
           }
@@ -235,21 +263,21 @@ describe('magento-driver-versions', () => {
           "exports": {
             "./driver/magento/auto": {
               "package-magento-2.4.5": {
-                "types": "./driver/magento/2.4.5/index.d.ts"
+                "types": "./types/daffodil-package-driver-magento-2.4.5.d.ts"
               },
               "package-magento-2.4.6-p1": {
-                "types": "./driver/magento/2.4.6-p1/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.6-p1.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.6-p1.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.6-p1.mjs"
               }
             },
             "./driver/magento/auto/testing": {
               "package-magento-2.4.5": {
-                "types": "./driver/magento/2.4.5/testing/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.5-testing.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.5-testing.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.5-testing.mjs"
               },
               "package-magento-2.4.6-p1": {
-                "types": "./driver/magento/2.4.6-p1/testing/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.6-p1-testing.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.6-p1-testing.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.6-p1-testing.mjs"
               }
             }
           }
@@ -269,22 +297,22 @@ describe('magento-driver-versions', () => {
           "exports": {
             "./driver/magento/auto": {
               "package-magento-2.4.5": {
-                "types": "./driver/magento/2.4.6-p1/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.5.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.6-p1.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.5.mjs"
               },
               "package-magento-2.4.6-p1": {
-                "types": "./driver/magento/2.4.6-p1/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.6-p1.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.6-p1.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.6-p1.mjs"
               }
             },
             "./driver/magento/auto/testing": {
               "package-magento-2.4.5": {
-                "types": "./driver/magento/2.4.5/testing/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.5-testing.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.5-testing.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.5-testing.mjs"
               },
               "package-magento-2.4.6-p1": {
-                "types": "./driver/magento/2.4.6-p1/testing/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.6-p1-testing.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.6-p1-testing.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.6-p1-testing.mjs"
               }
             }
           }
@@ -292,7 +320,11 @@ describe('magento-driver-versions', () => {
         errors: [
           {
             messageId: 'typesPathMismatch',
-            data: { key: 'package-magento-2.4.5', version: '2.4.5' },
+            data: {
+              key: 'package-magento-2.4.5',
+              actual: './types/daffodil-package-driver-magento-2.4.6-p1.d.ts',
+              expected: './types/daffodil-package-driver-magento-2.4.5.d.ts',
+            },
           },
         ],
       },
@@ -304,22 +336,22 @@ describe('magento-driver-versions', () => {
           "exports": {
             "./driver/magento/auto": {
               "package-magento-2.4.5": {
-                "types": "./driver/magento/2.4.5/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.6-p1.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.5.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.6-p1.mjs"
               },
               "package-magento-2.4.6-p1": {
-                "types": "./driver/magento/2.4.6-p1/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.6-p1.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.6-p1.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.6-p1.mjs"
               }
             },
             "./driver/magento/auto/testing": {
               "package-magento-2.4.5": {
-                "types": "./driver/magento/2.4.5/testing/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.5-testing.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.5-testing.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.5-testing.mjs"
               },
               "package-magento-2.4.6-p1": {
-                "types": "./driver/magento/2.4.6-p1/testing/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.6-p1-testing.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.6-p1-testing.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.6-p1-testing.mjs"
               }
             }
           }
@@ -327,7 +359,11 @@ describe('magento-driver-versions', () => {
         errors: [
           {
             messageId: 'defaultPathMismatch',
-            data: { key: 'package-magento-2.4.5', version: '2.4.5', suffix: '' },
+            data: {
+              key: 'package-magento-2.4.5',
+              actual: './fesm2022/daffodil-package-driver-magento-2.4.6-p1.mjs',
+              expected: './fesm2022/daffodil-package-driver-magento-2.4.5.mjs',
+            },
           },
         ],
       },
@@ -339,22 +375,22 @@ describe('magento-driver-versions', () => {
           "exports": {
             "./driver/magento/auto": {
               "package-magento-2.4.5": {
-                "types": "./driver/magento/2.4.5/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.5.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.5.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.5.mjs"
               },
               "package-magento-2.4.6-p1": {
-                "types": "./driver/magento/2.4.6-p1/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.6-p1.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.6-p1.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.6-p1.mjs"
               }
             },
             "./driver/magento/auto/testing": {
               "package-magento-2.4.5": {
-                "types": "./driver/magento/2.4.5/testing/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.5.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.5-testing.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.5.mjs"
               },
               "package-magento-2.4.6-p1": {
-                "types": "./driver/magento/2.4.6-p1/testing/index.d.ts",
-                "default": "./fesm2022/daffodil-package-magento-2.4.6-p1-testing.mjs"
+                "types": "./types/daffodil-package-driver-magento-2.4.6-p1-testing.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.6-p1-testing.mjs"
               }
             }
           }
@@ -362,7 +398,86 @@ describe('magento-driver-versions', () => {
         errors: [
           {
             messageId: 'defaultPathMismatch',
-            data: { key: 'package-magento-2.4.5', version: '2.4.5', suffix: '-testing' },
+            data: {
+              key: 'package-magento-2.4.5',
+              actual: './fesm2022/daffodil-package-driver-magento-2.4.5.mjs',
+              expected: './fesm2022/daffodil-package-driver-magento-2.4.5-testing.mjs',
+            },
+          },
+        ],
+      },
+      // `types` uses the pre-ng-packagr-22 per-entrypoint declaration layout
+      {
+        filename: FILENAME,
+        code: `{
+          "name": "@daffodil/package",
+          "exports": {
+            "./driver/magento/auto": {
+              "package-magento-2.4.5": {
+                "types": "./driver/magento/2.4.5/index.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.5.mjs"
+              },
+              "package-magento-2.4.6-p1": {
+                "types": "./types/daffodil-package-driver-magento-2.4.6-p1.d.ts",
+                "default": "./fesm2022/daffodil-package-driver-magento-2.4.6-p1.mjs"
+              }
+            }
+          }
+        }`,
+        errors: [
+          {
+            messageId: 'typesPathMismatch',
+            data: {
+              key: 'package-magento-2.4.5',
+              actual: './driver/magento/2.4.5/index.d.ts',
+              expected: './types/daffodil-package-driver-magento-2.4.5.d.ts',
+            },
+          },
+        ],
+      },
+      // `@daffodil/driver` paths must not include a `driver-` segment after the package name
+      {
+        filename: DRIVER_FILENAME,
+        code: `{
+          "name": "@daffodil/driver",
+          "exports": {
+            "./magento/auto": {
+              "driver-magento-2.4.7": {
+                "types": "./types/daffodil-driver-driver-magento-2.4.7.d.ts",
+                "default": "./fesm2022/daffodil-driver-magento-2.4.7.mjs"
+              }
+            }
+          }
+        }`,
+        errors: [
+          {
+            messageId: 'typesPathMismatch',
+            data: {
+              key: 'driver-magento-2.4.7',
+              actual: './types/daffodil-driver-driver-magento-2.4.7.d.ts',
+              expected: './types/daffodil-driver-magento-2.4.7.d.ts',
+            },
+          },
+        ],
+      },
+      // `@daffodil/driver` magento/2.4.7/ exists but has no condition
+      {
+        filename: DRIVER_FILENAME,
+        code: `{
+          "name": "@daffodil/driver",
+          "exports": {
+            "./magento/auto": {
+              "default": {
+                "types": "./types/daffodil-driver-magento-2.4.7.d.ts",
+                "default": "./fesm2022/daffodil-driver-magento-2.4.7.mjs"
+              }
+            }
+          }
+        }`,
+        errors: [
+          {
+            messageId: 'missingVersion',
+            data: { key: 'driver-magento-2.4.7', version: '2.4.7', base: 'magento' },
           },
         ],
       },
