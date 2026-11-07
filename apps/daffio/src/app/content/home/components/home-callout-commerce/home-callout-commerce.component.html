@@ -20,11 +20,10 @@
         </button>
         </div>
       </div>
-      <div class="daffio-home-callout-commerce__video-wrapper">
-        <video #commerceVideo class="daffio-home-callout-commerce__video" playsinline muted loop>
-          <source src="https://assets.daff.io/commerce-install.mp4" type="video/mp4">
-        </video>
-      </div>
+      <daffio-terminal-animation
+        [script]="script"
+        label="A terminal running npx ng add @daffodil/commerce, which installs Daffodil, asks a few setup questions, and generates the files for a new store.">
+      </daffio-terminal-animation>
     </div>
   </daff-container>
 </daff-callout>

@@ -1,0 +1,65 @@
+@use '@daffodil/design/scss/theme' as *;
+
+@mixin daffio-terminal-animation-theme($theme) {
+	$tertiary: daff-get-palette($theme, tertiary);
+	$neutral: daff-get-palette($theme, neutral);
+	$success: daff-get-palette($theme, success);
+	$warn: daff-get-palette($theme, warn);
+	$critical: daff-get-palette($theme, critical);
+	$black: daff-get-base-color($theme, 'black');
+	$white: daff-get-base-color($theme, 'white');
+	$mode: daff-get-theme-mode($theme);
+
+	.daffio-terminal-animation {
+		&__dot {
+			&:nth-child(1) {
+				background-color: daff-color($critical, 50);
+			}
+
+			&:nth-child(2) {
+				background-color: daff-color($warn, 40);
+			}
+
+			&:nth-child(3) {
+				background-color: daff-color($success, 50);
+			}
+		}
+
+		@include daff-light-mode($mode) {
+			background-color: $white;
+			box-shadow: 0 0 1.5rem 0 rgba($black, 0.4);
+			color: daff-color($neutral, 100);
+
+			&__success {
+				color: daff-color($success, 70);
+			}
+
+			&__muted {
+				color: daff-color($neutral, 70);
+			}
+
+			&__accent {
+				color: daff-color($tertiary, 70);
+			}
+		}
+
+		@include daff-dark-mode($mode) {
+			background-color: daff-color($neutral, 100);
+			border: thin solid daff-color($neutral, 80);
+			box-shadow: 0 0 1.5rem 0 rgba($black, 0.2);
+			color: daff-color($neutral, 10);
+
+			&__success {
+				color: daff-color($success, 40);
+			}
+
+			&__muted {
+				color: daff-color($neutral, 50);
+			}
+
+			&__accent {
+				color: daff-color($tertiary, 30);
+			}
+		}
+	}
+}
