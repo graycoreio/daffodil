@@ -65,7 +65,7 @@ export class DaffProductPageLoadFailure implements Action {
  * Update the qty of the current product.
  *
  * @param payload - The qty of the product.
- * @deprecated
+ * @deprecated Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 export class DaffProductPageUpdateQty implements Action {
   readonly type = DaffProductPageActionTypes.UpdateQtyAction;

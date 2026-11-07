@@ -20,7 +20,7 @@ import {
 import { daffPaypalPaymentReducer } from './reducers/payment/reducer';
 
 /**
- * @deprecated in favor of {@link provideDaffPaypalPaymentState}
+ * @deprecated in favor of {@link provideDaffPaypalPaymentState} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

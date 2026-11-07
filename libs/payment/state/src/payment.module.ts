@@ -21,7 +21,7 @@ import {
 /**
  * Creates the payment feature store.
  *
- * @deprecated in favor of {@link provideDaffPaymentState}
+ * @deprecated in favor of {@link provideDaffPaymentState} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

@@ -12,7 +12,7 @@ import {
 /**
  * A module that provides the default reducers for the related product redux state.
  *
- * @deprecated in favor of {@link provideDaffRelatedProductsState}
+ * @deprecated in favor of {@link provideDaffRelatedProductsState} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

@@ -9,7 +9,7 @@ import { provideDaffProductInMemoryDriver } from './provider';
 /**
  * Module for providing the DaffInMemoryProductService driver to your application.
  *
- * @deprecated in favor of {@link provideDaffProductInMemoryDriver}
+ * @deprecated in favor of {@link provideDaffProductInMemoryDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

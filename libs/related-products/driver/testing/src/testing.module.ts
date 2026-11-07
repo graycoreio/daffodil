@@ -9,7 +9,7 @@ import { provideDaffRelatedProductsTestingDriver } from './provider';
 /**
  * Module for providing the related product fields to the product extension factory.
  *
- * @deprecated in favor of {@link provideDaffRelatedProductsTestingDriver}
+ * @deprecated in favor of {@link provideDaffRelatedProductsTestingDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

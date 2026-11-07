@@ -9,7 +9,7 @@ import { provideDaffSearchInMemoryDriver } from './provider';
 /**
  * Provides the {@link DaffInMemorySearchDriver} as the {@link DaffSearchDriver}.
  *
- * @deprecated in favor of {@link provideDaffSearchInMemoryDriver}
+ * @deprecated in favor of {@link provideDaffSearchInMemoryDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

@@ -6,7 +6,7 @@ import { DaffSeoMetaEffects } from './effects/ngrx-router/meta.effects';
 import { DaffSeoTitleEffects } from './effects/ngrx-router/title.effects';
 
 /**
- * @deprecated Use {@link provideDaffSeoState} instead.
+ * @deprecated Use {@link provideDaffSeoState} instead. Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [
