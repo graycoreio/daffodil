@@ -9,6 +9,7 @@
     }
   ],
   "compilerOptions": {
+    "rootDir": ".",
     "paths": {
       "@daffodil/*": [
         "../../dist/*"
@@ -30,6 +31,12 @@
       ],
       "@daffodil/core/routing": [
         "./routing/src"
+      ],
+      "@daffodil/core/external-script": [
+        "./external-script/src"
+      ],
+      "@daffodil/core/external-script/testing": [
+        "./external-script/testing/src"
       ],
     }
   }
