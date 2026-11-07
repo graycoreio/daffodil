@@ -1,4 +1,7 @@
 @if (_prefix) {
   <ng-content select="[daffPrefix]"></ng-content>
 }
-<ng-content></ng-content>
+<div class="daff-menu-item__content"><ng-content></ng-content></div>
+@if (hasSubmenu) {
+  <fa-icon size="sm" [icon]="faChevronRight" class="daff-menu-item__submenu-indicator"></fa-icon>
+}
