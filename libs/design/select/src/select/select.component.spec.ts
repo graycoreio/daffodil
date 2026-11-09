@@ -110,6 +110,40 @@ describe('@daffodil/design/select | DaffSelectComponent', () => {
       optionsListElement = fixture.debugElement.query(By.css('.daff-select__options')).nativeElement;
     });
 
+    describe('and when disabled before selecting', () => {
+      let option: HTMLElement;
+      let changes: jasmine.Spy;
+
+      beforeEach(() => {
+        option = optionsListElement.querySelector('.test-option[data-value="2"]');
+        component.highlighted = 2;
+        wrapper.disabledValue = true;
+        wrapper.controlValue.disable();
+        fixture.detectChanges();
+
+        changes = jasmine.createSpy('valueChanges');
+        wrapper.controlValue.valueChanges.subscribe(changes);
+      });
+
+      it('should ignore a click on an option', () => {
+        expect(buttonElement.disabled).toBeTrue();
+        option.click();
+        fixture.detectChanges();
+
+        expect(wrapper.controlValue.value).toEqual(0);
+        expect(changes).not.toHaveBeenCalled();
+      });
+
+      it('should ignore Enter in the options list', () => {
+        expect(buttonElement.disabled).toBeTrue();
+        optionsListElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+        fixture.detectChanges();
+
+        expect(wrapper.controlValue.value).toEqual(0);
+        expect(changes).not.toHaveBeenCalled();
+      });
+    });
+
     describe('and when an option is highlighted', () => {
       let optionEl: HTMLElement;
 
