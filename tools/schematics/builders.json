@@ -5,6 +5,11 @@
       "schema": "./versioning/daff.schema.json",
       "description": "Wraps the angular application builder with driver conditions."
     },
+    "dev-server": {
+      "implementation": "./versioning/dev-server-builder",
+      "schema": "./versioning/dev-server.schema.json",
+      "description": "Wraps the angular dev server builder with driver conditions from a @daffodil/commerce:application build target."
+    },
 		"sync": {
       "implementation": "./versioning/sync-builder",
       "schema": "./versioning/daff.schema.json",
