@@ -403,6 +403,10 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
    * Selects an option.
    */
   selectOption(option: T) {
+    if (this.disabled || this.ngControl?.disabled) {
+      return;
+    }
+
     this._value = option;
     this.onChange(this._value);
 
@@ -415,6 +419,11 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   selectHighlighted(event?: KeyboardEvent | MouseEvent) {
     event?.preventDefault();
     event?.stopPropagation();
+
+    if (this.disabled || this.ngControl?.disabled) {
+      return;
+    }
+
     this.selectValueInPosition(this._highlighted);
 
     this.onChange(this._value);
