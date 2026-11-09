@@ -30,6 +30,9 @@
       "@daffodil/product/driver/magento/2.4.7": [
         "./driver/magento/2.4.7/src"
       ],
+      "@daffodil/product/driver/magento/2.4.7/testing": [
+        "./driver/magento/2.4.7/testing/src"
+      ],
       "@daffodil/product/driver/shopify": [
         "./driver/shopify/src"
       ],

@@ -31,6 +31,12 @@
       "@daffodil/driver/in-memory": [
         "./in-memory/src"
       ],
+      "@daffodil/driver/shopify": [
+        "./shopify/src"
+      ],
+      "@daffodil/driver/shopify/testing": [
+        "./shopify/testing/src"
+      ]
     },
     "resolveJsonModule": true
   }
