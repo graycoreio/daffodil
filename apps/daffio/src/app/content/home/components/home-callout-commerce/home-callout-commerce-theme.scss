@@ -12,10 +12,6 @@
 
 	.daffio-home-callout-commerce {
 		@include daff-light-mode($mode) {
-			&__video {
-				box-shadow: 0 0 1.5rem 0 rgba($black, 0.4);
-			}
-
 			&__code-copy {
 				background-color: rgba(daff-color($primary, 20), 0.3);
 				border: 1px solid rgba(daff-color($primary, 20), 0.5);
@@ -24,11 +20,6 @@
 		}
 
 		@include daff-dark-mode($mode) {
-			&__video {
-				border: thin solid daff-color($neutral, 80);
-				box-shadow: 0 0 1.5rem 0 rgba($black, 0.2);
-			}
-
 			&__code-copy {
 				background-color: rgba(daff-color($primary, 40), 0.3);
 				border: 1px solid rgba(daff-color($primary, 40), 0.5);
