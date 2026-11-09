@@ -123,10 +123,10 @@ describe('@daffodil/design/select | DaffSelectComponent', () => {
 
         changes = jasmine.createSpy('valueChanges');
         wrapper.controlValue.valueChanges.subscribe(changes);
-        expect(buttonElement.disabled).toBeTrue();
       });
 
       it('should ignore a click on an option', () => {
+        expect(buttonElement.disabled).toBeTrue();
         option.click();
         fixture.detectChanges();
 
@@ -135,6 +135,7 @@ describe('@daffodil/design/select | DaffSelectComponent', () => {
       });
 
       it('should ignore Enter in the options list', () => {
+        expect(buttonElement.disabled).toBeTrue();
         optionsListElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
         fixture.detectChanges();
 
