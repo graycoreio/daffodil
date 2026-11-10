@@ -1,6 +1,3 @@
-// eslint-disable-next-line import/no-unassigned-import
-import 'monaco-editor/esm/vs/language/json/monaco.contribution.js';
-
 import { isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
@@ -16,10 +13,8 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import {
-  editor,
-  languages,
-} from 'monaco-editor/esm/vs/editor/editor.api.js';
+import { editor } from 'monaco-editor/editor/editor.api.js';
+import { jsonDefaults } from 'monaco-editor/languages/features/json/register.js';
 import { fromEventPattern } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -75,7 +70,7 @@ export class SchemaViewComponent implements AfterViewInit, OnDestroy {
 
   private initializeEditor() {
     // Configure Monaco JSON language defaults with schema validation
-    languages.json.jsonDefaults.setDiagnosticsOptions({
+    jsonDefaults.setDiagnosticsOptions({
       validate: true,
       schemas: [
         {
