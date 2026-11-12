@@ -1719,7 +1719,10 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "libs/content/tsconfig.spec.json"
+            "tsConfig": "libs/content/tsconfig.spec.json",
+            "loader": {
+              ".ttf": "file"
+            }
           }
         },
         "lint": {
