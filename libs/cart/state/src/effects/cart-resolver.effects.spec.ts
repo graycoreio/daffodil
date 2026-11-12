@@ -6,6 +6,7 @@ import {
   cold,
 } from 'jasmine-marbles';
 import {
+  EMPTY,
   Observable,
   of,
   throwError,
@@ -266,7 +267,7 @@ describe('@daffodil/cart/state | DaffCartResolverEffects | in the browser', () =
 });
 
 describe('@daffodil/cart/state | DaffCartResolverEffects | on the server', () => {
-  let actions$: Observable<any>;
+  const actions$: Observable<any> = EMPTY;
   let effects: DaffCartResolverEffects;
 
   let cartFactory: DaffCartFactory;

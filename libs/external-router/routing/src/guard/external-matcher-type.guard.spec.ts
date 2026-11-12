@@ -26,7 +26,7 @@ describe('daffExternalMatcherTypeGuard', () => {
   let config: DaffExternalRouterConfiguration;
   let driver: DaffExternalRouterDriverInterface;
   let route: DaffRouteWithSeoData;
-  let type: string;
+  const type = 'TEST_TYPE';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
