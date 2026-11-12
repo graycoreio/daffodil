@@ -91,6 +91,7 @@ describe('@daffodil/auth/state | DaffAuthResetPasswordEffects', () => {
     token = 'token';
     email = mockRegistration.email;
     password = mockRegistration.password;
+    mockResetInfo = { email, token, password };
   });
 
   it('should be created', () => {

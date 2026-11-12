@@ -70,7 +70,7 @@ module.exports = {
   },
 
   create(context) {
-    const src = context.getSourceCode();
+    const src = context.sourceCode;
 
     function ensure(node, id) {
       if (hasDocsPrivate(src, node)) return;

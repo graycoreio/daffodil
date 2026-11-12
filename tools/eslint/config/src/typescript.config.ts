@@ -1,13 +1,14 @@
 import { defineConfig } from 'eslint/config';
-import importPlugin from 'eslint-plugin-import';
 import tseslint from 'typescript-eslint';
+
+import { importTypescriptConfig } from './import-plugin.js';
 
 export const typescriptEslintConfig = defineConfig([
   {
     files: ['**/*.ts'],
     extends: [
       tseslint.configs.recommended,
-      importPlugin.flatConfigs.typescript,
+      importTypescriptConfig,
     ],
     rules: {
       '@typescript-eslint/adjacent-overload-signatures': 'error',

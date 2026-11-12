@@ -41,7 +41,7 @@ describe('@daffodil/order/state | daffOrdersCollectionReducer', () => {
   let mockOrderCollection: DaffOrderCollection;
   let mockOrder: DaffOrder;
   let mockCollectionRequest: DaffCollectionRequest;
-  let cartId: string;
+  const cartId = 'cartId';
 
   beforeEach(() => {
     orderCollectionFactory = TestBed.inject(DaffOrderCollectionFactory);

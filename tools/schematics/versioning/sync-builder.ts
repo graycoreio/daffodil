@@ -42,7 +42,7 @@ const ngJson = (path: string) => {
           angular: workspace,
         };
       } catch (error: any) {
-        throw new Error('Failed to read angular.json');
+        throw new Error('Failed to read angular.json', { cause: error });
       }
     },
     write: (wksp: workspaces.WorkspaceDefinition) => workspaces.writeWorkspace(wksp, host, path),
