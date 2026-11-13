@@ -11,7 +11,7 @@ import { provideDaffExternalRouterTestingDriver } from './provider';
  * The `DaffExternalRouterDriverTestingModule` is an importable NgModule that can
  * be used to configure the {@link DaffExternalRouterTestingDriver}.
  *
- * @deprecated in favor of {@link provideDaffExternalRouterTestingDriver}
+ * @deprecated in favor of {@link provideDaffExternalRouterTestingDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   declarations: [],

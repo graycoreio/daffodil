@@ -26,7 +26,7 @@ import {
 } from './reducers/token/reducers.token';
 
 /**
- * @deprecated in favor of {@link provideDaffOrderState}
+ * @deprecated in favor of {@link provideDaffOrderState} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

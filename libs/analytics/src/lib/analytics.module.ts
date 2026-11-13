@@ -20,7 +20,7 @@ import { daffAnalyticsServiceProvider } from './provider';
  * See {@link DaffAnalyticsConfigInterface} for further configuration options.
  * See {@link DaffAnalyticsTracker} for tracker documentation.
  *
- * @deprecated in favor of {@link provideDaffAnalytics}
+ * @deprecated in favor of {@link provideDaffAnalytics} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [EffectsModule.forFeature([DaffAnalyticsEffects])],

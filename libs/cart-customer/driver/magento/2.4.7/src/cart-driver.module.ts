@@ -7,7 +7,7 @@ import {
 import { provideDaffCartCustomerMagentoDriver } from './provider';
 
 /**
- * @deprecated in favor of {@link provideDaffCartCustomerMagentoDriver}
+ * @deprecated in favor of {@link provideDaffCartCustomerMagentoDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

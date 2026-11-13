@@ -13,7 +13,7 @@ import { DaffSearchIncrementalEffects } from './effects/incremental.effects';
 import { DaffSearchStateModule } from './search.module';
 
 /**
- * @deprecated in favor of {@link provideDaffSearchIncrementalState}
+ * @deprecated in favor of {@link provideDaffSearchIncrementalState} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [
