@@ -60,14 +60,14 @@ describe('@daffodil/design/youtube-player | DaffYoutubePlayerComponent', () => {
     wrapper.width.set(100);
     fixture.detectChanges();
 
-    expect(component.width).toEqual(100);
+    expect(component.width()).toEqual(100);
   });
 
   it('should be able to take `height` as an input', () => {
     wrapper.height.set(100);
     fixture.detectChanges();
 
-    expect(component.height).toEqual(100);
+    expect(component.height()).toEqual(100);
   });
 
   it('should throw an error when width is invalid', () => {
