@@ -12,7 +12,7 @@ import { provideDaffProductMagentoDriver } from './provider';
  * A module that provides the {@link DaffProductDriver} and {@link DaffProductMagentoDriverConfig} as the {@link DaffMagentoProductService} and
  * {@link MAGENTO_PRODUCT_CONFIG_DEFAULT} respectively
  *
- * @deprecated in favor of {@link provideDaffProductMagentoDriver}
+ * @deprecated in favor of {@link provideDaffProductMagentoDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

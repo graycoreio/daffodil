@@ -7,7 +7,7 @@ import {
 import { provideDaffPaypalTestingDriver } from './provider';
 
 /**
- * @deprecated in favor of {@link provideDaffPaypalTestingDriver}
+ * @deprecated in favor of {@link provideDaffPaypalTestingDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

@@ -20,7 +20,7 @@ import {
 /**
  * Creates the search feature store.
  *
- * @deprecated in favor of {@link provideDaffSearchState}
+ * @deprecated in favor of {@link provideDaffSearchState} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

@@ -25,7 +25,7 @@ import {
 /**
  * A module that provides default reducers and effects for the category redux state.
  *
- * @deprecated in favor of {@link provideDaffCategoryState}
+ * @deprecated in favor of {@link provideDaffCategoryState} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

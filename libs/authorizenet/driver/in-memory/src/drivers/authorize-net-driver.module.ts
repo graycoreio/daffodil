@@ -7,7 +7,7 @@ import {
 import { provideDaffAuthorizeNetInMemoryDriver } from './provider';
 
 /**
- * @deprecated in favor of {@link provideDaffAuthorizeNetInMemoryDriver}
+ * @deprecated in favor of {@link provideDaffAuthorizeNetInMemoryDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [
