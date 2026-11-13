@@ -1,8 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
-  OnInit,
+  computed,
+  input,
 } from '@angular/core';
 import {
   DomSanitizer,
@@ -10,25 +10,12 @@ import {
   SafeUrl,
 } from '@angular/platform-browser';
 
-const validateProperty = (object: Record<string, any>, prop: string) => {
-  if (object[prop] === null || object[prop] === undefined || object[prop] === '') {
+const validateInput = (prop: string) => <T>(value: T): T => {
+  if (value === null || value === undefined || <unknown>value === '') {
     throw new Error(`DaffYoutubePlayerComponent must have a defined ${prop} attribute.`);
   }
-};
 
-const validateProperties = (object: Record<string, any>, props: string[]) => {
-  const invalidProps = props.filter(prop => {
-    try {
-      validateProperty(object, prop);
-    } catch(e) {
-      return true;
-    }
-    return false;
-  });
-
-  if (invalidProps.length) {
-    throw new Error(`DaffYoutubePlayerComponent must have the ${invalidProps.join(',')} attributes defined.`);
-  }
+  return value;
 };
 
 @Component({
@@ -37,68 +24,38 @@ const validateProperties = (object: Record<string, any>, props: string[]) => {
   styleUrl: './youtube-player.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[style.max-width]': 'maxWidth',
+    '[style.max-width]': 'width() + "px"',
   },
 })
-export class DaffYoutubePlayerComponent implements OnInit {
+export class DaffYoutubePlayerComponent {
   /**
    * The URL of the YouTube video.
    */
-  @Input() src: SafeUrl;
+  src = input<SafeUrl>();
 
   /**
    * The title of the YouTube video.
    */
-  @Input() title = '';
-
-  private _width: number;
+  title = input('');
 
   /**
    * The width of the player.
    */
-  @Input()
-  get width(): number {
-    return this._width;
-  }
-  set width(value: number) {
-    this._width = value;
-    validateProperty(this, 'width');
-  }
-
-  private _height: number;
+  width = input.required<number, number>({ transform: validateInput('width') });
 
   /**
    * The height of the player.
    */
-  @Input()
-  get height(): number {
-    return this._height;
-  }
-  set height(value: number) {
-    this._height = value;
-    validateProperty(this, 'height');
-  }
+  height = input.required<number, number>({ transform: validateInput('height') });
 
   constructor(private sanitizer: DomSanitizer) {}
 
   /**
    * @docs-private
    */
-  ngOnInit(): void {
-    validateProperties(this, ['width', 'height']);
-  }
-
-  /**
-   * @docs-private
-   */
-  get _aspectRatio(): SafeStyle {
-    return this.sanitizer.bypassSecurityTrustStyle(this.width + ' / ' + this.height);
-  }
-
-  /**
-   * @docs-private
-   */
-  get maxWidth(): string {
-    return this.width + 'px';
-  }
+  _aspectRatio = computed<SafeStyle>(
+    () => this.sanitizer.bypassSecurityTrustStyle(
+      this.width() + ' / ' + this.height(),
+    ),
+  );
 }
