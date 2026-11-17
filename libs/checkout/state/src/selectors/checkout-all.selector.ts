@@ -5,7 +5,7 @@ import { DaffOrder } from '@daffodil/order';
 import {
   DaffCheckoutPlacedOrderSelectors,
   getCheckoutPlacedOrderSelectors,
-} from './placed-order.selector';
+} from '../placed-order/public_api';
 
 export type DaffCheckoutSelectors<T extends DaffOrder = DaffOrder> = DaffCheckoutPlacedOrderSelectors<T>;
 

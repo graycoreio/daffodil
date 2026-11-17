@@ -27,7 +27,7 @@ import {
   DaffOrderFactory,
 } from '@daffodil/order/testing';
 
-import { getCheckoutPlacedOrderSelectors } from './placed-order.selector';
+import { getCheckoutPlacedOrderSelectors } from './selector';
 
 describe('@daffodil/checkout/state | getCheckoutPlacedOrderSelectors', () => {
   let store: Store<DaffCheckoutStateRootSlice>;
