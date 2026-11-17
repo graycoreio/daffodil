@@ -3,21 +3,32 @@ import {
   readFileSync,
   writeFileSync,
 } from 'fs';
-import { join } from 'path';
+import {
+  join,
+  posix,
+  sep,
+} from 'path';
 
 import {
   annotateDeprecations,
   getStableVersion,
   hasRemovalMarker,
 } from './deprecation';
+import {
+  isIgnored,
+  parseGlobs,
+} from './ignore';
 
 const workspace = process.env.GITHUB_WORKSPACE || process.cwd();
 const mode = process.env['INPUT_MODE'];
+const ignore = parseGlobs(process.env['INPUT_IGNORE']);
 const libsPath = join(workspace, 'libs');
 const rootVersion = getStableVersion(JSON.parse(readFileSync(join(workspace, 'package.json'), 'utf-8')).version);
 
 const sourceFiles = readdirSync(libsPath, { recursive: true, encoding: 'utf-8' })
   .filter((path) => path.endsWith('.ts') && !path.endsWith('.spec.ts'))
+  // globs are matched against workspace-relative POSIX paths, e.g. `libs/core/src/foo.ts`
+  .filter((path) => !isIgnored(posix.join('libs', path.split(sep).join(posix.sep)), ignore))
   .map((path) => join(libsPath, path));
 
 switch (mode) {

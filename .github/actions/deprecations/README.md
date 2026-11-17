@@ -13,7 +13,13 @@ Manages `@deprecated` annotations in `libs/**/*.ts` (excluding specs) based on t
 - uses: ./.github/actions/deprecations
   with:
     mode: annotate # or check
+    # optional: newline-separated globs (relative to the workspace root) of files to skip
+    ignore: |
+      libs/legacy/**
+      libs/**/testing/**
 ```
+
+Ignored files are neither annotated nor checked for removals.
 
 In `annotate` mode the action mutates source files in the workspace; committing the changes is left to the calling workflow.
 
