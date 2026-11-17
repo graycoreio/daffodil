@@ -1,24 +1,27 @@
+import { fixupPluginRules } from '@eslint/compat';
 import eslint from '@eslint/js';
 import stylisticPlugin from '@stylistic/eslint-plugin';
 import type { ESLint } from 'eslint';
 import { defineConfig } from 'eslint/config';
-import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import modulesNewLinePlugin from 'eslint-plugin-modules-newlines';
 import unusedImportsPlugin from 'eslint-plugin-unused-imports';
+
+import { importRecommendedConfig } from './import-plugin.js';
 
 export const baseEslintConfig = defineConfig([
   {
     files: ['**/*.ts'],
     extends: [
       eslint.configs.recommended,
-      importPlugin.flatConfigs.recommended,
+      importRecommendedConfig,
     ],
     plugins: {
       jsdoc: jsdocPlugin,
       '@stylistic': <ESLint.Plugin><unknown>stylisticPlugin,
       'unused-imports': unusedImportsPlugin,
-      'modules-newlines': modulesNewLinePlugin,
+      // unmaintained plugin that still calls context APIs removed in ESLint 10
+      'modules-newlines': fixupPluginRules(modulesNewLinePlugin),
     },
     rules: {
       '@stylistic/indent': [
@@ -45,7 +48,7 @@ export const baseEslintConfig = defineConfig([
         'error',
         'single',
         {
-          allowTemplateLiterals: true,
+          allowTemplateLiterals: 'always',
         },
       ],
       '@stylistic/semi': [

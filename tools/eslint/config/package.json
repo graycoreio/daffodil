@@ -6,6 +6,8 @@
   "main": "index.js",
   "types": "index.d.ts",
   "peerDependencies": {
+    "@eslint/compat": "0.0.0-PLACEHOLDER",
+    "@eslint/js": "0.0.0-PLACEHOLDER",
     "@stylistic/eslint-plugin": "0.0.0-PLACEHOLDER",
     "eslint": "0.0.0-PLACEHOLDER",
     "eslint-plugin-import": "0.0.0-PLACEHOLDER",

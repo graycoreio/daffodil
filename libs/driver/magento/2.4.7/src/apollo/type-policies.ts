@@ -91,7 +91,7 @@ const typePolicies: TypePolicies = {
             if (streetToIndex.has(street)) {
               const targetIndex = streetToIndex.get(street);
               const existingShippingAddress =
-                                existing[targetIndex];
+                existing[targetIndex];
               const merged = mergeObjects(
                 existingShippingAddress,
                 incomingShippingAddress,
@@ -224,7 +224,7 @@ const typePolicies: TypePolicies = {
             if (carrierToIndex.has(carrierKey)) {
               const targetIndex = carrierToIndex.get(carrierKey);
               const existingShippingMethod =
-                                existing[targetIndex];
+                existing[targetIndex];
               const merged = mergeObjects(
                 existingShippingMethod,
                 incomingShippingMethod,

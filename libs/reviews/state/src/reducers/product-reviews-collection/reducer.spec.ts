@@ -41,7 +41,7 @@ describe('@daffodil/reviews/state | daffReviewsCollectionReducer', () => {
   let mockProductReviews: DaffProductReviews;
   let mockProductReview: DaffProductReview;
   let mockCollectionRequest: DaffCollectionRequest;
-  let productId: string;
+  const productId = 'productId';
 
   beforeEach(() => {
     productReviewsFactory = TestBed.inject(DaffProductReviewsFactory);

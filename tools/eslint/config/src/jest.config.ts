@@ -1,13 +1,14 @@
 import { defineConfig } from 'eslint/config';
-import importPlugin from 'eslint-plugin-import';
 import jasminePlugin from 'eslint-plugin-jasmine';
 import jestPlugin from 'eslint-plugin-jest';
+
+import { importTypescriptConfig } from './import-plugin.js';
 
 export const jestEslintConfig = defineConfig([
   {
     files: ['**/*.spec.ts'],
     extends: [
-      importPlugin.flatConfigs.typescript,
+      importTypescriptConfig,
       jasminePlugin.configs.recommended,
     ],
     plugins: {

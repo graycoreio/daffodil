@@ -1,6 +1,7 @@
 import angularEslint from 'angular-eslint';
 import { defineConfig } from 'eslint/config';
-import importPlugin from 'eslint-plugin-import';
+
+import { importTypescriptConfig } from './import-plugin.js';
 
 export const angularEslintConfig = defineConfig([
   {
@@ -64,7 +65,7 @@ export const angularEslintConfig = defineConfig([
   {
     files: ['**/*.spec.ts'],
     extends: [
-      importPlugin.flatConfigs.typescript,
+      importTypescriptConfig,
     ],
     rules: {
       '@angular-eslint/prefer-on-push-component-change-detection': [0],
