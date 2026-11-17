@@ -1,0 +1,1 @@
+export const DAFF_CHECKOUT_IN_MEMORY_CHECKOUT_ORDER_COLLECTION_NAME = 'checkout-order';

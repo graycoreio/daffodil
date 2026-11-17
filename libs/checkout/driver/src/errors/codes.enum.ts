@@ -1,0 +1,4 @@
+export enum DaffCheckoutDriverErrorCodes {
+  INVALID_API_RESPONSE = 'DAFF_INVALID_API_RESPONSE',
+  EMAIL_MISSING = 'DAFF_EMAIL_MISSING',
+}
