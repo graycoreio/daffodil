@@ -104,7 +104,10 @@ ng add @daffodil/ecommerce
 
 ## Driver Auto Versioning
 
-This package also exports two builders which [enable Angular applications to automatically select Daffodil driver versions for the requested platform version](/docs/guides/essentials/drivers.md#automatically-versioned-drivers):
+This package also exports builders which [enable Angular applications to automatically select Daffodil driver versions for the requested platform version](/docs/guides/essentials/drivers.md#automatically-versioned-drivers):
 
 - [`@daffodil/commerce:application`](/docs/guides/essentials/drivers.md#application-builder)
+- [`@daffodil/commerce:dev-server`](/docs/guides/essentials/drivers.md#dev-server-builder)
 - [`@daffodil/commerce:sync`](/docs/guides/essentials/drivers.md#sync-builder)
+
+It also exports a TypeScript plugin, [`@daffodil/commerce/ts-plugin`](/docs/guides/essentials/drivers.md#editor-support), that applies the same driver selection in your editor.

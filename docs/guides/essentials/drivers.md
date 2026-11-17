@@ -207,6 +207,35 @@ Daffodil performs this automatic selection via the `@daffodil/commerce:applicati
 
 The builder works out the driver conditions on every build and merges them with any `conditions` you have already configured. When you upgrade your platform, the only change you need to make is the version in `drivers` in your `angular.json` for the Angular CLI or `project.json` for Nx.
 
+#### Dev server builder
+
+`@angular/build:dev-server` does not run your build target's builder; it reads the build target's options and builds the application itself. When your `build` target uses `@daffodil/commerce:application`, use `@daffodil/commerce:dev-server` for your `serve` target. It wraps `@angular/build:dev-server`, takes all of its options, and reads `drivers` and `packages` from the build target:
+
+```json
+{
+	"architect": {
+		"build": {
+			"builder": "@daffodil/commerce:application",
+			"options": {
+				"drivers": {
+					"magento": "2.4.7-p11"
+				}
+			}
+		},
+		"serve": {
+			"builder": "@daffodil/commerce:dev-server",
+			"configurations": {
+				"development": {
+					"buildTarget": "my-app:build:development"
+				}
+			}
+		}
+	}
+}
+```
+
+Angular does not pass build conditions to the dev server's dependency prebundling, so prebundled packages would resolve the wrong driver. The builder therefore always disables `prebundle`. This makes the dev server slower to start and rebuild; production builds are unaffected.
+
 #### Sync builder
 
 If you can't replace your build target's builder (for example, because you use a custom builder), use `@daffodil/commerce:sync` instead. It writes the computed conditions directly into the `conditions` option of that application's `build` target, in `angular.json` or in Nx `project.json` files:
@@ -237,6 +266,42 @@ The sync builder replaces the existing `conditions` of the build target. You nee
 ```bash
 ng run my-app:sync-drivers
 ```
+
+Angular does not pass build conditions to the dev server's dependency prebundling, so disable `prebundle` on your `serve` target. Otherwise `ng serve` resolves the default driver instead of the synced versions. This only affects the dev server; production builds are unaffected:
+
+```json
+{
+	"architect": {
+		"serve": {
+			"builder": "@angular/build:dev-server",
+			"options": {
+				"prebundle": false
+			}
+		}
+	}
+}
+```
+
+#### Editor support
+
+Editors don't run the builders, so by default they resolve `driver/<platform>/auto` imports to the default types, which export nothing. Imports from those entrypoints then show errors such as `Module has no exported member`. The `@daffodil/commerce/ts-plugin` TypeScript plugin computes the same conditions as the builders and applies them in your editor. Add it to the `tsconfig.json` your application extends:
+
+```json
+{
+	"compilerOptions": {
+		"moduleResolution": "bundler",
+		"plugins": [
+			{ "name": "@daffodil/commerce/ts-plugin", "project": "apps/my-app" }
+		]
+	}
+}
+```
+
+The plugin reads `drivers` and `packages` from the `build` target of `project`, which is the project's root (or, in an `angular.json` workspace, its name). Without `project`, it uses the nearest project above the tsconfig whose `build` target sets `drivers`. Set `project` when libraries extend the same tsconfig, because their own projects don't set `drivers`. Use `target` to read a target other than `build`, or set `drivers` and `packages` on the plugin directly.
+
+- Editors only load plugins from your workspace when they use the workspace's TypeScript version. In VS Code, run **TypeScript: Select TypeScript Version** and choose **Use Workspace Version**.
+- The plugin computes the conditions when the TypeScript server starts. Restart it (**TypeScript: Restart TS Server** in VS Code) after you change `drivers` or upgrade Daffodil.
+- Only editors load TypeScript plugins. `tsc` and type-aware lint rules still resolve the default types.
 
 ### Custom drivers
 

@@ -2,6 +2,7 @@ import {
   mkdirSync,
   mkdtempSync,
   rmSync,
+  symlinkSync,
   writeFileSync,
 } from 'fs';
 import { tmpdir } from 'os';
@@ -87,5 +88,41 @@ describe('@daffodil/commerce/versioning | collectPlatformVersions', () => {
     });
 
     expect(await collectPlatformVersions([`${root}/*`])).toEqual({});
+  });
+
+  describe('with packages symlinked into the search directory', () => {
+    let linked: string;
+
+    beforeEach(() => {
+      linked = mkdtempSync(join(tmpdir(), 'daff-collect-platform-versions-linked-'));
+      mkdirSync(join(linked, 'product'));
+      writeFileSync(join(linked, 'product', 'package.json'), JSON.stringify({
+        name: '@daffodil/product',
+        exports: {
+          './driver/magento/auto': {
+            'product-magento-2.4.7': './a.js',
+            default: './a.js',
+          },
+        },
+      }));
+      mkdirSync(join(root, '@daffodil'));
+      symlinkSync(join(linked, 'product'), join(root, '@daffodil', 'product'), 'dir');
+    });
+
+    afterEach(() => {
+      rmSync(linked, { recursive: true, force: true });
+    });
+
+    it('collects versions with a single segment glob', async () => {
+      expect(await collectPlatformVersions([`${root}/@daffodil/*`])).toEqual({
+        magento: { product: ['2.4.7']},
+      });
+    });
+
+    it('collects versions with a recursive glob', async () => {
+      expect(await collectPlatformVersions([`${root}/@daffodil/**`])).toEqual({
+        magento: { product: ['2.4.7']},
+      });
+    });
   });
 });
