@@ -1,6 +1,6 @@
 // .github/actions/deprecations/src/main.ts
 var import_fs = require("fs");
-var import_path = require("path");
+var import_path2 = require("path");
 
 // .github/actions/deprecations/src/deprecation.ts
 var VERSION_REGEX = "\\d+\\.\\d+\\.\\d+";
@@ -18,12 +18,18 @@ var buildAnnotation = (rootVersion2) => ` ${DEPRECATION_MESSAGE} ${rootVersion2}
 var annotateDeprecations = (content, rootVersion2) => content.replace(DEPRECATED_TAG_REGEX, (match, summary, end) => match.match(HAS_ANNOTATION_REGEX) ? match : `@deprecated${summary || ""}${buildAnnotation(rootVersion2)}${end || ""}`);
 var hasRemovalMarker = (content, version) => content.includes(`${REMOVAL_MESSAGE} ${version}`);
 
+// .github/actions/deprecations/src/ignore.ts
+var import_path = require("path");
+var parseGlobs = (input) => (input || "").split("\n").map((line) => line.trim()).filter((line) => line && !line.startsWith("#"));
+var isIgnored = (path, globs) => globs.some((glob) => (0, import_path.matchesGlob)(path, glob));
+
 // .github/actions/deprecations/src/main.ts
 var workspace = process.env.GITHUB_WORKSPACE || process.cwd();
 var mode = process.env["INPUT_MODE"];
-var libsPath = (0, import_path.join)(workspace, "libs");
-var rootVersion = getStableVersion(JSON.parse((0, import_fs.readFileSync)((0, import_path.join)(workspace, "package.json"), "utf-8")).version);
-var sourceFiles = (0, import_fs.readdirSync)(libsPath, { recursive: true, encoding: "utf-8" }).filter((path) => path.endsWith(".ts") && !path.endsWith(".spec.ts")).map((path) => (0, import_path.join)(libsPath, path));
+var ignore = parseGlobs(process.env["INPUT_IGNORE"]);
+var libsPath = (0, import_path2.join)(workspace, "libs");
+var rootVersion = getStableVersion(JSON.parse((0, import_fs.readFileSync)((0, import_path2.join)(workspace, "package.json"), "utf-8")).version);
+var sourceFiles = (0, import_fs.readdirSync)(libsPath, { recursive: true, encoding: "utf-8" }).filter((path) => path.endsWith(".ts") && !path.endsWith(".spec.ts")).filter((path) => !isIgnored(import_path2.posix.join("libs", path.split(import_path2.sep).join(import_path2.posix.sep)), ignore)).map((path) => (0, import_path2.join)(libsPath, path));
 switch (mode) {
   case "annotate":
     for (const path of sourceFiles) {

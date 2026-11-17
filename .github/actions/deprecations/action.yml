@@ -5,6 +5,10 @@ inputs:
   mode:
     required: true
     description: "'annotate' to stamp '@deprecated' tags with version annotations, 'check' to fail when a symbol is due for removal in the current version"
+  ignore:
+    required: false
+    default: ""
+    description: "Newline-separated globs of files to skip, relative to the workspace root (e.g. 'libs/legacy/**'). Lines starting with '#' are ignored."
 
 runs:
   using: "node24"
