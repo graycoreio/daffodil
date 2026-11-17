@@ -18,3 +18,5 @@ jobs:
         uses: graycoreio/daffodil/.github/actions/deprecations@develop
         with:
           mode: check
+          ignore: |
+            libs/driver/shopify/src/codegen/generated-shopify-types.ts
