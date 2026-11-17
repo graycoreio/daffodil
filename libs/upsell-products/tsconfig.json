@@ -34,6 +34,9 @@
       "@daffodil/upsell-products/driver/magento/2.4.7": [
         "./driver/magento/2.4.7/src"
       ],
+      "@daffodil/upsell-products/driver/magento/2.4.7/testing": [
+        "./driver/magento/2.4.7/testing/src"
+      ],
       "@daffodil/upsell-products/testing": [
         "./testing/src"
       ],

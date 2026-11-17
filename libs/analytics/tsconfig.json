@@ -11,6 +11,20 @@
     }
   ],
   "compilerOptions": {
+    "paths": {
+      "@daffodil/*": [
+        "../../dist/*"
+      ],
+      "@daffodil/analytics": [
+        "./src"
+      ],
+      "@daffodil/analytics/driver": [
+        "./driver/src"
+      ],
+      "@daffodil/analytics/driver/data-layer": [
+        "./driver/data-layer"
+      ]
+    },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
