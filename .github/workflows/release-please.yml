@@ -43,6 +43,8 @@ jobs:
         uses: graycoreio/daffodil/.github/actions/deprecations@develop
         with:
           mode: annotate
+          ignore: |
+            libs/driver/shopify/src/codegen/generated-shopify-types.ts
 
       - name: Commit and push
         if: steps.release-please.outputs.prs_created == 'true'
