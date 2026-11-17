@@ -10,10 +10,12 @@ import {
 
 import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 import { DAFF_CART_STORE_FEATURE_KEY } from '@daffodil/cart/state';
+import { provideDaffCheckoutTestingOrderDriver } from '@daffodil/checkout/driver/testing';
 import { DaffOrderTestingDriverModule } from '@daffodil/order/driver/testing';
 import { DAFF_ORDER_STORE_FEATURE_KEY } from '@daffodil/order/state';
 
 import { provideDaffCheckoutState } from './provider';
+import { DAFF_CHECKOUT_STORE_FEATURE_KEY } from './reducers/feature-key.const';
 
 describe('@daffodil/checkout/state | provideDaffCheckoutState', () => {
   let store: Store<any>;
@@ -27,6 +29,7 @@ describe('@daffodil/checkout/state | provideDaffCheckoutState', () => {
         provideEffects(),
         importProvidersFrom(DaffTestingCartDriverModule.forRoot()),
         importProvidersFrom(DaffOrderTestingDriverModule.forRoot()),
+        provideDaffCheckoutTestingOrderDriver(),
         provideDaffCheckoutState(),
       ],
     });
@@ -34,11 +37,12 @@ describe('@daffodil/checkout/state | provideDaffCheckoutState', () => {
     store = TestBed.inject(Store);
   });
 
-  it('should register the cart and order feature states', () => {
+  it('should register the cart, order, and checkout feature states', () => {
     let state;
     store.subscribe((s) => state = s);
 
     expect(state[DAFF_CART_STORE_FEATURE_KEY]).toBeDefined();
     expect(state[DAFF_ORDER_STORE_FEATURE_KEY]).toBeDefined();
+    expect(state[DAFF_CHECKOUT_STORE_FEATURE_KEY]).toBeDefined();
   });
 });

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { DaffCartStateModule } from '@daffodil/cart/state';
-import { DaffOrderStateModule } from '@daffodil/order/state';
+import { provideDaffCheckoutState } from './provider';
 
 /**
  * The module for `@daffodil/checkout/state`.
@@ -9,9 +8,8 @@ import { DaffOrderStateModule } from '@daffodil/order/state';
  * @deprecated in favor of {@link provideDaffCheckoutState}
  */
 @NgModule({
-  imports: [
-    DaffCartStateModule,
-    DaffOrderStateModule,
+  providers: [
+    provideDaffCheckoutState(),
   ],
 })
 export class DaffCheckoutStateModule {}
