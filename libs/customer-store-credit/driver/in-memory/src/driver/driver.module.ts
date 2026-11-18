@@ -9,7 +9,7 @@ import { provideDaffCustomerStoreCreditInMemoryDriver } from '../provider';
 /**
  * Provides the {@link DaffCustomerStoreCreditInMemoryDriver} as the {@link DaffCustomerStoreCreditDriver}.
  *
- * @deprecated in favor of {@link provideDaffCustomerStoreCreditInMemoryDriver}
+ * @deprecated in favor of {@link provideDaffCustomerStoreCreditInMemoryDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

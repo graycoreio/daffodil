@@ -7,7 +7,7 @@ import {
 import { provideDaffGeographyMagentoDriver } from './provider';
 
 /**
- * @deprecated in favor of {@link provideDaffGeographyMagentoDriver}
+ * @deprecated in favor of {@link provideDaffGeographyMagentoDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

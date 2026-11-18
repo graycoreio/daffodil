@@ -12,7 +12,7 @@ import { DaffProductCompositePageEffects } from './effects/public_api';
 import { DaffProductCompositeQueryParamService } from './services/query-param.service';
 
 /**
- * @deprecated in favor of {@link provideDaffProductCompositeRouting}
+ * @deprecated in favor of {@link provideDaffProductCompositeRouting} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

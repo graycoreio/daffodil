@@ -24,7 +24,7 @@ import {
 /**
  * A module that provides the default reducers and effects for the configurable product redux state.
  *
- * @deprecated in favor of {@link provideDaffProductConfigurableState}
+ * @deprecated in favor of {@link provideDaffProductConfigurableState} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

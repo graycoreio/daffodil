@@ -22,7 +22,7 @@ import { DAFF_COMPOSITE_PRODUCT_STORE_FEATURE_KEY } from './reducers/public_api'
 /**
  * A module that provides the default reducers and effects for composite product redux state.
  *
- * @deprecated in favor of {@link provideDaffProductCompositeState}
+ * @deprecated in favor of {@link provideDaffProductCompositeState} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

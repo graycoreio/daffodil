@@ -7,7 +7,7 @@ import { DaffSearchProductStateCoreModule } from './core.module';
 import { DaffSearchProductCollectionEffects } from './effects/collection.effects';
 
 /**
- * @deprecated in favor of {@link provideDaffSearchProductPageState}
+ * @deprecated in favor of {@link provideDaffSearchProductPageState} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

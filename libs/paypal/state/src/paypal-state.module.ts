@@ -7,7 +7,7 @@ import { daffPaypalReducers } from './reducers/paypal-reducers';
 import { DAFF_PAYPAL_STORE_FEATURE_KEY } from './reducers/paypal-store-feature-key';
 
 /**
- * @deprecated in favor of {@link provideDaffPaypalState}
+ * @deprecated in favor of {@link provideDaffPaypalState} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

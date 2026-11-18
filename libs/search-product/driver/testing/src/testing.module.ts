@@ -9,7 +9,7 @@ import { provideDaffSearchProductTestingDriver } from './provider';
 /**
  * Module for providing the product search result factory as a search result kind factory.
  *
- * @deprecated in favor of {@link provideDaffSearchProductTestingDriver}
+ * @deprecated in favor of {@link provideDaffSearchProductTestingDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

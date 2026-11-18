@@ -7,7 +7,7 @@ import {
 import { provideDaffCustomerPaymentAuthorizeNetMagentoDriver } from './provider';
 
 /**
- * @deprecated in favor of {@link provideDaffCustomerPaymentAuthorizeNetMagentoDriver}
+ * @deprecated in favor of {@link provideDaffCustomerPaymentAuthorizeNetMagentoDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

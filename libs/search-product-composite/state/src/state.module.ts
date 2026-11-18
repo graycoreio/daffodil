@@ -12,7 +12,7 @@ import { daffSearchProductCompositeEnsureItemsMetaReducer } from './reducers/ens
 import { daffSearchProductCompositeReducers } from './reducers/public_api';
 
 /**
- * @deprecated in favor of {@link provideDaffSearchProductCompositeState}
+ * @deprecated in favor of {@link provideDaffSearchProductCompositeState} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [
