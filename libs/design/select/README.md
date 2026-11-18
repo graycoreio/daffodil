@@ -45,7 +45,7 @@ Use `daffSelectOption` to render a list of options in the select panel:
 ## Features
 
 ### Disabled
-Select can be disabled using Angular's reactive forms with `FormControl`.
+Select can be disabled using Angular's reactive forms with `FormControl`. If it becomes disabled while the options panel is open, selecting an option does not change the value.
 
 <daff-docs-example-viewer example="disabled-select"></daff-docs-example-viewer>
 
