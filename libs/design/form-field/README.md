@@ -58,10 +58,6 @@ A form field is composed of a wrapper, label, form control, prefix, suffix, acti
 - **`<daff-hint>`**: Helpful information displayed below the form field.
 - **`<daff-error-message>`**: A validation error displayed below the form field, positioned after any hints.
 
-> **Warning**
->
-> The `DaffFormLabelDirective` (using `daffFormLabel` on `<label>`) is deprecated and will be removed in `v1.0.0`. Use `<daff-form-label>` instead for new implementations.
-
 ## Features
 
 ### Appearances

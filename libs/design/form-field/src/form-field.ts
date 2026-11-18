@@ -1,7 +1,6 @@
 import {
   DaffPrefixDirective,
   DaffSuffixDirective,
-  DaffFormLabelDirective,
 } from '@daffodil/design';
 import {
   DaffErrorMessageComponent,
@@ -17,7 +16,6 @@ import { DaffFormFieldComponent } from './form-field/form-field.component';
  */
 export const DAFF_FORM_FIELD_COMPONENTS = <const> [
   DaffFormFieldComponent,
-  DaffFormLabelDirective,
   DaffPrefixDirective,
   DaffSuffixDirective,
   DaffFormFieldActionDirective,

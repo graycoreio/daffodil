@@ -61,9 +61,6 @@
       "@daffodil/design/input": [
         "./input/src"
       ],
-      "@daffodil/design/link-set": [
-        "./link-set/src"
-      ],
       "@daffodil/design/list": [
         "./list/src"
       ],
@@ -93,9 +90,6 @@
       ],
       "@daffodil/design/beacon": [
         "./beacon/src"
-      ],
-      "@daffodil/design/quantity-field": [
-        "./quantity-field/src"
       ],
       "@daffodil/design/radio": [
         "./radio/src"

@@ -1,7 +1,7 @@
 import { EventEmitter } from '@angular/core';
 
 import {
-  DaffPalette,
+  DaffColor,
   DaffStatus,
 } from '@daffodil/design';
 
@@ -38,7 +38,7 @@ export interface DaffToastAction {
    *
    * Do not use both `color` and `status` simultaneously.
    */
-  color?: DaffPalette;
+  color?: DaffColor;
 
   /**
    * The button status.

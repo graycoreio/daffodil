@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 
-import { DaffFormLabelModule } from '@daffodil/design';
 import {
   DaffErrorMessageComponent,
   DaffFormFieldLabelDirective,
@@ -18,14 +17,12 @@ import { DaffFormFieldComponent } from './form-field/form-field.component';
     DaffErrorMessageComponent,
     DaffHintComponent,
     DaffFormFieldLabelDirective,
-    DaffFormLabelModule,
   ],
   exports: [
     DaffFormFieldComponent,
     DaffErrorMessageComponent,
     DaffHintComponent,
     DaffFormFieldLabelDirective,
-    DaffFormLabelModule,
   ],
 })
 export class DaffFormFieldModule { }

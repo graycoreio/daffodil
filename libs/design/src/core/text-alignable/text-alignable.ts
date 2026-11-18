@@ -1,11 +1,4 @@
 /**
- * @deprecated Deprecated in version 0.92.1. Will be removed in version 0.95.0.
- */
-export interface DaffTextAlignable {
-  textAlignment: DaffTextAlignment;
-}
-
-/**
  *  * The available text alignment options.
  */
 export type DaffTextAlignment = 'left' | 'center' | 'right';

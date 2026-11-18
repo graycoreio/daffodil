@@ -2,8 +2,5 @@
  * Public API Surface of @daffodil/design
  */
 
-// Atoms
-export * from './atoms/form/form-label/public_api';
-
 // Core
 export * from './core/public_api';
