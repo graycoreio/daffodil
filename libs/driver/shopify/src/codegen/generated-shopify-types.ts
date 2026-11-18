@@ -7,19 +7,19 @@ export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> =
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export interface Scalars {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
-  Color: { input: any; output: any; }
-  DateTime: { input: any; output: any; }
-  Decimal: { input: any; output: any; }
-  HTML: { input: any; output: any; }
-  ISO8601DateTime: { input: any; output: any; }
-  JSON: { input: any; output: any; }
-  URL: { input: any; output: any; }
-  UnsignedInt64: { input: any; output: any; }
+  ID: { input: string; output: string };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
+  Color: { input: any; output: any };
+  DateTime: { input: any; output: any };
+  Decimal: { input: any; output: any };
+  HTML: { input: any; output: any };
+  ISO8601DateTime: { input: any; output: any };
+  JSON: { input: any; output: any };
+  URL: { input: any; output: any };
+  UnsignedInt64: { input: any; output: any };
 }
 
 /**
@@ -79,14 +79,14 @@ export interface ShopifyAppliedGiftCard extends ShopifyNode {
   amountUsed: ShopifyMoneyV2;
   /**
    * The amount that was taken from the gift card by applying it.
-   * @deprecated Use `amountUsed` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `amountUsed` instead.
    */
   amountUsedV2: ShopifyMoneyV2;
   /** The amount left on the gift card. */
   balance: ShopifyMoneyV2;
   /**
    * The amount left on the gift card.
-   * @deprecated Use `balance` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `balance` instead.
    */
   balanceV2: ShopifyMoneyV2;
   /** A globally-unique ID. */
@@ -107,7 +107,7 @@ export interface ShopifyArticle extends ShopifyHasMetafields, ShopifyNode, Shopi
   __typename?: 'Article';
   /**
    * The article's author.
-   * @deprecated Use `authorV2` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `authorV2` instead.
    */
   author: ShopifyArticleAuthor;
   /** The article's author. */
@@ -342,7 +342,7 @@ export interface ShopifyBaseCartLine {
   discountAllocations: Array<ShopifyCartDiscountAllocation>;
   /**
    * The estimated cost of the merchandise that the buyer will pay for at checkout. The estimated costs are subject to change and changes will be reflected at checkout.
-   * @deprecated Use `cost` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `cost` instead.
    */
   estimatedCost: ShopifyCartLineEstimatedCost;
   /** A globally-unique ID. */
@@ -629,7 +629,7 @@ export interface ShopifyCart extends ShopifyHasMetafields, ShopifyNode {
   discountCodes: Array<ShopifyCartDiscountCode>;
   /**
    * The estimated costs that the buyer will pay at checkout. The estimated costs are subject to change and changes will be reflected at checkout. The `estimatedCost` field uses the `buyerIdentity` field to determine [international pricing](https://shopify.dev/custom-storefronts/internationalization/international-pricing).
-   * @deprecated Use `cost` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `cost` instead.
    */
   estimatedCost: ShopifyCartEstimatedCost;
   /** A globally-unique ID. */
@@ -798,7 +798,7 @@ export interface ShopifyCartBuyerIdentity {
    * - `cartDeliveryAddressUpdate`
    * - `cartDeliveryAddressDelete`
    *
-   * @deprecated Use `cart.delivery` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `cart.delivery` instead.
    */
   deliveryAddressPreferences: Array<ShopifyDeliveryAddress>;
   /** The email address of the buyer that's interacting with the cart. */
@@ -949,7 +949,7 @@ export interface ShopifyCartCost {
   totalAmountEstimated: Scalars['Boolean']['output'];
   /**
    * The duty amount for the customer to pay at checkout.
-   * @deprecated Tax and duty amounts are no longer available and will be removed in a future version. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Tax and duty amounts are no longer available and will be removed in a future version.
    * Please see [the changelog](https://shopify.dev/changelog/tax-and-duties-are-deprecated-in-storefront-cart-api)
    * for more information.
    *
@@ -957,7 +957,7 @@ export interface ShopifyCartCost {
   totalDutyAmount?: Maybe<ShopifyMoneyV2>;
   /**
    * Whether the total duty amount is estimated.
-   * @deprecated Tax and duty amounts are no longer available and will be removed in a future version. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Tax and duty amounts are no longer available and will be removed in a future version.
    * Please see [the changelog](https://shopify.dev/changelog/tax-and-duties-are-deprecated-in-storefront-cart-api)
    * for more information.
    *
@@ -965,7 +965,7 @@ export interface ShopifyCartCost {
   totalDutyAmountEstimated: Scalars['Boolean']['output'];
   /**
    * The tax amount for the customer to pay at checkout.
-   * @deprecated Tax and duty amounts are no longer available and will be removed in a future version. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Tax and duty amounts are no longer available and will be removed in a future version.
    * Please see [the changelog](https://shopify.dev/changelog/tax-and-duties-are-deprecated-in-storefront-cart-api)
    * for more information.
    *
@@ -973,7 +973,7 @@ export interface ShopifyCartCost {
   totalTaxAmount?: Maybe<ShopifyMoneyV2>;
   /**
    * Whether the total tax amount is estimated.
-   * @deprecated Tax and duty amounts are no longer available and will be removed in a future version. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Tax and duty amounts are no longer available and will be removed in a future version.
    * Please see [the changelog](https://shopify.dev/changelog/tax-and-duties-are-deprecated-in-storefront-cart-api)
    * for more information.
    *
@@ -1645,7 +1645,7 @@ export interface ShopifyCartLine extends ShopifyBaseCartLine, ShopifyNode {
   discountAllocations: Array<ShopifyCartDiscountAllocation>;
   /**
    * The estimated cost of the merchandise that the buyer will pay for at checkout. The estimated costs are subject to change and changes will be reflected at checkout.
-   * @deprecated Use `cost` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `cost` instead.
    */
   estimatedCost: ShopifyCartLineEstimatedCost;
   /** A globally-unique ID. */
@@ -2448,7 +2448,7 @@ export interface ShopifyComponentizableCartLine extends ShopifyBaseCartLine, Sho
   discountAllocations: Array<ShopifyCartDiscountAllocation>;
   /**
    * The estimated cost of the merchandise that the buyer will pay for at checkout. The estimated costs are subject to change and changes will be reflected at checkout.
-   * @deprecated Use `cost` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `cost` instead.
    */
   estimatedCost: ShopifyCartLineEstimatedCost;
   /** A globally-unique ID. */
@@ -2504,7 +2504,7 @@ export interface ShopifyCountry {
   isoCode: ShopifyCountryCode;
   /**
    * The market that includes this country.
-   * @deprecated This `market` field will be removed in a future version of the API. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated This `market` field will be removed in a future version of the API.
    */
   market?: Maybe<ShopifyMarket>;
   /** The name of the country. */
@@ -3095,7 +3095,7 @@ export enum ShopifyCurrencyCode {
   Byn = 'BYN',
   /**
    * Belarusian Ruble (BYR).
-   * @deprecated `BYR` is deprecated. Use `BYN` available from version `2021-01` onwards instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated `BYR` is deprecated. Use `BYN` available from version `2021-01` onwards instead.
    */
   Byr = 'BYR',
   /** Belize Dollar (BZD). */
@@ -3308,7 +3308,7 @@ export enum ShopifyCurrencyCode {
   Ssp = 'SSP',
   /**
    * Sao Tome And Principe Dobra (STD).
-   * @deprecated `STD` is deprecated. Use `STN` available from version `2022-07` onwards instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated `STD` is deprecated. Use `STN` available from version `2022-07` onwards instead.
    */
   Std = 'STD',
   /** Sao Tome And Principe Dobra (STN). */
@@ -3349,7 +3349,7 @@ export enum ShopifyCurrencyCode {
   Ved = 'VED',
   /**
    * Venezuelan Bolivares (VEF).
-   * @deprecated `VEF` is deprecated. Use `VES` available from version `2020-10` onwards instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated `VEF` is deprecated. Use `VES` available from version `2020-10` onwards instead.
    */
   Vef = 'VEF',
   /** Venezuelan Bolivares Soberanos (VES). */
@@ -3523,7 +3523,7 @@ export interface ShopifyCustomerAccessTokenCreatePayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3587,7 +3587,7 @@ export interface ShopifyCustomerActivatePayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3601,7 +3601,7 @@ export interface ShopifyCustomerAddressCreatePayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3615,7 +3615,7 @@ export interface ShopifyCustomerAddressDeletePayload {
   deletedCustomerAddressId?: Maybe<Scalars['String']['output']>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3629,7 +3629,7 @@ export interface ShopifyCustomerAddressUpdatePayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3672,7 +3672,7 @@ export interface ShopifyCustomerCreatePayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3686,7 +3686,7 @@ export interface ShopifyCustomerDefaultAddressUpdatePayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3735,7 +3735,7 @@ export interface ShopifyCustomerRecoverPayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3751,7 +3751,7 @@ export interface ShopifyCustomerResetByUrlPayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3775,7 +3775,7 @@ export interface ShopifyCustomerResetPayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3822,7 +3822,7 @@ export interface ShopifyCustomerUpdatePayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3952,7 +3952,7 @@ export enum ShopifyDiscountApplicationAllocationMethod {
   Each = 'EACH',
   /**
    * The value is specifically applied onto a particular line.
-   * @deprecated Use ACROSS instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use ACROSS instead.
    */
   One = 'ONE'
 }
@@ -4064,7 +4064,7 @@ export interface ShopifyExternalVideo extends ShopifyMedia, ShopifyNode {
   embedUrl: Scalars['URL']['output'];
   /**
    * The URL.
-   * @deprecated Use `originUrl` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `originUrl` instead.
    */
   embeddedUrl: Scalars['URL']['output'];
   /** The host of the external video. */
@@ -4356,12 +4356,12 @@ export interface ShopifyImage {
    *
    * If there are any existing transformations in the original source URL, they will remain and not be stripped.
    *
-   * @deprecated Use `url` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `url` instead.
    */
   originalSrc: Scalars['URL']['output'];
   /**
    * The location of the image as a URL.
-   * @deprecated Use `url` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `url` instead.
    */
   src: Scalars['URL']['output'];
   /**
@@ -4370,7 +4370,7 @@ export interface ShopifyImage {
    * All transformation arguments are considered "best-effort". If they can be applied to an image, they will be.
    * Otherwise any transformations which an image type doesn't support will be ignored.
    *
-   * @deprecated Use `url(transform:)` instead Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `url(transform:)` instead
    */
   transformedSrc: Scalars['URL']['output'];
   /**
@@ -4837,7 +4837,7 @@ export interface ShopifyLocalization {
   language: ShopifyLanguage;
   /**
    * The market including the country of the active localized experience. Use the `@inContext` directive to change this value.
-   * @deprecated This `market` field will be removed in a future version of the API. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated This `market` field will be removed in a future version of the API.
    */
   market: ShopifyMarket;
 }
@@ -4984,7 +4984,7 @@ export interface ShopifyMailingAddress extends ShopifyNode {
    *
    * For example, US.
    *
-   * @deprecated Use `countryCodeV2` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `countryCodeV2` instead.
    */
   countryCode?: Maybe<Scalars['String']['output']>;
   /**
@@ -5272,7 +5272,7 @@ export interface ShopifyMediaPresentation extends ShopifyNode {
   asJson?: Maybe<Scalars['JSON']['output']>;
   /**
    * A globally-unique ID.
-   * @deprecated MediaPresentation IDs are being deprecated. Access the data directly via the asJson field on the Media type. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated MediaPresentation IDs are being deprecated. Access the data directly via the asJson field on the Media type.
    */
   id: Scalars['ID']['output'];
 }
@@ -6324,7 +6324,7 @@ export interface ShopifyOrder extends ShopifyHasMetafields, ShopifyNode {
   subtotalPrice?: Maybe<ShopifyMoneyV2>;
   /**
    * Price of the order before duties, shipping and taxes.
-   * @deprecated Use `subtotalPrice` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `subtotalPrice` instead.
    */
   subtotalPriceV2?: Maybe<ShopifyMoneyV2>;
   /** List of the order’s successful fulfillments. */
@@ -6333,28 +6333,28 @@ export interface ShopifyOrder extends ShopifyHasMetafields, ShopifyNode {
   totalPrice: ShopifyMoneyV2;
   /**
    * The sum of all the prices of all the items in the order, duties, taxes and discounts included (must be positive).
-   * @deprecated Use `totalPrice` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `totalPrice` instead.
    */
   totalPriceV2: ShopifyMoneyV2;
   /** The total amount that has been refunded. */
   totalRefunded: ShopifyMoneyV2;
   /**
    * The total amount that has been refunded.
-   * @deprecated Use `totalRefunded` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `totalRefunded` instead.
    */
   totalRefundedV2: ShopifyMoneyV2;
   /** The total cost of shipping. */
   totalShippingPrice: ShopifyMoneyV2;
   /**
    * The total cost of shipping.
-   * @deprecated Use `totalShippingPrice` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `totalShippingPrice` instead.
    */
   totalShippingPriceV2: ShopifyMoneyV2;
   /** The total cost of taxes. */
   totalTax?: Maybe<ShopifyMoneyV2>;
   /**
    * The total cost of taxes.
-   * @deprecated Use `totalTax` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `totalTax` instead.
    */
   totalTaxV2?: Maybe<ShopifyMoneyV2>;
 }
@@ -7341,7 +7341,7 @@ export interface ShopifyProductOption extends ShopifyNode {
   optionValues: Array<ShopifyProductOptionValue>;
   /**
    * The corresponding value to the product option name.
-   * @deprecated Use `optionValues` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `optionValues` instead.
    */
   values: Array<Scalars['String']['output']>;
 }
@@ -7457,7 +7457,7 @@ export interface ShopifyProductVariant extends ShopifyHasMetafields, ShopifyNode
   compareAtPrice?: Maybe<ShopifyMoneyV2>;
   /**
    * The compare at price of the variant. This can be used to mark a variant as on sale, when `compareAtPriceV2` is higher than `priceV2`.
-   * @deprecated Use `compareAtPrice` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `compareAtPrice` instead.
    */
   compareAtPriceV2?: Maybe<ShopifyMoneyV2>;
   /**
@@ -7484,7 +7484,7 @@ export interface ShopifyProductVariant extends ShopifyHasMetafields, ShopifyNode
   price: ShopifyMoneyV2;
   /**
    * The product variant’s price.
-   * @deprecated Use `price` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `price` instead.
    */
   priceV2: ShopifyMoneyV2;
   /** The product object that the product variant belongs to. */
@@ -7836,7 +7836,7 @@ export interface ShopifyQueryRoot {
   /**
    * Retrieves a [`Blog`](https://shopify.dev/docs/api/storefront/current/objects/Blog) by its handle. A blog organizes [`Article`](https://shopify.dev/docs/api/storefront/current/objects/Article) objects for the online store and includes author information, [`SEO`](https://shopify.dev/docs/api/storefront/current/objects/SEO) settings, and custom [`Metafield`](https://shopify.dev/docs/api/storefront/current/objects/Metafield) objects.
    *
-   * @deprecated Use `blog` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `blog` instead.
    */
   blogByHandle?: Maybe<ShopifyBlog>;
   /**
@@ -7864,7 +7864,7 @@ export interface ShopifyQueryRoot {
   /**
    * Retrieves a [`Collection`](https://shopify.dev/docs/api/storefront/current/objects/Collection) by its URL-friendly handle. Handles are automatically generated from collection titles but merchants can customize them.
    *
-   * @deprecated Use `collection` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `collection` instead.
    */
   collectionByHandle?: Maybe<ShopifyCollection>;
   /**
@@ -7941,7 +7941,7 @@ export interface ShopifyQueryRoot {
   /**
    * Retrieves a [`Page`](https://shopify.dev/docs/api/storefront/current/objects/Page) by its handle.
    *
-   * @deprecated Use `page` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `page` instead.
    */
   pageByHandle?: Maybe<ShopifyPage>;
   /**
@@ -7966,7 +7966,7 @@ export interface ShopifyQueryRoot {
   /**
    * Retrieves a [`Product`](https://shopify.dev/docs/api/storefront/current/objects/Product) by its handle. The handle is a URL-friendly identifier that's automatically generated from the product's title. If no product exists with the specified handle, returns `null`.
    *
-   * @deprecated Use `product` instead. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+   * @deprecated Use `product` instead.
    */
   productByHandle?: Maybe<ShopifyProduct>;
   /**
