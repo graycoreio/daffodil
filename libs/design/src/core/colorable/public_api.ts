@@ -1,6 +1,2 @@
-export {
-  DaffPalette,
-  DaffColor,
-} from './colorable';
-export { DaffColorable } from './colorable';
+export { DaffColor } from './colorable';
 export { DaffColorableDirective } from './colorable.directive';

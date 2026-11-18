@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import { DaffPalette } from '@daffodil/design';
+import { DaffColor } from '@daffodil/design';
 import { DAFF_PROGRESS_BAR_COMPONENTS } from '@daffodil/design/progress-bar';
 
 @Component({
@@ -27,7 +27,7 @@ import { DAFF_PROGRESS_BAR_COMPONENTS } from '@daffodil/design/progress-bar';
   ],
 })
 export class ProgressBarThemesExampleComponent {
-  color: DaffPalette = 'primary';
+  color: DaffColor = 'primary';
 
   colorControl: FormControl = new FormControl('');
 }
