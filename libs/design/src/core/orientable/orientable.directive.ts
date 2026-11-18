@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 
 import {
-  DaffOrientable,
   DaffOrientation,
   DaffOrientationEnum,
 } from './orientable';
@@ -33,7 +32,7 @@ const validateOrientation = (orientation: string) => {
     '[class.daff-vertical]': 'orientation === "vertical"',
   },
 })
-export class DaffOrientableDirective implements DaffOrientable, OnChanges, OnInit {
+export class DaffOrientableDirective implements OnChanges, OnInit {
   /**
    * The orientation of the component.
    */

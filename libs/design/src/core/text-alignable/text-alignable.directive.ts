@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 
 import {
-  DaffTextAlignable,
   DaffTextAlignment,
   DaffTextAlignmentEnum,
 } from './text-alignable';
@@ -34,7 +33,7 @@ const validateTextAlignment = (textAlignment: string) => {
     '[class.daff-right]': 'textAlignment === "right"',
   },
 })
-export class DaffTextAlignableDirective implements DaffTextAlignable, OnChanges, OnInit {
+export class DaffTextAlignableDirective implements OnChanges, OnInit {
 
   /**
    * The text alignment of the component.

@@ -1,5 +1,4 @@
 export {
-  DaffOrientable,
   DaffOrientation,
   DaffOrientationEnum,
 } from './orientable';

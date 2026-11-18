@@ -109,7 +109,3 @@ Use the `loading` property to indicate that an action is being processed. When `
 - Use `<a>` for navigation to new pages or different sections
 - Use `<button>` for actions performed within the same page
 - Give icon only buttons (`<daff-icon-button>`) a meaningful label using `aria-label` or `aria-labelledby`
-
-## Deprecations
-- `<daff-raised-button>` is deprecated and will be removed in v1.0.0. Use the `elevated` property instead.
-- `<daff-underline-button>` is deprecated and will be removed in v1.0.0.

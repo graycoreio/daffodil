@@ -81,16 +81,6 @@ import { DaffToastTitleDirective } from '../toast-title/toast-title.directive';
               {{ action.content }}
           </button>
         }
-        @case ('underline') {
-          <button type="button" daff-underline-button
-            [status]="action.status"
-            [color]="action.color"
-            [size]="action.size"
-            [attr.aria-label]="action.content"
-            (click)="action.eventEmitter?.emit({ event: $event, action})">
-              {{ action.content }}
-          </button>
-        }
         @default {
           <button type="button" daff-button
             [status]="action.status"

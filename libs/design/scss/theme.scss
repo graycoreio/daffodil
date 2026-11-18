@@ -82,9 +82,7 @@
 	@include button.daff-button-theme($theme);
 	@include flat-button.daff-flat-button-theme($theme);
 	@include icon-button.daff-icon-button-theme($theme);
-	@include raised-button.daff-raised-button-theme($theme);
 	@include stroked-button.daff-stroked-button-theme($theme);
-	@include underline-button.daff-underline-button-theme($theme);
 
 	@include card-base.daff-card-base-theme($theme);
 	@include stroked-card.daff-stroked-card-theme($theme);
