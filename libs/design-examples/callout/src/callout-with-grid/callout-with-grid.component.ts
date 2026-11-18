@@ -7,7 +7,6 @@ import { faTag } from '@fortawesome/free-solid-svg-icons';
 
 import {
   DaffButtonComponent,
-  DaffUnderlineButtonComponent,
 } from '@daffodil/design/button';
 import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
@@ -22,7 +21,6 @@ import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
     DAFF_CONTAINER_COMPONENTS,
     FaIconComponent,
     DaffButtonComponent,
-    DaffUnderlineButtonComponent,
   ],
 })
 export class CalloutWithGridExampleComponent {
