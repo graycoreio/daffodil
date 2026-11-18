@@ -11,7 +11,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffPalette } from '@daffodil/design';
+import { DaffColor } from '@daffodil/design';
 
 import { DaffCardBaseDirective } from './card-base.directive';
 
@@ -25,7 +25,7 @@ import { DaffCardBaseDirective } from './card-base.directive';
 })
 
 class WrapperComponent {
-  color = signal<DaffPalette>(undefined);
+  color = signal<DaffColor>(undefined);
   orientation = signal<string>(undefined);
   elevated = signal<boolean>(undefined);
 }

@@ -12,7 +12,7 @@ import {
 import { By } from '@angular/platform-browser';
 
 import {
-  DaffPalette,
+  DaffColor,
   DaffTextAlignment,
 } from '@daffodil/design';
 
@@ -26,7 +26,7 @@ import { DaffHeroComponent } from './hero.component';
   ],
 })
 class WrapperComponent {
-  color = signal<DaffPalette>(undefined);
+  color = signal<DaffColor>(undefined);
   textAlignment = signal<DaffTextAlignment>(undefined);
   compact = signal<boolean>(undefined);
 }
