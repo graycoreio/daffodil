@@ -12,7 +12,7 @@ import {
 import { By } from '@angular/platform-browser';
 
 import {
-  DaffPalette,
+  DaffColor,
   DaffStatus,
 } from '@daffodil/design';
 
@@ -29,7 +29,7 @@ import { DaffButtonSize } from './button-sizable.directive';
 })
 
 class WrapperComponent {
-  color = signal<DaffPalette>(undefined);
+  color = signal<DaffColor>(undefined);
   size = signal<DaffButtonSize>(undefined);
   status = signal<DaffStatus>(undefined);
   tabindex = 0;
