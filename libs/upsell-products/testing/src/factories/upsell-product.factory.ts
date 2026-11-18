@@ -1,40 +1,41 @@
 import { Injectable } from '@angular/core';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
-import { DaffProduct } from '@daffodil/product';
+import { DaffModelFactory, IDaffModelFactory } from '@daffodil/core/testing';
+import { DaffProduct, DaffProductImage } from '@daffodil/product';
 import {
   MockProduct,
   DaffProductKindFactory,
   DaffProductImageFactory,
 } from '@daffodil/product/testing';
-import { DaffUpsellProduct } from '@daffodil/upsell-products';
+
+import { DaffUpsellProduct } from '../../models/upsell-product';
 
 /**
- * Mocked DaffUpsellProduct object.
+ * Mocked {@link DaffUpsellProduct} object for testing.
  */
 export class MockUpsellProduct extends MockProduct implements DaffUpsellProduct {
   upsell: DaffProduct[] = [];
 
   constructor(
-    productFactory: DaffProductKindFactory,
-    imageFactory: DaffProductImageFactory,
+    productFactory: IDaffModelFactory<DaffProduct>,
+    imageFactory: IDaffModelFactory<DaffProductImage>,
   ) {
     super(imageFactory);
 
-    this.upsell = productFactory.createMany(3);
+    this.upsell = productFactory.createMany(this.upsellCount);
   }
 }
 
 /**
- * Factory for creating DaffUpsellProducts.
+ * Factory for creating {@link DaffUpsellProduct}s.
  */
 @Injectable({
   providedIn: 'root',
 })
 export class DaffUpsellProductFactory extends DaffModelFactory<DaffUpsellProduct>{
   constructor(
-    productKindFactory: DaffProductKindFactory,
-    imageFactory: DaffProductImageFactory,
+    productKindFactory: IDaffModelFactory<DaffProduct>,
+    imageFactory: IDaffModelFactory<DaffProductImage>,
   ) {
     super(MockUpsellProduct, productKindFactory, imageFactory);
   }
