@@ -20,7 +20,6 @@ import {
   DaffPrefixDirective,
   DaffSuffixDirective,
   DaffSkeletonableDirective,
-  DaffFormLabelDirective,
 } from '@daffodil/design';
 import {
   DaffErrorMessageComponent,
@@ -104,13 +103,6 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
    * The child form control that the form field manages.
    */
   _control = contentChild(DaffFormFieldControl);
-
-  /**
-   * @docs-private
-   *
-   * @deprecated Deprecated in version 0.86.0. Will be removed in version 1.0.0.
-   */
-  _formLabelDirective = contentChild(DaffFormLabelDirective);
 
   /**
    * @docs-private

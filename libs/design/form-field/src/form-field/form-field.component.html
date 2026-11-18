@@ -45,9 +45,7 @@
 </ng-template>
 
 <ng-template #labelTemplate>
-  @if (_formLabelDirective()) {
-    <ng-content select="label[daffFormLabel]"></ng-content>
-  } @else if(_formFieldLabelDirective()) {
+  @if (_formFieldLabelDirective()) {
     <label class="daff-form-field__label"
       [attr.for]="autoLabelId()"
       [attr.id]="customId()">
