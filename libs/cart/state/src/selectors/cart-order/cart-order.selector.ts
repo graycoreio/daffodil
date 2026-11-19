@@ -18,7 +18,7 @@ import {
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 
 /**
- * @deprecated Use {@link DaffCheckoutOrderMemoizedSelectors} instead.
+ * @deprecated Use {@link DaffCheckoutOrderMemoizedSelectors} instead. Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 export interface DaffCartOrderMemoizedSelectors<
   T extends DaffCart = DaffCart,
@@ -94,7 +94,7 @@ const createCartOrderSelectors = <
 };
 
 /**
- * @deprecated Use {@link getCheckoutOrderSelectors} instead.
+ * @deprecated Use {@link getCheckoutOrderSelectors} instead. Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 export const getCartOrderSelectors: <
   T extends DaffCart = DaffCart,

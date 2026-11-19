@@ -12,7 +12,7 @@ import { provideDaffInMemoryDriver } from './provider';
 /**
  * Sets up the angular in memory web API with the {@link DaffInMemoryRootBackend}.
  *
- * @deprecated in favor of {@link provideDaffInMemoryDriver}
+ * @deprecated in favor of {@link provideDaffInMemoryDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule()
 export class DaffInMemoryDriverModule {

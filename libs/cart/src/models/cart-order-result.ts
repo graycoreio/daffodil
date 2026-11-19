@@ -4,7 +4,7 @@ import { ID } from '@daffodil/core';
  * The result of placing an order for a cart.
  * Stores a reference to a cart and order object.
  *
- * @deprecated Use {@link DaffCheckoutOrderResult} instead.
+ * @deprecated Use {@link DaffCheckoutOrderResult} instead. Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 export interface DaffCartOrderResult {
   /**

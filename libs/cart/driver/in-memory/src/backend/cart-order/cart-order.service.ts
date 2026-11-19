@@ -12,7 +12,7 @@ import { DAFF_CART_IN_MEMORY_CART_ORDER_COLLECTION_NAME } from '../../collection
 /**
  * @inheritdoc
  *
- * @deprecated Use {@link DaffCheckoutInMemoryBackendOrderService} instead.
+ * @deprecated Use {@link DaffCheckoutInMemoryBackendOrderService} instead. Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @Injectable({
   providedIn: 'root',

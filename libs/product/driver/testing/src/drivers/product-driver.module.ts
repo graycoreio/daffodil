@@ -9,7 +9,7 @@ import { provideDaffProductTestingDriver } from './provider';
 /**
  * Module for providing the {@link DaffProductTestingService} driver as the {@link DaffProductDriver}.
  *
- * @deprecated in favor of {@link provideDaffProductTestingDriver}
+ * @deprecated in favor of {@link provideDaffProductTestingDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

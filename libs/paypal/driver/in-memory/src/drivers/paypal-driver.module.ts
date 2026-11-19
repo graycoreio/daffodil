@@ -7,7 +7,7 @@ import {
 import { provideDaffPaypalInMemoryDriver } from './provider';
 
 /**
- * @deprecated in favor of {@link provideDaffPaypalInMemoryDriver}
+ * @deprecated in favor of {@link provideDaffPaypalInMemoryDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

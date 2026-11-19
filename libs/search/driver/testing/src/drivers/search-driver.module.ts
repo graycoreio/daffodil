@@ -9,7 +9,7 @@ import { provideDaffSearchTestingDriver } from './provider';
 /**
  * Provides the {@link DaffTestingSearchDriver} as the {@link DaffSearchDriver}.
  *
- * @deprecated in favor of {@link provideDaffSearchTestingDriver}
+ * @deprecated in favor of {@link provideDaffSearchTestingDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

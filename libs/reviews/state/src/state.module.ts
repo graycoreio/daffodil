@@ -25,7 +25,7 @@ import { daffReviewsReducers } from './reducers/reducers';
 /**
  * A module that provides the default reducers and effects for the reviews redux state.
  *
- * @deprecated in favor of {@link provideDaffReviewsState}
+ * @deprecated in favor of {@link provideDaffReviewsState} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

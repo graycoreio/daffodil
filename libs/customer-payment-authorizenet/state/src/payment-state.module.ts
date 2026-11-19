@@ -15,7 +15,7 @@ import { DaffCustomerPaymentAuthorizeNetActionTypes } from './actions/payment.ac
 import { daffCustomerPaymentAuthorizenetReducer } from './reducers/authorizenet.reducer';
 
 /**
- * @deprecated in favor of {@link provideDaffCustomerPaymentAuthorizeNetPaymentState}
+ * @deprecated in favor of {@link provideDaffCustomerPaymentAuthorizeNetPaymentState} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

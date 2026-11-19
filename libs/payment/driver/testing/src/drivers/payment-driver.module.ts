@@ -9,7 +9,7 @@ import { provideDaffPaymentTestingDriver } from './provider';
 /**
  * Provides the {@link DaffPaymentTestingDriver} as the {@link DaffPaymentDriver}.
  *
- * @deprecated in favor of {@link provideDaffPaymentTestingDriver}
+ * @deprecated in favor of {@link provideDaffPaymentTestingDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

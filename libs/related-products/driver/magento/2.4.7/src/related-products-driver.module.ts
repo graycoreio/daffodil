@@ -9,7 +9,7 @@ import { provideDaffRelatedProductsMagentoDriver } from './provider';
 /**
  * A module that provides the {@link magentoRelatedProductsFragment} and {@link DaffMagentoRelatedProductsTransformers}.
  *
- * @deprecated in favor of {@link provideDaffRelatedProductsMagentoDriver}
+ * @deprecated in favor of {@link provideDaffRelatedProductsMagentoDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [

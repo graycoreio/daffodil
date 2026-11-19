@@ -9,7 +9,7 @@ import { DaffHubspotConfig } from '@daffodil/driver/hubspot';
 import { provideDaffNewsletterHubSpotDriver } from './provider';
 
 /**
- * @deprecated in favor of {@link provideDaffNewsletterHubSpotDriver}
+ * @deprecated in favor of {@link provideDaffNewsletterHubSpotDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [CommonModule],

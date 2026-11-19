@@ -9,7 +9,7 @@ import { provideDaffProductCompositeTestingDriver } from './provider';
 /**
  * Module for providing the composite product factory to the product kind factory.
  *
- * @deprecated in favor of {@link provideDaffProductCompositeTestingDriver}
+ * @deprecated in favor of {@link provideDaffProductCompositeTestingDriver} Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   imports: [
