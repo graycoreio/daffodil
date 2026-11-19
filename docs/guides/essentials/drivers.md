@@ -236,6 +236,59 @@ The builder works out the driver conditions on every build and merges them with 
 
 Angular does not pass build conditions to the dev server's dependency prebundling, so prebundled packages would resolve the wrong driver. The builder therefore always disables `prebundle`. This makes the dev server slower to start and rebuild; production builds are unaffected.
 
+#### Unit test builder
+
+Like the dev server, `@angular/build:unit-test` reads the build target's options instead of running its builder. When your `build` target uses `@daffodil/commerce:application`, use `@daffodil/commerce:unit-test` for your `test` target. It wraps `@angular/build:unit-test`, takes all of its options, and reads `drivers` and `packages` from the build target:
+
+```json
+{
+	"architect": {
+		"build": {
+			"builder": "@daffodil/commerce:application",
+			"options": {
+				"drivers": {
+					"magento": "2.4.7-p11"
+				}
+			}
+		},
+		"test": {
+			"builder": "@daffodil/commerce:unit-test",
+			"options": {
+				"buildTarget": "my-app:build:development",
+				"runner": "vitest"
+			}
+		}
+	}
+}
+```
+
+The builder only supports the `vitest` runner, which is also Angular's default. If `runner` is set to `karma`, the builder fails with an error.
+
+##### Karma
+
+Karma can't be used with automatically versioned drivers. Angular's Karma test builds, whether they come from `@angular/build:karma`, `@angular-devkit/build-angular:karma` or the `karma` runner of `@angular/build:unit-test`, use a fixed set of build options that doesn't include `conditions`. They also offer no hook to add them. As a result, every `driver/<platform>/auto` import in your tests resolves to the default entrypoint, which exports nothing, and the build fails with errors such as `Module has no exported member`. This applies to the sync builder too, because the conditions it writes to the build target never reach the Karma build.
+
+We recommend moving your tests to Vitest. If you need to stay on Karma, you can map each `auto` import to the files of its selected driver version with `paths` in the `tsconfig` your tests use. List two extensionless paths: the type declarations first, then the bundled code. TypeScript adds `.d.ts` and matches the first path, while the bundler adds `.mjs` and falls through to the second:
+
+```json
+{
+	"compilerOptions": {
+		"paths": {
+			"@daffodil/customer-order/driver/magento/auto": [
+				"node_modules/@daffodil/customer-order/types/daffodil-customer-order-driver-magento-2.4.6",
+				"node_modules/@daffodil/customer-order/fesm2022/daffodil-customer-order-driver-magento-2.4.6"
+			]
+		}
+	}
+}
+```
+
+Keep the following in mind with this workaround:
+
+- You need one entry per `auto` entrypoint you import, including `auto/testing` entrypoints.
+- `paths` replaces the `paths` of any `tsconfig` it extends, so copy over any mappings you still need.
+- The entries point at specific files inside the packages. Update them whenever you change your platform version or upgrade Daffodil.
+
 #### Sync builder
 
 If you can't replace your build target's builder (for example, because you use a custom builder), use `@daffodil/commerce:sync` instead. It writes the computed conditions directly into the `conditions` option of that application's `build` target, in `angular.json` or in Nx `project.json` files:

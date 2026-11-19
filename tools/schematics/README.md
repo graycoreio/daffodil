@@ -108,6 +108,7 @@ This package also exports builders which [enable Angular applications to automat
 
 - [`@daffodil/commerce:application`](/docs/guides/essentials/drivers.md#application-builder)
 - [`@daffodil/commerce:dev-server`](/docs/guides/essentials/drivers.md#dev-server-builder)
+- [`@daffodil/commerce:unit-test`](/docs/guides/essentials/drivers.md#unit-test-builder) (Vitest only; see [Karma](/docs/guides/essentials/drivers.md#karma))
 - [`@daffodil/commerce:sync`](/docs/guides/essentials/drivers.md#sync-builder)
 
 It also exports a TypeScript plugin, [`@daffodil/commerce/ts-plugin`](/docs/guides/essentials/drivers.md#editor-support), that applies the same driver selection in your editor.
