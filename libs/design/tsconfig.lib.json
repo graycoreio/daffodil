@@ -19,7 +19,13 @@
 		"fullTemplateTypeCheck": true,
 		"strictInjectionParameters": true,
 		"enableResourceInlining": true,
-		"strictTemplates": false
+		"strictTemplates": true,
+		"extendedDiagnostics": {
+			"checks": {
+				"nullishCoalescingNotNullable": "suppress",
+				"optionalChainNotNullable": "suppress"
+			}
+		}
 	},
 	"exclude": ["**/*.spec.ts"]
 }
