@@ -237,7 +237,7 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
    *
    * Selects the first tab.
    */
-  selectFirst(event: KeyboardEvent | null) {
+  selectFirst(event: Event) {
     event.preventDefault();
     this.select(this._tabs()[0].id());
   }
@@ -247,7 +247,7 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
    *
    * Selects the last tab.
    */
-  selectLast(event: KeyboardEvent | null) {
+  selectLast(event: Event) {
     event.preventDefault();
     const array = this._tabs();
     this.select(array[array.length - 1].id());

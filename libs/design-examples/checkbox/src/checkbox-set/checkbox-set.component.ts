@@ -5,8 +5,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import {
-  UntypedFormArray,
-  UntypedFormControl,
+  FormArray,
+  FormControl,
   ReactiveFormsModule,
 } from '@angular/forms';
 
@@ -30,7 +30,7 @@ export class CheckboxSetExampleComponent implements OnInit {
 
   @ViewChild(DaffCheckboxSetComponent)
   private checkboxSet: DaffCheckboxSetComponent;
-  checkboxArray = new UntypedFormArray([new UntypedFormControl(), new UntypedFormControl(), new UntypedFormControl()]);
+  checkboxArray = new FormArray([new FormControl(), new FormControl(), new FormControl()]);
   selectedValues = [];
 
   /**
