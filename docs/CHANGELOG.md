@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.95.1](https://github.com/graycoreio/daffodil/compare/v0.95.0...v0.95.1) (2026-11-20)
+
+
+### Features
+
+* **commerce:** add unit test builder for autoversioning ([#5185](https://github.com/graycoreio/daffodil/issues/5185)) ([ff84825](https://github.com/graycoreio/daffodil/commit/ff8482565fb46829fe3a9e4293036d5c8fc4608b))
+
 ## [0.95.0](https://github.com/graycoreio/daffodil/compare/v0.94.1...v0.95.0) (2026-11-18)
 
 
