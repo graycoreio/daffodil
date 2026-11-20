@@ -10,6 +10,11 @@
       "schema": "./versioning/dev-server.schema.json",
       "description": "Wraps the angular dev server builder with driver conditions from a @daffodil/commerce:application build target."
     },
+    "unit-test": {
+      "implementation": "./versioning/unit-test-builder",
+      "schema": "./versioning/unit-test.schema.json",
+      "description": "Wraps the angular unit test builder with driver conditions from a @daffodil/commerce:application build target. Only the vitest runner is supported."
+    },
 		"sync": {
       "implementation": "./versioning/sync-builder",
       "schema": "./versioning/daff.schema.json",

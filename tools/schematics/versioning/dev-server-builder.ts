@@ -6,34 +6,24 @@ import {
   Builder,
   BuilderContext,
   createBuilder,
-  Target,
   targetFromTargetString,
 } from '@angular-devkit/architect';
 import { json } from '@angular-devkit/core';
 
+import {
+  DAFF_APPLICATION_BUILDER,
+  daffVersioningCreateBuildTargetContext,
+} from './build-target-context';
 import { DaffVersioningProject } from './project.type';
 import {
   daffVersioningApplyConditions,
   daffVersioningResolveConditions,
 } from './resolve-conditions';
 
-export const DAFF_APPLICATION_BUILDER = '@daffodil/commerce:application';
-const ANGULAR_APPLICATION_BUILDER = '@angular/build:application';
-
-const isSameTarget = (a: Target, b: Target) =>
-  a.project === b.project && a.target === b.target && a.configuration === b.configuration;
-
 /**
- * Creates a context that presents the build target to the angular dev server
- * as a `@angular/build:application` target with the given options.
+ * @deprecated use {@link daffVersioningCreateBuildTargetContext}.
  */
-export const createDevServerContext = (context: BuilderContext, buildTarget: Target, buildOptions: json.JsonObject): BuilderContext => ({
-  ...context,
-  getBuilderNameForTarget: async (target) =>
-    isSameTarget(target, buildTarget) ? ANGULAR_APPLICATION_BUILDER : context.getBuilderNameForTarget(target),
-  getTargetOptions: async (target) =>
-    isSameTarget(target, buildTarget) ? structuredClone(buildOptions) : context.getTargetOptions(target),
-});
+export const createDevServerContext = daffVersioningCreateBuildTargetContext;
 
 /**
  * A builder which wraps `@angular/build:dev-server` and enables the automatic managing of the
@@ -70,8 +60,10 @@ const builder: Builder<any> = createBuilder(async function* (options: DevServerB
       ...options,
       prebundle: false,
     },
-    createDevServerContext(context, buildTarget, <json.JsonObject><unknown>daffVersioningApplyConditions(buildOptions, conditions)),
+    daffVersioningCreateBuildTargetContext(context, buildTarget, <json.JsonObject><unknown>daffVersioningApplyConditions(buildOptions, conditions)),
   );
 });
+
+export { DAFF_APPLICATION_BUILDER } from './build-target-context';
 
 export default builder;
