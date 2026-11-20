@@ -19,6 +19,7 @@ export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Act
 
   /**
    * Get a DaffPriceRange for a composite product based on the configuration provided excluding unselected, optional item prices.
+   * Unconfigured items are priced according to the quantities of their options.
    *
    * @param id an id for a composite product
    * @param configuration a Dictionary of DaffCompositeConfigurationItems
@@ -27,6 +28,7 @@ export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Act
 
   /**
    * Get the broadest possible DaffPriceRange for a composite product based on the configuration provided including optional item prices.
+   * Unconfigured items are priced according to the quantities of their options.
    *
    * @param id the id of the composite product.
    * @param configuration a Dictionary of DaffCompositeConfigurationItems
