@@ -1,7 +1,7 @@
 import {
   provideHttpClient,
   withInterceptorsFromDi,
-  withXhr,
+  withFetch,
 } from '@angular/common/http';
 import {
   HttpTestingController,
@@ -33,7 +33,7 @@ describe('@daffodil/cart-store-credit/driver/in-memory | DaffCartStoreCreditInMe
             apiBase: 'api',
           },
         },
-        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClient(withFetch(), withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
     });

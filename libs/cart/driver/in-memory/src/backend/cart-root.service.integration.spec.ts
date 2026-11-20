@@ -2,7 +2,7 @@ import {
   HttpClient,
   provideHttpClient,
   withInterceptorsFromDi,
-  withXhr,
+  withFetch,
 } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
@@ -55,7 +55,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
         DaffProductTestingModule,
       ],
       providers: [
-        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClient(withFetch(), withInterceptorsFromDi()),
         // this must be loaded after provideHttpClient!
         importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendCartRootService, { delay: 0 })),
       ],

@@ -3,7 +3,7 @@ import {
   HttpClient,
   provideHttpClient,
   withInterceptorsFromDi,
-  withXhr,
+  withFetch,
 } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { DOCUMENT } from '@angular/core';
@@ -32,7 +32,7 @@ describe('DaffHubspotForms Factory Provider', () => {
             Title,
           ],
         },
-        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClient(withFetch(), withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
     });

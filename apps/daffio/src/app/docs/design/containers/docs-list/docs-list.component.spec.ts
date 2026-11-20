@@ -1,7 +1,7 @@
 import {
   provideHttpClient,
   withInterceptorsFromDi,
-  withXhr,
+  withFetch,
 } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {
@@ -23,7 +23,7 @@ describe('DaffioDocsDesignListContainer', () => {
       imports: [DaffioDocsDesignListContainer,
         RouterTestingModule,
         NoopAnimationsModule],
-      providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()],
+      providers: [provideHttpClient(withFetch(), withInterceptorsFromDi()), provideHttpClientTesting()],
     })
       .compileComponents();
   }));

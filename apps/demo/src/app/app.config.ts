@@ -1,7 +1,7 @@
 import {
   provideHttpClient,
   withInterceptorsFromDi,
-  withXhr,
+  withFetch,
 } from '@angular/common/http';
 import {
   APP_ID,
@@ -54,7 +54,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideExternalRouter(),
     provideRouterStore(),
-    provideHttpClient(withXhr(), withInterceptorsFromDi()),
+    provideHttpClient(withFetch(), withInterceptorsFromDi()),
     provideDemoDrivers(),
     daffCartProvideRetrievalActions(
       { type: DemoCheckoutStepActionTypes.CompleteAddressStepSuccessAction },

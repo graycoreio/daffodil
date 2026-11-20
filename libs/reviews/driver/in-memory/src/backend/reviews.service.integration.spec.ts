@@ -2,7 +2,7 @@ import {
   HttpClient,
   provideHttpClient,
   withInterceptorsFromDi,
-  withXhr,
+  withFetch,
 } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
@@ -23,7 +23,7 @@ describe('@daffodil/reviews/driver/in-memory | DaffReviewsInMemoryBackendService
   beforeEach(done => {
     TestBed.configureTestingModule({
       providers: [
-        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClient(withFetch(), withInterceptorsFromDi()),
         importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(DaffReviewsInMemoryBackendService, { delay: 0 })),
       ],
     });
