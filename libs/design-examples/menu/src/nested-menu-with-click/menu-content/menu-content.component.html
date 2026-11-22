@@ -1,0 +1,48 @@
+<daff-menu>
+  <button daff-menu-item>
+    <fa-icon [icon]="faPenToSquare" [fixedWidth]="true" daffPrefix></fa-icon>
+    Rename
+  </button>
+
+  <button daff-menu-item trigger="click" [daffMenuActivator]="moreOptionsMenu">
+    <fa-icon [icon]="faGear" [fixedWidth]="true" daffPrefix></fa-icon>
+    More options
+  </button>
+
+  <button daff-menu-item trigger="click" [daffMenuActivator]="manageAccessMenu">
+    <fa-icon [icon]="faUser" [fixedWidth]="true" daffPrefix></fa-icon>
+    Manage access
+  </button>
+
+  <button daff-menu-item>
+    <fa-icon [icon]="faArrowRightFromBracket" [fixedWidth]="true" daffPrefix></fa-icon>
+    Delete
+  </button>
+</daff-menu>
+
+<ng-template #moreOptionsMenu>
+  <daff-menu>
+    <button daff-menu-item>Duplicate</button>
+    <button daff-menu-item>Move to&hellip;</button>
+
+    <button daff-menu-item trigger="click" [daffMenuActivator]="shareMenu">
+      <fa-icon [icon]="faShareNodes" [fixedWidth]="true" daffPrefix></fa-icon>
+      Share
+    </button>
+  </daff-menu>
+</ng-template>
+
+<ng-template #shareMenu>
+  <daff-menu>
+    <button daff-menu-item>Email</button>
+    <button daff-menu-item>Copy link</button>
+  </daff-menu>
+</ng-template>
+
+<ng-template #manageAccessMenu>
+  <daff-menu>
+    <button daff-menu-item>Viewer</button>
+    <button daff-menu-item>Commenter</button>
+    <button daff-menu-item>Editor</button>
+  </daff-menu>
+</ng-template>
