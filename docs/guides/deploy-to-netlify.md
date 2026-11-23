@@ -184,7 +184,7 @@ This walkthrough does not configure persistent carts, payments, or a production 
 
 ### An application in a subdirectory
 
-Breeze keeps its Angular application in `frontend/dai-builder`. For an independently installed application with that layout, set Netlify's **base directory** to `frontend/dai-builder`, keep the app's `netlify.toml` there, and use `dist/dai-builder/browser` as the publish directory. Paths are relative to the base directory, so do not repeat `frontend/dai-builder` in the publish path.
+For an independently installed application with that layout, set Netlify's **base directory** to `frontend/project-name`, keep the app's `netlify.toml` there, and use `dist/project-name/browser` as the publish directory. Paths are relative to the base directory, so do not repeat `frontend/project-name` in the publish path.
 
 This assumes the application has its own package manifest and lockfile. A workspace that installs dependencies at the repository root may need different base and package directories; follow [Netlify's monorepo configuration](https://docs.netlify.com/build/configure-builds/monorepos/).
 
@@ -192,9 +192,9 @@ This assumes the application has its own package manifest and lockfile. A worksp
 
 Angular's development proxy configuration is used by `ng serve`; it does not configure the deployed site. If your browser requests an application-relative URL such as `/graphql`, provide a deployed handler for it or configure the driver to use the backend's absolute HTTPS URL with the required CORS settings.
 
-Breeze handles its backend proxy routes in `src/server.ts`, before calling `AngularAppEngine.handle`. A `/graphql` redirect in `netlify.toml` alone cannot be relied on when the SSR Edge Function handles the request first. A common symptom is an API request returning HTML instead of JSON.
+Daffodil handles its backend proxy routes in `src/server.ts`, before calling `AngularAppEngine.handle`. A `/graphql` redirect in `netlify.toml` alone cannot be relied on when the SSR Edge Function handles the request first. A common symptom is an API request returning HTML instead of JSON.
 
-Any proxy you add should target a fixed, trusted backend and deliberately handle methods, authentication, cookies, and caching. The public demo does not need this proxy. Do not copy Breeze-specific service URLs or credentials into a new project.
+Any proxy you add should target a fixed, trusted backend and deliberately handle methods, authentication, cookies, and caching. 
 
 ### Configuration and caching
 
@@ -212,7 +212,7 @@ Start without shared caching for personalized responses. Breeze adds a separate 
 | Publish directory does not exist | Confirm the Angular project name, output path, and Netlify base directory. |
 | A demo product disappears after refresh | The in-memory driver regenerates sample data. Test stable product links after connecting a persistent backend. |
 | A real backend's product links work only after navigating from the homepage | Check that SSR is enabled, the adapter ran, and the server handler and routes match step 3; verify that SSR can reach the backend. |
-| `@netlify/angular-runtime/context.mjs` cannot be resolved | That import belongs to the older adapter used by Breeze. Runtime 4 uses `@netlify/angular-runtime/app-engine.js` as shown above. |
+| `@netlify/angular-runtime/context.mjs` cannot be resolved | Runtime 4 uses `@netlify/angular-runtime/app-engine.js` as shown above. |
 | Requests are rejected by host validation | Check Netlify's deployment URL variables and the adapter's allowed-host setup. Do not disable validation globally. |
 | A backend API returns HTML | Check whether the request reached Angular's page handler instead of a backend proxy. |
 | Remote images fail after enabling Netlify Image CDN | Configure the allowed image origins in `netlify.toml`; see [Netlify's Angular image guidance](https://docs.netlify.com/build/frameworks/framework-setup-guides/angular/#netlify-image-cdn). |
