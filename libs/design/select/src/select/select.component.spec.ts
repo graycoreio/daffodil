@@ -124,6 +124,17 @@ describe('@daffodil/design/select | DaffSelectComponent', () => {
       });
     });
 
+    describe('and when the disabled input becomes true', () => {
+      beforeEach(() => {
+        wrapper.disabledValue = true;
+        fixture.detectChanges();
+      });
+
+      it('should close the select', () => {
+        expect(component.isOpen).toBeFalse();
+      });
+    });
+
     describe('and when the enter key is pressed', () => {
       beforeEach(() => {
         optionsListElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));

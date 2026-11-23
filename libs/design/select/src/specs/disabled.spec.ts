@@ -84,4 +84,20 @@ describe('@daffodil/design/select | DaffSelectComponent | Disabled State', () =>
       expect(component.disabled).toEqual(false);
     });
   });
+
+  describe('when the form control is disabled while the select is open', () => {
+    beforeEach(() => {
+      wrapper.control.enable();
+      fixture.detectChanges();
+      component.open();
+      fixture.detectChanges();
+
+      wrapper.control.disable();
+      fixture.detectChanges();
+    });
+
+    it('should close the select', () => {
+      expect(component.isOpen).toBeFalse();
+    });
+  });
 });

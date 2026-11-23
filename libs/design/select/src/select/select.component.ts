@@ -24,6 +24,10 @@ import {
   OnDestroy,
   booleanAttribute,
   DOCUMENT,
+  input,
+  linkedSignal,
+  effect,
+  untracked,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -140,7 +144,24 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
    *
    * Implemented as part of DaffFormFieldControl.
    */
-  @Input({ transform: booleanAttribute }) disabled = false;
+  disabledInput = input(false, { alias: 'disabled', transform: booleanAttribute });
+
+  /**
+   * @docs-private
+   *
+   * The current disabled state. Follows the `disabled` input, but can be overridden
+   * by the state of the form control.
+   */
+  readonly _disabled = linkedSignal(() => this.disabledInput());
+
+  /**
+   * @docs-private
+   *
+   * Implemented as part of DaffFormFieldControl.
+   */
+  get disabled(): boolean {
+    return this._disabled();
+  }
 
   private _required = false;
 
@@ -208,6 +229,12 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
     }
+
+    effect(() => {
+      if (this._disabled()) {
+        untracked(() => this.close());
+      }
+    });
   }
 
   /**
@@ -304,7 +331,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
       this.ngControl ? this.ngControl.statusChanges : of(undefined),
     ).pipe(
       map(() => this.state),
-      tap((state) => this.disabled = state.disabled),
+      tap((state) => this._disabled.set(state.disabled)),
     );
   }
 
