@@ -7,6 +7,8 @@ import {
   APP_ID,
   ApplicationConfig,
   importProvidersFrom,
+  inject,
+  provideAppInitializer,
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
 } from '@angular/core';
@@ -18,6 +20,7 @@ import {
   withRouterConfig,
 } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { FaConfig } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
 import {
   FullRouterStateSerializer,
@@ -81,5 +84,10 @@ export const appConfig: ApplicationConfig = {
     provideDaffRouterDataServiceConfig(daffioRouterDataServiceConfig),
     provideDaffioSidebarFeature(),
     provideScrollOffset(),
+    // Font Awesome's styles are loaded globally from angular.json instead of
+    // being inlined into every prerendered page.
+    provideAppInitializer(() => {
+      inject(FaConfig).autoAddCss = false;
+    }),
   ],
 };

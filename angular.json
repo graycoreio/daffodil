@@ -243,6 +243,7 @@
               }
             ],
             "styles": [
+              "node_modules/@fortawesome/fontawesome-svg-core/styles.css",
               "apps/daffio/src/scss/styles.scss"
             ],
             "stylePreprocessorOptions": {
@@ -359,6 +360,7 @@
             ],
             "tsConfig": "apps/daffio/tsconfig.spec.json",
             "styles": [
+              "node_modules/@fortawesome/fontawesome-svg-core/styles.css",
               "apps/daffio/src/scss/styles.scss"
             ],
             "stylePreprocessorOptions": {
