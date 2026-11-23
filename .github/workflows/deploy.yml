@@ -9,6 +9,16 @@ on:
           required: false
           description: 'The name of the zip file in the artifact (omit if you do not store a zip INSIDE your artifact).'
           type: string
+      static-routes:
+        required: false
+        description: 'A JSON array of Vercel Build Output API routes (e.g. redirects) checked before the static files.'
+        type: string
+        default: '[]'
+      static-not-found-page:
+        required: false
+        description: 'The page, relative to the browser output, served with a 404 status for unmatched routes.'
+        type: string
+        default: 'index.csr.html'
     secrets:
       VERCEL_TOKEN:
         required: true
@@ -35,15 +45,16 @@ jobs:
         name: Unzip internal artifact zip
         if: inputs.artifact-zip-name
 
-      - uses: graycoreio/github-actions/angular-universal-vercel@v2.6.0
+      - uses: graycoreio/github-actions/angular-universal-vercel@v3.0.0
         id: vercel-deploy
         with:
           prod: true
           vercel_token: ${{ secrets.VERCEL_TOKEN }}
           vercel_org: ${{ secrets.VERCEL_ORG }}
           vercel_project_id: ${{ secrets.VERCEL_NEXT_PROJECT_ID }}
-          ng_version: '20'
           ng_output_mode: 'static'
+          static_routes: ${{ inputs.static-routes }}
+          static_not_found_page: ${{ inputs.static-not-found-page }}
 
   production:
     name: 'Production'
@@ -61,12 +72,13 @@ jobs:
         name: Unzip internal artifact zip
         if: inputs.artifact-zip-name
 
-      - uses: graycoreio/github-actions/angular-universal-vercel@v2.6.0
+      - uses: graycoreio/github-actions/angular-universal-vercel@v3.0.0
         id: vercel-deploy
         with:
           prod: true
           vercel_token: ${{ secrets.VERCEL_TOKEN }}
           vercel_org: ${{ secrets.VERCEL_ORG }}
           vercel_project_id: ${{ secrets.VERCEL_PROJECT_ID }}
-          ng_version: '20'
           ng_output_mode: 'static'
+          static_routes: ${{ inputs.static-routes }}
+          static_not_found_page: ${{ inputs.static-not-found-page }}

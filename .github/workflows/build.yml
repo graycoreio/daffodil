@@ -170,3 +170,9 @@ jobs:
     with:
       artifact: daffio-24.19.x
       artifact-zip-name: daffio.zip
+      static-not-found-page: 404/index.html
+      static-routes: |
+        [
+          { "src": "^/api/(.*)$", "status": 308, "headers": { "Location": "/docs/api/$1" } },
+          { "src": "^/packages/(.*)$", "status": 308, "headers": { "Location": "/docs/packages/$1" } }
+        ]
