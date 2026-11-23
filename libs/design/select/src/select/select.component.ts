@@ -144,6 +144,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
    *
    * Implemented as part of DaffFormFieldControl.
    */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   disabledInput = input(false, { alias: 'disabled', transform: booleanAttribute });
 
   /**
