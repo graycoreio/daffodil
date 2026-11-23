@@ -311,7 +311,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   /**
    * Opens the options list.
    */
-  open(event?: KeyboardEvent | MouseEvent) {
+  open(event?: Event) {
     event?.preventDefault();
     event?.stopPropagation();
 
@@ -371,7 +371,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   /**
    * Closes the options list.
    */
-  close(event?: KeyboardEvent | MouseEvent) {
+  close(event?: Event) {
     event?.preventDefault();
     event?.stopPropagation();
 
@@ -412,7 +412,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   /**
    * Selects the option referenced by the highlighted index.
    */
-  selectHighlighted(event?: KeyboardEvent | MouseEvent) {
+  selectHighlighted(event?: Event) {
     event?.preventDefault();
     event?.stopPropagation();
     this.selectValueInPosition(this._highlighted);
@@ -423,7 +423,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   /**
    * Highlights the next option in the list.
    */
-  highlightNext(event?: KeyboardEvent | MouseEvent) {
+  highlightNext(event?: Event) {
     event?.preventDefault();
     event?.stopPropagation();
     this._highlighted = this._highlighted < this.options.length - 1 ? this._highlighted + 1 : 0;
@@ -433,7 +433,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   /**
    * Highlights the previous option in the list.
    */
-  highlightPrevious(event?: KeyboardEvent | MouseEvent) {
+  highlightPrevious(event?: Event) {
     event?.preventDefault();
     event?.stopPropagation();
     this._highlighted = this._highlighted > 0 ? this._highlighted - 1 : this.options.length - 1;

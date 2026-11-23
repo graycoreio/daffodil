@@ -7,6 +7,6 @@
 	},
 	"angularCompilerOptions": {
 		"compilationMode": "partial",
-		"strictTemplates": false
+		"strictTemplates": true
 	}
 }
