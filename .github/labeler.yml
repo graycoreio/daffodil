@@ -1,0 +1,226 @@
+# Labels a pull request based on the files it changes.
+# Used by .github/workflows/labeler.yml.
+# Only labels that already exist in the repository should be listed here.
+
+# Apps
+'package: daff.io':
+  - changed-files:
+      - any-glob-to-any-file: apps/daffio/**
+
+'package: demo':
+  - changed-files:
+      - any-glob-to-any-file: apps/demo/**
+
+# Packages
+'package: analytics':
+  - changed-files:
+      - any-glob-to-any-file: libs/analytics/**
+
+'package: auth':
+  - changed-files:
+      - any-glob-to-any-file: libs/auth/**
+
+'package: authorizenet':
+  - changed-files:
+      - any-glob-to-any-file: libs/authorizenet/**
+
+'package: branding':
+  - changed-files:
+      - any-glob-to-any-file: libs/branding/**
+
+'package: cart':
+  - changed-files:
+      - any-glob-to-any-file: libs/cart/**
+
+'package: cart-customer':
+  - changed-files:
+      - any-glob-to-any-file: libs/cart-customer/**
+
+'package: cart-store-credit':
+  - changed-files:
+      - any-glob-to-any-file: libs/cart-store-credit/**
+
+'package: category':
+  - changed-files:
+      - any-glob-to-any-file: libs/category/**
+
+'package: checkout':
+  - changed-files:
+      - any-glob-to-any-file: libs/checkout/**
+
+'package: contact':
+  - changed-files:
+      - any-glob-to-any-file: libs/contact/**
+
+'package: content':
+  - changed-files:
+      - any-glob-to-any-file: libs/content/**
+
+'package: core':
+  - changed-files:
+      - any-glob-to-any-file: libs/core/**
+
+'package: customer':
+  - changed-files:
+      - any-glob-to-any-file: libs/customer/**
+
+'package: customer-auth':
+  - changed-files:
+      - any-glob-to-any-file: libs/customer-auth/**
+
+'package: customer-order':
+  - changed-files:
+      - any-glob-to-any-file: libs/customer-order/**
+
+'package: customer-payment':
+  - changed-files:
+      - any-glob-to-any-file: libs/customer-payment/**
+
+'package: customer-payment-authorizenet':
+  - changed-files:
+      - any-glob-to-any-file: libs/customer-payment-authorizenet/**
+
+'package: customer-store-credit':
+  - changed-files:
+      - any-glob-to-any-file: libs/customer-store-credit/**
+
+'package: design':
+  - changed-files:
+      - any-glob-to-any-file: libs/design/**
+
+'package: design-examples':
+  - changed-files:
+      - any-glob-to-any-file: libs/design-examples/**
+
+'package: docs':
+  - changed-files:
+      - any-glob-to-any-file: libs/docs/**
+
+'package: docs-utils':
+  - changed-files:
+      - any-glob-to-any-file: libs/docs-utils/**
+
+'package: driver':
+  - changed-files:
+      - any-glob-to-any-file: libs/driver/**
+
+'package: external-router':
+  - changed-files:
+      - any-glob-to-any-file: libs/external-router/**
+
+'package: forms':
+  - changed-files:
+      - any-glob-to-any-file: libs/forms/**
+
+'package: geography':
+  - changed-files:
+      - any-glob-to-any-file: libs/geography/**
+
+'package: navigation':
+  - changed-files:
+      - any-glob-to-any-file: libs/navigation/**
+
+'package: newsletter':
+  - changed-files:
+      - any-glob-to-any-file: libs/newsletter/**
+
+'package: order':
+  - changed-files:
+      - any-glob-to-any-file: libs/order/**
+
+'package: payment':
+  - changed-files:
+      - any-glob-to-any-file: libs/payment/**
+
+'package: paypal':
+  - changed-files:
+      - any-glob-to-any-file: libs/paypal/**
+
+'package: product':
+  - changed-files:
+      - any-glob-to-any-file: libs/product/**
+
+'package: product-composite':
+  - changed-files:
+      - any-glob-to-any-file: libs/product-composite/**
+
+'package: product-configurable':
+  - changed-files:
+      - any-glob-to-any-file: libs/product-configurable/**
+
+'package: related-products':
+  - changed-files:
+      - any-glob-to-any-file: libs/related-products/**
+
+'package: reviews':
+  - changed-files:
+      - any-glob-to-any-file: libs/reviews/**
+
+'package: router':
+  - changed-files:
+      - any-glob-to-any-file: libs/router/**
+
+'package: search':
+  - changed-files:
+      - any-glob-to-any-file: libs/search/**
+
+'package: search-category':
+  - changed-files:
+      - any-glob-to-any-file: libs/search-category/**
+
+'package: search-product':
+  - changed-files:
+      - any-glob-to-any-file: libs/search-product/**
+
+'package: search-product-composite':
+  - changed-files:
+      - any-glob-to-any-file: libs/search-product-composite/**
+
+'package: search-product-configurable':
+  - changed-files:
+      - any-glob-to-any-file: libs/search-product-configurable/**
+
+'package: seo':
+  - changed-files:
+      - any-glob-to-any-file: libs/seo/**
+
+'package: ssr':
+  - changed-files:
+      - any-glob-to-any-file: libs/ssr/**
+
+'package: storefront':
+  - changed-files:
+      - any-glob-to-any-file: libs/storefront/**
+
+'package: storefront-examples':
+  - changed-files:
+      - any-glob-to-any-file: libs/storefront-examples/**
+
+'package: upsell-products':
+  - changed-files:
+      - any-glob-to-any-file: libs/upsell-products/**
+
+# Tools
+'package: builders':
+  - changed-files:
+      - any-glob-to-any-file: tools/builders/**
+
+'tools: dgeni':
+  - changed-files:
+      - any-glob-to-any-file: tools/dgeni/**
+
+# Platforms
+'platform: in-memory':
+  - changed-files:
+      - any-glob-to-any-file: libs/*/driver/in-memory/**
+
+'platform: magento':
+  - changed-files:
+      - any-glob-to-any-file:
+          - libs/*/driver/magento/**
+          - plugins/magento/**
+
+'platform: shopify':
+  - changed-files:
+      - any-glob-to-any-file: libs/*/driver/shopify/**
+
