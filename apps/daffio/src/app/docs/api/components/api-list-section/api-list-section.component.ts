@@ -13,7 +13,10 @@ import { DaffDocsApiRoleTagLabelPipe } from '@daffodil/docs';
 import { DaffApiNavDoc } from '@daffodil/docs-utils';
 
 import { DaffioDocsApiGroupByRolePipe } from './group-by-role.pipe';
-import { DaffioDocsApiItemLabelComponent } from '../api-item-label/api-item-label.component';
+import {
+  DaffioDocsApiItemLabelComponent,
+  DaffioDocsApiItemLabelType,
+} from '../api-item-label/api-item-label.component';
 
 @Component({
   selector: 'daffio-api-list-section',
@@ -40,4 +43,11 @@ export class DaffioApiListSectionComponent {
    * A list of references for API documents.
    */
   children = input<Array<DaffApiNavDoc>>();
+
+  /**
+   * The label type for an API doc, based on its role or doc type.
+   */
+  labelType(doc: DaffApiNavDoc): DaffioDocsApiItemLabelType {
+    return <DaffioDocsApiItemLabelType>(doc.role || doc.docType.toLowerCase());
+  }
 }

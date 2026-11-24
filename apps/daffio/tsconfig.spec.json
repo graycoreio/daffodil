@@ -13,6 +13,6 @@
 				"optionalChainNotNullable": "suppress"
 			}
 		},
-		"strictTemplates": false
+		"strictTemplates": true
 	}
 }

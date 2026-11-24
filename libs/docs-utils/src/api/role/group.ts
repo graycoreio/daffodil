@@ -1,11 +1,11 @@
+import { DaffDocsApiRole } from './enum';
 import { DAFF_DOCS_API_ROLE_SORT_ORDER } from './sort';
-import { DaffApiDoc } from '../../doc/public_api';
 
 // TODO: move to daffio when docs becomes a public lib
 /**
  * Sorts docs based on a predefined order.
  */
-export const daffDocsApiRoleGroup = (docs: Array<DaffApiDoc>, order = DAFF_DOCS_API_ROLE_SORT_ORDER): Array<DaffApiDoc> =>
+export const daffDocsApiRoleGroup = <T extends { role?: DaffDocsApiRole }>(docs: Array<T>, order = DAFF_DOCS_API_ROLE_SORT_ORDER): Array<T> =>
   docs.sort(({ role: a }, { role: b }) => {
     const aIndex = order.indexOf(a);
     const bIndex = order.indexOf(b);
