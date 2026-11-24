@@ -4,9 +4,16 @@ on:
   push:
     branches:
       - develop
+    # Path filters are not evaluated for tag pushes, so every release tag triggers a run.
+    tags:
+      - 'v*'
     paths:
       - "plugins/magento/cms-ai-builder/**"
       - ".github/workflows/subrepo_split.yml"
+
+concurrency:
+  group: subrepo-split
+  cancel-in-progress: false
 
 jobs:
   split:
@@ -25,8 +32,15 @@ jobs:
         run: |
           git filter-repo --subdirectory-filter plugins/magento/cms-ai-builder --force
 
-      - name: Push to target repo
+      - name: Add target remote
         run: |
           git remote add subrepo https://github.com/graycoreio/magento2-cms-ai-builder.git
+
+      - name: Push main
+        if: github.ref == 'refs/heads/develop'
+        run: |
           git push subrepo HEAD:main --force
 
+      - name: Push tags
+        run: |
+          git push subrepo --tags --force
