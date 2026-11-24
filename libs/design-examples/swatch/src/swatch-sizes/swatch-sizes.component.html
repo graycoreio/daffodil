@@ -1,0 +1,17 @@
+<daff-swatch-group size="sm" aria-label="Small swatches" value="red">
+  @for (color of colors; track color.value) {
+    <daff-swatch [value]="color.value" [color]="color.color" [attr.aria-label]="color.label"></daff-swatch>
+  }
+</daff-swatch-group>
+
+<daff-swatch-group aria-label="Medium swatches" value="red">
+  @for (color of colors; track color.value) {
+    <daff-swatch [value]="color.value" [color]="color.color" [attr.aria-label]="color.label"></daff-swatch>
+  }
+</daff-swatch-group>
+
+<daff-swatch-group size="lg" aria-label="Large swatches" value="red">
+  @for (color of colors; track color.value) {
+    <daff-swatch [value]="color.value" [color]="color.color" [attr.aria-label]="color.label"></daff-swatch>
+  }
+</daff-swatch-group>

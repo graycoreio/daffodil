@@ -1,0 +1,7 @@
+<span id="swatch-picker-label">Color: {{ selectedLabel() }}</span>
+<daff-swatch-group aria-labelledby="swatch-picker-label" [(value)]="selected">
+  @for (color of colors; track color.value) {
+    <daff-swatch [value]="color.value" [color]="color.value" [attr.aria-label]="color.label"></daff-swatch>
+  }
+  <daff-swatch picker aria-label="Custom color"></daff-swatch>
+</daff-swatch-group>

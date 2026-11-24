@@ -1,0 +1,102 @@
+@use '../../../scss/interactions';
+
+.daff-swatch {
+	$root: &;
+	@include interactions.clickable();
+	display: inline-flex;
+	position: relative;
+	flex-shrink: 0;
+	border: thin solid transparent;
+	border-radius: var(--daff-swatch-radius, 50%);
+	height: var(--daff-swatch-size, 2rem);
+	outline: none;
+	padding: 0.125rem;
+	width: var(--daff-swatch-size, 2rem);
+
+	&__fill {
+		display: block;
+		border-radius: var(--daff-swatch-fill-radius, 50%);
+		height: 100%;
+		overflow: hidden;
+		width: 100%;
+
+		img {
+			display: block;
+			height: 100%;
+			object-fit: cover;
+			width: 100%;
+		}
+	}
+
+	&__picker-icon {
+		font-size: calc(var(--daff-swatch-size, 2rem) * 0.4);
+		line-height: 1;
+	}
+
+	&.daff-picker {
+		// black on light colors and white on dark colors; 49.44 is the lightness
+		// where white text starts having more contrast than black text
+		#{$root}__picker-icon {
+			color: lch(from var(--daff-swatch-picker-color) calc((49.44 - l) * infinity) 0 0);
+		}
+	}
+
+	&__picker-input {
+		position: absolute;
+		inset: 0;
+		border: 0;
+		height: 100%;
+		opacity: 0;
+		padding: 0;
+		pointer-events: none;
+		width: 100%;
+	}
+
+	&__label {
+		font-size: var(--daff-swatch-font-size, 0.875rem);
+		line-height: 1rem;
+		white-space: nowrap;
+	}
+
+	&.daff-picker {
+		#{$root}__fill {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
+	&.daff-text {
+		align-items: center;
+		justify-content: center;
+		border-radius: var(--daff-swatch-text-radius, 0.25rem);
+		height: auto;
+		min-height: var(--daff-swatch-size, 2rem);
+		min-width: var(--daff-swatch-size, 2rem);
+		padding: var(--daff-swatch-text-padding, 0.25rem 0.5rem);
+		width: auto;
+	}
+
+	&.daff-disabled {
+		cursor: not-allowed;
+
+		#{$root}__fill {
+			opacity: 0.4;
+		}
+
+		#{$root}__label {
+			opacity: 0.5;
+			text-decoration: line-through;
+		}
+
+		&:not(.daff-text) {
+			&::after {
+				content: '';
+				position: absolute;
+				inset: calc(50% - 0.03125rem) 0.125rem auto;
+				height: 0.0625rem;
+				transform: rotate(-45deg);
+			}
+		}
+	}
+}

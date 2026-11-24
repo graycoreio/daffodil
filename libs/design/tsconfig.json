@@ -106,6 +106,9 @@
       "@daffodil/design/sidebar": [
         "./sidebar/src"
       ],
+      "@daffodil/design/swatch": [
+        "./swatch/src"
+      ],
       "@daffodil/design/switch": [
         "./switch/src"
       ],

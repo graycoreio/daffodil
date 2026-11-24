@@ -46,6 +46,7 @@
 @use '../select/src/select-theme' as select;
 @use '../sidebar/src/sidebar-theme' as sidebar;
 @use '../spinner/src/spinner-theme' as spinner;
+@use '../swatch/src/swatch-theme' as swatch;
 @use '../switch/src/switch-theme' as switch;
 @use '../progress-bar/src/progress-bar-theme' as progress-bar;
 @use '../scss/state/skeleton/mixins' as skeleton;
@@ -107,6 +108,7 @@
 	@include notification.daff-notification-theme($theme);
 	@include paginator.daff-paginator-theme($theme);
 	@include sidebar.daff-sidebar-theme($theme);
+	@include swatch.daff-swatch-theme($theme);
 	@include switch.daff-switch-theme($theme);
 	@include tabs.daff-tabs-theme($theme);
 	@include text-snippet.daff-text-snippet-theme($theme);
