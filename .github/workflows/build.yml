@@ -17,6 +17,8 @@ on:
         required: false
       VERCEL_DAFFIO_PROJECT_ID:
         required: false
+      VERCEL_DEMO_PROJECT_ID:
+        required: false
       VERCEL_TOKEN:
         required: false
       VERCEL_ORG:
@@ -176,3 +178,132 @@ jobs:
           { "src": "^/api/(.*)$", "status": 308, "headers": { "Location": "/docs/api/$1" } },
           { "src": "^/packages/(.*)$", "status": 308, "headers": { "Location": "/docs/packages/$1" } }
         ]
+
+  # Builds the app produced by `ng new` + `ng add @daffodil/commerce --driver=demo`
+  # for demo.daff.io. Packages are installed from a local Verdaccio registry.
+  build_demo:
+    name: Build Demo
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/develop' }}
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      WORK_DIR: /tmp/daffodil-demo
+      APP_NAME: daffodil-demo
+      DEMO_VERSION: 0.0.0-demo.${{ github.run_id }}
+      REGISTRY_PORT: 4873
+      # The packages are built with a modified version.ts, so don't write them to the remote cache.
+      NX_REMOTE_CACHE_ACCESS: read
+    services:
+      verdaccio:
+        image: verdaccio/verdaccio
+        ports:
+          - 4873:4873
+        options: >-
+          --health-cmd "node -e \"require('http').get('http://localhost:4873/-/ping',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))\""
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+          ref: ${{ inputs.ref && inputs.ref || github.sha }}
+          persist-credentials: false
+
+      - uses: graycoreio/github-actions/setup-node@main
+        with:
+          node-version: '24.19.x'
+          npm-version: ${{ env.NPM_VERSION }}
+          use-stamp-cache: true
+
+      - name: Authenticate with Verdaccio
+        run: |
+          REGISTRY_URL="http://localhost:${{ env.REGISTRY_PORT }}"
+          TOKEN=$(curl -s -X PUT ${REGISTRY_URL}/-/user/org.couchdb.user:ci \
+            -H "Content-Type: application/json" \
+            -d '{"name":"ci","password":"ci-password","type":"user"}' | jq -r '.token')
+          if [ -z "$TOKEN" ] || [ "$TOKEN" = "null" ]; then echo "ERROR: Failed to obtain Verdaccio token" && exit 1; fi
+          echo "@daffodil:registry=${REGISTRY_URL}" >> "$HOME/.npmrc"
+          echo "//localhost:${{ env.REGISTRY_PORT }}/:_authToken=${TOKEN}" >> "$HOME/.npmrc"
+
+      - name: Set demo version for commerce package
+        run: |
+          sed -i "s/version = '.*'/version = '${{ env.DEMO_VERSION }}'/" \
+            tools/schematics/ng-add/generators/version.ts
+
+      - name: Build @daffodil/* packages
+        run: npx nx run @daffodil/commerce:build
+
+      # Set root version after building so the package.json/package-lock.json
+      # changes don't invalidate the Nx remote cache.
+      - name: Set demo version in root
+        run: npm version "${{ env.DEMO_VERSION }}" --no-git-tag-version
+
+      - uses: graycoreio/github-actions/set-versions-from-root@main
+
+      - name: Publish @daffodil/* packages to Verdaccio
+        run: |
+          PACKAGES=$(npx nx graph --focus=@daffodil/commerce --file=stdout | \
+            jq -r '.graph.dependencies["@daffodil/commerce"] | map(.target) | join(",")')
+          npx nx run-many -t publish --projects="${PACKAGES},@daffodil/commerce" -- --tag latest
+
+      - name: Create app
+        run: |
+          ANGULAR_VERSION=$(jq -r '.dependencies["@angular/core"]' package.json)
+          mkdir -p "${{ env.WORK_DIR }}"
+          cd "${{ env.WORK_DIR }}"
+          npx -y "@angular/cli@${ANGULAR_VERSION}" new "${{ env.APP_NAME }}" \
+            --style=scss \
+            --skip-tests \
+            --defaults
+
+      - name: Add @daffodil/commerce
+        working-directory: ${{ env.WORK_DIR }}/${{ env.APP_NAME }}
+        run: |
+          CI=true npx ng add @daffodil/commerce@${{ env.DEMO_VERSION }} \
+            --driver=demo \
+            --is-new-project \
+            --defaults \
+            --skip-confirmation
+
+      - name: Raise budget
+        working-directory: ${{ env.WORK_DIR }}/${{ env.APP_NAME }}
+        run: |
+          sed -i 's/"maximumWarning": "[^"]*"/"maximumWarning": "2mb"/; s/"maximumError": "[^"]*"/"maximumError": "3mb"/' angular.json
+
+      - name: Build app
+        working-directory: ${{ env.WORK_DIR }}/${{ env.APP_NAME }}
+        run: npx ng build
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: commerce-demo
+          path: ${{ env.WORK_DIR }}/${{ env.APP_NAME }}/dist/${{ env.APP_NAME }}
+          if-no-files-found: error
+
+  deploy_demo:
+    name: Deploy Demo
+    needs:
+      - build_demo
+      - test-commerce-schematic
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/develop' }}
+    environment:
+      name: demo
+      url: ${{ steps.vercel-deploy.outputs.url }}
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: commerce-demo
+
+      - uses: graycoreio/github-actions/angular-universal-vercel@v3.0.0
+        id: vercel-deploy
+        with:
+          prod: true
+          vercel_token: ${{ secrets.VERCEL_TOKEN }}
+          vercel_org: ${{ secrets.VERCEL_ORG }}
+          vercel_project_id: ${{ secrets.VERCEL_DEMO_PROJECT_ID }}
+          ng_output_mode: 'static'
+          static_not_found_page: 'index.html'
