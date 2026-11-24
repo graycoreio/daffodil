@@ -31,6 +31,7 @@ import { provideDaffDesignSelectExamplesContent } from '@daffodil/design-example
 import { provideDaffDesignSidebarExamplesContent } from '@daffodil/design-examples/sidebar';
 import { provideDaffDesignSpinnerExamplesContent } from '@daffodil/design-examples/spinner';
 import { provideDaffDesignStickyExamplesContent } from '@daffodil/design-examples/sticky';
+import { provideDaffDesignSwatchExamplesContent } from '@daffodil/design-examples/swatch';
 import { provideDaffDesignSwitchExamplesContent } from '@daffodil/design-examples/switch';
 import { provideDaffDesignTabsExamplesContent } from '@daffodil/design-examples/tabs';
 import { provideDaffDesignTagExamplesContent } from '@daffodil/design-examples/tag';
@@ -75,6 +76,7 @@ export const provideDaffioDesignExamplesContent = () => makeEnvironmentProviders
   provideDaffDesignSidebarExamplesContent(),
   provideDaffDesignSpinnerExamplesContent(),
   provideDaffDesignStickyExamplesContent(),
+  provideDaffDesignSwatchExamplesContent(),
   provideDaffDesignSwitchExamplesContent(),
   provideDaffDesignTabsExamplesContent(),
   provideDaffDesignTagExamplesContent(),

@@ -1,0 +1,11 @@
+<daff-swatch-group aria-label="Circle swatches" value="red">
+  @for (color of colors; track color.value) {
+    <daff-swatch [value]="color.value" [color]="color.color" [attr.aria-label]="color.label"></daff-swatch>
+  }
+</daff-swatch-group>
+
+<daff-swatch-group shape="square" aria-label="Square swatches" value="red">
+  @for (color of colors; track color.value) {
+    <daff-swatch [value]="color.value" [color]="color.color" [attr.aria-label]="color.label"></daff-swatch>
+  }
+</daff-swatch-group>

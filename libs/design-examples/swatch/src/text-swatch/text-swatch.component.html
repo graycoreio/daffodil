@@ -1,0 +1,11 @@
+<span id="text-swatch-label">Size</span>
+<daff-swatch-group aria-labelledby="text-swatch-label" [(value)]="selected">
+  @for (size of sizes; track size.value) {
+    <daff-swatch
+      shape="round"
+      [value]="size.value"
+      [label]="size.label"
+      [disabled]="!size.inStock"
+    ></daff-swatch>
+  }
+</daff-swatch-group>

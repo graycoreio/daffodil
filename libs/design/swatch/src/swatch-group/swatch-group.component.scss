@@ -1,0 +1,26 @@
+.daff-swatch-group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem;
+
+	&.daff-square {
+		--daff-swatch-radius: 0.25rem;
+		--daff-swatch-fill-radius: 0.125rem;
+	}
+
+	&.daff-round {
+		--daff-swatch-radius: 50%;
+		--daff-swatch-text-radius: 1rem;
+	}
+
+	&.daff-sm {
+		--daff-swatch-size: 1.5rem;
+		--daff-swatch-font-size: 0.75rem;
+	}
+
+	&.daff-lg {
+		--daff-swatch-size: 2.5rem;
+		--daff-swatch-font-size: 1rem;
+		--daff-swatch-text-padding: 0.25rem 0.75rem;
+	}
+}

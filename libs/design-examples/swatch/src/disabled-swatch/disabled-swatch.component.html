@@ -1,0 +1,18 @@
+<span id="disabled-swatch-label">Some colors are out of stock</span>
+<daff-swatch-group aria-labelledby="disabled-swatch-label" value="red">
+  @for (color of colors; track color.value) {
+    <daff-swatch
+      [value]="color.value"
+      [color]="color.color"
+      [disabled]="!color.inStock"
+      [attr.aria-label]="color.inStock ? color.label : color.label + ', out of stock'"
+    ></daff-swatch>
+  }
+</daff-swatch-group>
+
+<span id="disabled-swatch-group-label">The whole group is disabled</span>
+<daff-swatch-group aria-labelledby="disabled-swatch-group-label" value="red" [disabled]="true">
+  @for (color of colors; track color.value) {
+    <daff-swatch [value]="color.value" [color]="color.color" [attr.aria-label]="color.label"></daff-swatch>
+  }
+</daff-swatch-group>

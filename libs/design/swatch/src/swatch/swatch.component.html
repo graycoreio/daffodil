@@ -1,0 +1,19 @@
+@if (label()) {
+  <span class="daff-swatch__label">{{ label() }}</span>
+} @else {
+  <span class="daff-swatch__fill" [style.background]="picker() ? currentValue() : color()">
+    @if (picker()) {
+      <fa-icon class="daff-swatch__picker-icon" [icon]="faEyeDropper" [style.--daff-swatch-picker-color]="currentValue()"></fa-icon>
+      <input
+        #pickerInput
+        class="daff-swatch__picker-input"
+        type="color"
+        tabindex="-1"
+        aria-hidden="true"
+        [value]="currentValue()"
+        (input)="_onPick($event)"
+      />
+    }
+    <ng-content></ng-content>
+  </span>
+}
