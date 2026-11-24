@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import {
-  DaffApiDoc,
+  DaffDocsApiRole,
   daffDocsApiRoleGroup,
 } from '@daffodil/docs-utils';
 
@@ -12,7 +12,7 @@ import {
   name: 'daffioDocsApiRoleGroup',
 })
 export class DaffioDocsApiGroupByRolePipe implements PipeTransform {
-  transform(value: Array<DaffApiDoc>) {
+  transform<T extends { role?: DaffDocsApiRole }>(value: Array<T>): Array<T> {
     return daffDocsApiRoleGroup(value);
   }
 }

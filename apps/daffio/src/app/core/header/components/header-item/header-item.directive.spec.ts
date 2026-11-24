@@ -16,7 +16,9 @@ import { DaffioHeaderItemDirective } from './header-item.directive';
 @Component({
   template: `<a daffioHeaderItem [active]="active()">Header Item</a>`,
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: false,
+  imports: [
+    DaffioHeaderItemDirective,
+  ],
 })
 class WrapperComponent {
   active = signal(false);
@@ -30,11 +32,8 @@ describe('DaffioHeaderItemDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-      ],
       imports: [
-        DaffioHeaderItemDirective,
+        WrapperComponent,
       ],
     })
       .compileComponents();

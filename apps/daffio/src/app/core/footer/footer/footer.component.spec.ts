@@ -23,7 +23,9 @@ import { DaffioFooterComponent } from './footer.component';
 @Component({
   template: `<daffio-footer></daffio-footer>`,
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: false,
+  imports: [
+    DaffioFooterComponent,
+  ],
 })
 class WrapperComponent { }
 
@@ -35,11 +37,8 @@ describe('DaffioFooterComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-      ],
       imports: [
-        DaffioFooterComponent,
+        WrapperComponent,
         RouterTestingModule,
         DAFF_CONTAINER_COMPONENTS,
         DaffLogoModule,
