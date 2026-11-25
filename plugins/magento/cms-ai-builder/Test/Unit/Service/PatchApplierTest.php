@@ -9,6 +9,7 @@ namespace Graycore\CmsAiBuilder\Test\Unit\Service;
 use Graycore\CmsAiBuilder\Service\PatchApplier;
 use Graycore\CmsAiBuilder\Service\Schema\JsonObjectNormalizer;
 use Magento\Framework\Serialize\Serializer\Json;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class PatchApplierTest extends TestCase
@@ -60,6 +61,7 @@ class PatchApplierTest extends TestCase
     /**
      * @dataProvider patchTestDataProvider
      */
+    #[DataProvider('patchTestDataProvider')]
     public function testApplyPatchFromFiles(string $input, string $patch, string $expectedOutput): void
     {
         $patchData = json_decode($patch, true);

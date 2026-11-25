@@ -10,6 +10,7 @@ use Graycore\CmsAiBuilder\Service\Schema\ComponentSchema;
 use Graycore\CmsAiBuilder\Service\Schema\JsonPatchResponseSchema;
 use Graycore\CmsAiBuilder\Test\Unit\Fixtures\DaffHeroComponentFixture;
 use JsonSchema\Validator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class ContentSchemaTest extends TestCase
@@ -135,6 +136,7 @@ class ContentSchemaTest extends TestCase
      *
      * @dataProvider contentSchemaProvider
      */
+    #[DataProvider('contentSchemaProvider')]
     public function testContentSchemaValidation(string $name, string $content, string $schemaType): void
     {
         // Get the specific schema definition
@@ -173,6 +175,7 @@ class ContentSchemaTest extends TestCase
      *
      * @dataProvider failingContentSchemaProvider
      */
+    #[DataProvider('failingContentSchemaProvider')]
     public function testFailingContentSchemaValidation(
         string $name,
         string $content,
