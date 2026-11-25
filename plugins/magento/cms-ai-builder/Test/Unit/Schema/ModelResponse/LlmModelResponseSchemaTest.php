@@ -10,6 +10,7 @@ use Graycore\CmsAiBuilder\Service\Schema\ComponentSchema;
 use Graycore\CmsAiBuilder\Service\Schema\JsonPatchResponseSchema;
 use Graycore\CmsAiBuilder\Test\Unit\Fixtures\DaffHeroComponentFixture;
 use JsonSchema\Validator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class LlmModelResponseSchemaTest extends TestCase
@@ -104,6 +105,7 @@ class LlmModelResponseSchemaTest extends TestCase
      *
      * @dataProvider validResponseProvider
      */
+    #[DataProvider('validResponseProvider')]
     public function testValidResponsesPassValidation(string $name, string $response): void
     {
         $responseObject = json_decode($response);
@@ -124,6 +126,7 @@ class LlmModelResponseSchemaTest extends TestCase
      *
      * @dataProvider invalidResponseProvider
      */
+    #[DataProvider('invalidResponseProvider')]
     public function testInvalidResponsesFailValidation(string $name, string $response): void
     {
         $responseObject = json_decode($response);
