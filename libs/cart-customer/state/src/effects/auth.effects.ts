@@ -7,7 +7,10 @@ import {
   createEffect,
   ofType,
 } from '@ngrx/effects';
-import { of } from 'rxjs';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 import {
   catchError,
   filter,
@@ -16,6 +19,7 @@ import {
 } from 'rxjs/operators';
 
 import {
+  DaffAuthActionTypes,
   DaffAuthActions,
   DaffAuthLoginActionTypes,
   DaffAuthLoginActions,
@@ -42,7 +46,7 @@ import { ErrorTransformer } from '@daffodil/core/state';
 import { DAFF_CART_CUSTOMER_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 /**
- * Handles merging and creating carts in response to auth actions.
+ * Handles merging and resolving carts in response to auth actions.
  */
 @Injectable()
 export class DaffCartCustomerAuthEffects<T extends DaffCart = DaffCart> {
@@ -70,23 +74,34 @@ export class DaffCartCustomerAuthEffects<T extends DaffCart = DaffCart> {
       cartId
         ? this.driver.merge(cartId).pipe(
           map(resp => new DaffResolveCartSuccess(resp.response)),
-          catchError((error: DaffError) =>
-            // if a merge fails, just try to load the cart
-            // with an empty ID, the customer cart driver shouldn't need it
-            this.driver.get('').pipe(
-              map(resp => new DaffResolveCartSuccess(resp.response)),
-              catchError((innerError: DaffError) => of(
-                new DaffResolveCartFailure([this.errorMatcher(innerError)]),
-              )),
-            ),
-          ),
+          // if a merge fails, just try to load the customer cart
+          catchError(() => this.getCustomerCart()),
         )
-        : this.driver.get('').pipe(
-          map(resp => new DaffResolveCartSuccess(resp.response)),
-          catchError((innerError: DaffError) => of(
-            new DaffResolveCartFailure([this.errorMatcher(innerError)]),
-          )),
-        ),
+        : this.getCustomerCart(),
     ),
   ));
+
+  /**
+   * Resolves the customer cart when the user is authenticated but there is no cart ID in storage,
+   * such as when the page is refreshed after the cart ID was cleared.
+   * Once the cart is resolved, its ID is stored, so subsequent auth checks will not refetch it.
+   */
+  resolveAfterAuthCheck$ = createEffect(() => this.actions$.pipe(
+    ofType(DaffAuthActionTypes.AuthCheckSuccessAction),
+    filter(() => !this.cartStorage.getCartId()),
+    switchMap(() => this.getCustomerCart()),
+  ));
+
+  /**
+   * Loads the customer cart. The customer cart driver does not need a cart ID
+   * since the cart is determined by the authenticated customer.
+   */
+  private getCustomerCart(): Observable<DaffResolveCartSuccess<T> | DaffResolveCartFailure> {
+    return this.driver.get('').pipe(
+      map(resp => new DaffResolveCartSuccess(resp.response)),
+      catchError((error: DaffError) => of(
+        new DaffResolveCartFailure([this.errorMatcher(error)]),
+      )),
+    );
+  }
 }
