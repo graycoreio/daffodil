@@ -8,6 +8,7 @@ import {
 import { TestScheduler } from 'rxjs/testing';
 
 import {
+  DaffAuthCheckSuccess,
   DaffAuthLoginSuccess,
   DaffAuthRegisterSuccess,
   DaffResetPasswordSuccess,
@@ -189,6 +190,60 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
             // }
           });
         });
+      });
+    });
+  });
+
+  describe('resolveAfterAuthCheck$ | when an auth check succeeds', () => {
+    describe('and there is no cart ID in storage', () => {
+      beforeEach(() => {
+        getCartIdSpy.and.returnValue(null);
+      });
+
+      it('should load the customer cart and return a DaffResolveCartSuccess', () => {
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverGetSpy.and.returnValue(of({
+            response: stubCart,
+            errors: [],
+          }));
+
+          actions$ = helpers.hot('--a', { a: new DaffAuthCheckSuccess() });
+          helpers.expectObservable(effects.resolveAfterAuthCheck$).toBe('--b', { b: new DaffResolveCartSuccess(stubCart) });
+        });
+        expect(driverGetSpy).toHaveBeenCalledWith('');
+      });
+
+      it('should return a DaffResolveCartFailure when the customer cart fails to load', () => {
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart' };
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverGetSpy.and.returnValue(helpers.cold('#', {}, error));
+
+          actions$ = helpers.hot('--a', { a: new DaffAuthCheckSuccess() });
+          helpers.expectObservable(effects.resolveAfterAuthCheck$).toBe('--b', { b: new DaffResolveCartFailure([error]) });
+        });
+      });
+    });
+
+    describe('and there is a cart ID in storage', () => {
+      beforeEach(() => {
+        getCartIdSpy.and.returnValue(stubCart.id);
+      });
+
+      it('should not load the customer cart', () => {
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: new DaffAuthCheckSuccess() });
+          helpers.expectObservable(effects.resolveAfterAuthCheck$).toBe('---');
+        });
+        expect(driverGetSpy).not.toHaveBeenCalled();
       });
     });
   });
