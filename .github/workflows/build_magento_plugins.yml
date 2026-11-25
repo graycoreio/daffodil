@@ -21,14 +21,14 @@ jobs:
     outputs:
       matrix: ${{ steps.supported-version.outputs.matrix }}
     steps:
-      - uses: graycoreio/github-actions-magento2/supported-version@main
+      - uses: graycoreio/github-actions-magento2/supported-version@v9.0.0
         id: supported-version
         with:
           include_services: true
 
   check-cms-ai-builder:
     needs: compute_matrix
-    uses: graycoreio/github-actions-magento2/.github/workflows/check-extension.yaml@main
+    uses: graycoreio/github-actions-magento2/.github/workflows/check-extension.yaml@v9.0.0
     with:
       matrix: ${{ needs.compute_matrix.outputs.matrix }}
       fail-fast: false
