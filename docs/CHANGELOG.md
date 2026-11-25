@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.95.2](https://github.com/graycoreio/daffodil/compare/v0.95.1...v0.95.2) (2026-11-25)
+
+
+### Bug Fixes
+
+* **design:** close select when it becomes disabled while open ([#5193](https://github.com/graycoreio/daffodil/issues/5193)) ([0519b83](https://github.com/graycoreio/daffodil/commit/0519b830aef202f6968845ad9e68e0529ca3572f))
+* **plugins/magento/cms-ai-builder:** allow php 8.5 ([#5201](https://github.com/graycoreio/daffodil/issues/5201)) ([3d80c33](https://github.com/graycoreio/daffodil/commit/3d80c33a62f5df8ba3305c3e1c68cc08435eaae7))
+
 ## [0.95.1](https://github.com/graycoreio/daffodil/compare/v0.95.0...v0.95.1) (2026-11-20)
 
 
