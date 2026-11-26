@@ -38,10 +38,12 @@ import { getDaffCompositeProductEntitiesSelectors } from '../composite-product-e
 export interface DaffCompositeProductMemoizedSelectors<T extends DaffProduct = DaffProduct> {
   /**
    * Get a DaffPriceRange for a composite product based on the configuration provided excluding unselected, optional item prices.
+   * Unconfigured items are priced according to the quantities of their options.
    */
   selectCompositeProductRequiredItemPricesForConfiguration: ( id: DaffCompositeProduct['id'], configuration?: Dictionary<DaffCompositeConfigurationItem> ) => MemoizedSelector<DaffCompositeProductStateRootSlice<T>, DaffPriceRange>;
   /**
    * Get the broadest possible DaffPriceRange for a composite product based on the configuration provided including optional item prices.
+   * Unconfigured items are priced according to the quantities of their options.
    */
   selectCompositeProductOptionalItemPricesForConfiguration: ( id: DaffCompositeProduct['id'], configuration?: Dictionary<DaffCompositeConfigurationItem> ) => MemoizedSelector<DaffCompositeProductStateRootSlice<T>, DaffPriceRange>;
   /**
@@ -173,35 +175,39 @@ export const getDaffCompositeProductPriceSelectors: <T extends DaffProduct = Daf
  * The minimum price of an item is zero if the item is optional.
  *
  * @param item DaffCompositeProductItem
+ * @param appliedOption the {@link DaffCompositeProductItemOption} applied to the item, if any
  */
-function getMinimumRequiredCompositeItemPrice(item: DaffCompositeProductItem, qty: number): number {
-  return item.required ? daffMultiply(Math.min(...item.options.map(option => option.price)), qty) : 0;
+function getMinimumRequiredCompositeItemPrice(item: DaffCompositeProductItem, appliedOption: DaffCompositeProductItemOption): number {
+  return item.required ? Math.min(...getOptionTotals(item, appliedOption, option => option.price)) : 0;
 }
 
 /**
  * The maximum price for an item is zero if the item is optional.
  *
  * @param item DaffCompositeProductItem
+ * @param appliedOption the {@link DaffCompositeProductItemOption} applied to the item, if any
  */
-function getMaximumRequiredCompositeItemPrice(item: DaffCompositeProductItem, qty: number): number {
-  return item.required ? daffMultiply(Math.max(...item.options.map(option => option.price)), qty) : 0;
+function getMaximumRequiredCompositeItemPrice(item: DaffCompositeProductItem, appliedOption: DaffCompositeProductItemOption): number {
+  return item.required ? Math.max(...getOptionTotals(item, appliedOption, option => option.price)) : 0;
 }
 
 /**
  * The minimum discounted price of an item is zero if the item is optional.
  *
  * @param item DaffCompositeProductItem
+ * @param appliedOption the {@link DaffCompositeProductItemOption} applied to the item, if any
  */
-function getMinimumRequiredCompositeItemDiscountedPrice(item: DaffCompositeProductItem, qty: number): number {
-  return item.required ? daffMultiply(Math.min(...item.options.map(getDiscountedPrice)), qty) : 0;
+function getMinimumRequiredCompositeItemDiscountedPrice(item: DaffCompositeProductItem, appliedOption: DaffCompositeProductItemOption): number {
+  return item.required ? Math.min(...getOptionTotals(item, appliedOption, getDiscountedPrice)) : 0;
 }
 /**
  * The maximum discounted price of an item is zero if the item is optional.
  *
  * @param item DaffCompositeProductItem
+ * @param appliedOption the {@link DaffCompositeProductItemOption} applied to the item, if any
  */
-function getMaximumRequiredCompositeItemDiscountedPrice(item: DaffCompositeProductItem, qty: number): number {
-  return item.required ? daffMultiply(Math.max(...item.options.map(getDiscountedPrice)), qty) : 0;
+function getMaximumRequiredCompositeItemDiscountedPrice(item: DaffCompositeProductItem, appliedOption: DaffCompositeProductItemOption): number {
+  return item.required ? Math.max(...getOptionTotals(item, appliedOption, getDiscountedPrice)) : 0;
 }
 
 /**
@@ -216,14 +222,14 @@ function getMinPricesForConfiguration(product: DaffCompositeProduct, appliedOpti
       acc,
       appliedOptionHasId(appliedOptions[item.id]) ?
         daffMultiply(getDiscountedPrice(appliedOptions[item.id]), appliedOptions[item.id].quantity) :
-        getMinimumRequiredCompositeItemDiscountedPrice(item, getOptionQty(appliedOptions[item.id])),
+        getMinimumRequiredCompositeItemDiscountedPrice(item, appliedOptions[item.id]),
     ), getDiscountedPrice(product)),
     discount: { amount: null, percent: null },
     originalPrice: product.items.reduce((acc, item) => daffAdd(
       acc,
       appliedOptionHasId(appliedOptions[item.id]) ?
         daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) :
-        getMinimumRequiredCompositeItemPrice(item, getOptionQty(appliedOptions[item.id])),
+        getMinimumRequiredCompositeItemPrice(item, appliedOptions[item.id]),
     ), product.price),
   };
 }
@@ -240,14 +246,14 @@ function getMaxPricesForConfiguration(product: DaffCompositeProduct, appliedOpti
       acc,
       appliedOptionHasId(appliedOptions[item.id]) ?
         daffMultiply(getDiscountedPrice(appliedOptions[item.id]), appliedOptions[item.id].quantity) :
-        getMaximumRequiredCompositeItemDiscountedPrice(item, getOptionQty(appliedOptions[item.id])),
+        getMaximumRequiredCompositeItemDiscountedPrice(item, appliedOptions[item.id]),
     ), getDiscountedPrice(product)),
     discount: { amount: null, percent: null },
     originalPrice: product.items.reduce((acc, item) => daffAdd(
       acc,
       appliedOptionHasId(appliedOptions[item.id]) ?
         daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) :
-        getMaximumRequiredCompositeItemPrice(item, getOptionQty(appliedOptions[item.id])),
+        getMaximumRequiredCompositeItemPrice(item, appliedOptions[item.id]),
     ), product.price),
   };
 }
@@ -267,18 +273,14 @@ function getMaxPricesForConfigurationIncludingOptionalItems(product: DaffComposi
       acc,
       appliedOptionHasId(appliedOptions[item.id]) ?
         daffMultiply(getDiscountedPrice(appliedOptions[item.id]), appliedOptions[item.id].quantity) :
-        appliedOptionHasQty(appliedOptions[item.id]) ?
-          daffMultiply(Math.max(...item.options.map(getDiscountedPrice)), appliedOptions[item.id].quantity) :
-          Math.max(...item.options.map(getDiscountedPrice)),
+        Math.max(...getOptionTotals(item, appliedOptions[item.id], getDiscountedPrice)),
     ), getDiscountedPrice(product)),
     discount: { amount: null, percent: null },
     originalPrice: product.items.reduce((acc, item) => daffAdd(
       acc,
       appliedOptionHasId(appliedOptions[item.id]) ?
         daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) :
-        appliedOptionHasQty(appliedOptions[item.id]) ?
-          daffMultiply(Math.max(...item.options.map(option => option.price)), appliedOptions[item.id].quantity) :
-          Math.max(...item.options.map(option => option.price)),
+        Math.max(...getOptionTotals(item, appliedOptions[item.id], option => option.price)),
     ), product.price),
   };
 }
@@ -294,7 +296,8 @@ function getAppliedOptionsForConfiguration(product: DaffCompositeProduct, config
     ...acc,
     [item.id]: configuration[item.id] ? {
       ...item.options.find(option => option.id === configuration[item.id].value),
-      quantity: (configuration[item.id].qty === null || configuration[item.id].qty === undefined) ? 1 : configuration[item.id].qty,
+      // an unselected item without a quantity falls back to the quantities of its options
+      quantity: configuration[item.id].qty ?? (configuration[item.id].value ? 1 : null),
     } : null,
   }), {});
 }
@@ -303,10 +306,14 @@ function appliedOptionHasId(appliedOption: DaffCompositeProductItemOption): bool
   return !!appliedOption?.id;
 }
 
-function getOptionQty(appliedOption: DaffCompositeProductItemOption): number {
-  return appliedOptionHasQty(appliedOption) ? appliedOption.quantity : 1;
-}
-
-function appliedOptionHasQty(appliedOption: DaffCompositeProductItemOption): boolean {
-  return appliedOption?.quantity !== null && appliedOption?.quantity !== undefined;
+/**
+ * Gets the total price of each option of an item.
+ * The quantity of the applied option takes precedence, otherwise each option is priced according to its own quantity.
+ *
+ * @param item a DaffCompositeProductItem
+ * @param appliedOption the {@link DaffCompositeProductItemOption} applied to the item, if any
+ * @param getPrice gets the unit price of an option
+ */
+function getOptionTotals(item: DaffCompositeProductItem, appliedOption: DaffCompositeProductItemOption, getPrice: (option: DaffCompositeProductItemOption) => number): number[] {
+  return item.options.map(option => daffMultiply(getPrice(option), appliedOption?.quantity ?? option.quantity ?? 1));
 }
